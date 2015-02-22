@@ -1,0 +1,23 @@
+input, textarea, select#contact { display: block; width: auto; margin: 0; padding: 0px; border: none; overflow:visible }
+
+#contact label { display: none; float: none; height:0px; }
+input, textarea, select { width:300px; height:64px; padding:0px 20px 1px 20px; font: 18px 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:100; border:0; border-bottom:1px solid #000; background:#101010; color:#fff; letter-spacing:-1px; -webkit-transition: all 0.2s ease 0s; -moz-transition: all 0.2s ease 0s; -o-transition: all 0.2s ease 0s; transition: all 0.2s ease 0s; float:none;font-family: 'Lato', sans-serif;}
+
+#contact textarea { margin-bottom:0px; margin-right:0px !important; width:236px; border:0px; border-right:1px solid #000;  display:block; position:absolute; bottom:0px; left:0px; line-height:1.5; padding:14px 20px 22px 20px;}
+
+input:focus, textarea:focus, select:focus { background:#191919; }
+input.submit { display:block; position:absolute; bottom:0px; right:0px; width:64px; height:108px; -moz-transition: all 0.2s ease 0s; -o-transition: all 0.2s ease 0s; transition: all 0.2s ease 0s; border:0px; padding:0px; background:url(../images/bg-submit.png) center center no-repeat #191919; background-size:24px 28px; text-indent:-9999px; cursor:pointer}
+#contact input.submit:hover { background-color:#101010; }
+
+
+#contact fieldset { padding-left:0px;}
+
+#contact span.required { padding-left:28px; background:url(../images/bg-bullet.png) no-repeat 12px 5px; margin-left:-28px; }
+
+#message { margin: 0; padding: 0px; z-index:5500; position:absolute !important; top:0px; left:0px; background:#fff; height:100%; min-height:100%; }
+#success_page { display: block; width:300px; height:100%; min-height:100%; padding:10px 15px; }
+.error_message { display: block; width:300px; height:100%; min-height:100%; padding:30px 35px; background:url(../images/bg-close.png) no-repeat 247px 244px #FBE3E4;  background-size:18px 18px; color:#8a1f11; cursor:pointer }
+#success_page h5 {color:#2b2b2b }
+
+#contact .padding-right {padding-right:20px; }
+#comments {height: 108px; }

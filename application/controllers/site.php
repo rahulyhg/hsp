@@ -2485,5 +2485,772 @@ class Site extends CI_Controller
         $this->load->view("redirect",$data);
     }
     //endamenity
+    
+    
+    
+    
+    public function viewconfig()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="viewconfig";
+        $data["base_url"]=site_url("site/viewconfigjson");
+        $data["title"]="View config";
+        $this->load->view("template",$data);
+    }
+    function viewconfigjson()
+    {
+        $elements=array();
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`config`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`config`.`title`";
+        $elements[1]->sort="1";
+        $elements[1]->header="Title";
+        $elements[1]->alias="title";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`config`.`text`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Text";
+        $elements[2]->alias="text";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`config`.`date`";
+        $elements[3]->sort="1";
+        $elements[3]->header="Date";
+        $elements[3]->alias="date";
+        
+        $elements[4]=new stdClass();
+        $elements[4]->field="`config`.`image`";
+        $elements[4]->sort="1";
+        $elements[4]->header="Image";
+        $elements[4]->alias="image";
+        
+        $elements[5]=new stdClass();
+        $elements[5]->field="`config`.`timestamp`";
+        $elements[5]->sort="1";
+        $elements[5]->header="Timestamp";
+        $elements[5]->alias="timestamp";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="id";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `config`");
+        $this->load->view("json",$data);
+    }
+
+    public function createconfig()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="createconfig";
+        $data["title"]="Create config";
+        $this->load->view("template",$data);
+    }
+    public function createconfigsubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("title","title","trim");
+        $this->form_validation->set_rules("text","text","trim");
+        $this->form_validation->set_rules("date","date","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createconfig";
+            $data["title"]="Create config";
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $title=$this->input->get_post("title");
+            $text=$this->input->get_post("text");
+            $date=$this->input->get_post("date");
+            
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+			}
+            
+            
+//            $config['upload_path'] = './uploads/';
+//			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+//			$this->load->library('upload', $config);
+//			$filename="image";
+//			$image="";
+//			if (  $this->upload->do_upload($filename))
+//			{
+//				$uploaddata = $this->upload->data();
+//				$image=$uploaddata['file_name'];
+//                
+//                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+//                $config_r['maintain_ratio'] = TRUE;
+//                $config_t['create_thumb'] = FALSE;///add this
+//                $config_r['width']   = 800;
+//                $config_r['height'] = 800;
+//                $config_r['quality']    = 100;
+//                //end of configs
+//
+//                $this->load->library('image_lib', $config_r); 
+//                $this->image_lib->initialize($config_r);
+//                if(!$this->image_lib->resize())
+//                {
+//                    echo "Failed." . $this->image_lib->display_errors();
+//                    //return false;
+//                }  
+//                else
+//                {
+//                    //print_r($this->image_lib->dest_image);
+//                    //dest_image
+//                    $image=$this->image_lib->dest_image;
+//                    //return false;
+//                }
+//                
+//			}
+            
+            if($this->config_model->create($title,$text,$date,$image)==0)
+                $data["alerterror"]="New config could not be created.";
+            else
+                $data["alertsuccess"]="config created Successfully.";
+            $data["redirect"]="site/viewconfig";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function editconfig()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editconfig";
+        $data["title"]="Edit config";
+        $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
+    public function editconfigsubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("id","ID","trim");
+        $this->form_validation->set_rules("title","title","trim");
+        $this->form_validation->set_rules("text","text","trim");
+        $this->form_validation->set_rules("date","date","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data['isfeatured']=$this->config_model->getisfeatureddropdown();
+            $data['isnew']=$this->config_model->getisnewdropdown();
+            $data['categoryforconfig']=$this->categoryforconfig_model->getcategoryforconfigdropdown();
+            $data['selectedcategoryforconfig']=$this->config_model->getcategoryforconfigbyconfig($this->input->get_post('id'));
+            $data["page"]="editconfig";
+            $data["page2"]="block/configblock";
+            $data["title"]="Edit config";
+            $data["before"]=$this->config_model->beforeedit($this->input->get_post("id"));
+            $this->load->view("templatewith2",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("id");
+            
+            $title=$this->input->get_post("title");
+            $text=$this->input->get_post("text");
+            $date=$this->input->get_post("date");
+            
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+			}
+            
+//            $config['upload_path'] = './uploads/';
+//			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+//			$this->load->library('upload', $config);
+//			$filename="image";
+//			$image="";
+//			if (  $this->upload->do_upload($filename))
+//			{
+//				$uploaddata = $this->upload->data();
+//				$image=$uploaddata['file_name'];
+//                
+//                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+//                $config_r['maintain_ratio'] = TRUE;
+//                $config_t['create_thumb'] = FALSE;///add this
+//                $config_r['width']   = 800;
+//                $config_r['height'] = 800;
+//                $config_r['quality']    = 100;
+//                //end of configs
+//
+//                $this->load->library('image_lib', $config_r); 
+//                $this->image_lib->initialize($config_r);
+//                if(!$this->image_lib->resize())
+//                {
+//                    echo "Failed." . $this->image_lib->display_errors();
+//                    //return false;
+//                }  
+//                else
+//                {
+//                    //print_r($this->image_lib->dest_image);
+//                    //dest_image
+//                    $image=$this->image_lib->dest_image;
+//                    //return false;
+//                }
+//                
+//			}
+            
+            if($image=="")
+            {
+            $image=$this->config_model->getconfigimagebyid($id);
+               // print_r($image);
+                $image=$image->image;
+            }
+            
+            
+            if($this->config_model->edit($id,$title,$text,$date,$image)==0)
+                $data["alerterror"]="New config could not be Updated.";
+            else
+                $data["alertsuccess"]="config Updated Successfully.";
+            $data["redirect"]="site/viewconfig";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function deleteconfig()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->config_model->delete($this->input->get("id"));
+        $data["redirect"]="site/viewconfig";
+        $this->load->view("redirect",$data);
+    }
+    //end of config
+    
+    public function viewvideo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="viewvideo";
+        $data["base_url"]=site_url("site/viewvideojson");
+        $data["title"]="View video";
+        $this->load->view("template",$data);
+    }
+    function viewvideojson()
+    {
+        $elements=array();
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`configvideo`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`configvideo`.`video`";
+        $elements[1]->sort="1";
+        $elements[1]->header="Video";
+        $elements[1]->alias="video";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`configvideo`.`timestamp`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Timestamp";
+        $elements[2]->alias="timestamp";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`configvideo`.`title`";
+        $elements[3]->sort="1";
+        $elements[3]->header="Title";
+        $elements[3]->alias="title";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="id";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `configvideo`");
+        $this->load->view("json",$data);
+    }
+
+    public function createvideo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="createvideo";
+        $data["title"]="Create video";
+        $this->load->view("template",$data);
+    }
+    public function createvideosubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("title","title","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createvideo";
+            $data["title"]="Create video";
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $title=$this->input->get_post("title");
+             
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'mp4|3gp|flv|mp3';
+            $this->load->library('upload', $config);
+            $filename="video";
+            $video="";
+            if (  $this->upload->do_upload($filename))
+            {
+                $uploaddata = $this->upload->data();
+                $video=$uploaddata['file_name'];
+            }
+        
+            
+            if($this->config_model->createvideo($title,$video)==0)
+                $data["alerterror"]="New video could not be created.";
+            else
+                $data["alertsuccess"]="video created Successfully.";
+            $data["redirect"]="site/viewvideo";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function editvideo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editvideo";
+        $data["title"]="Edit video";
+        $data["before"]=$this->config_model->beforeeditvideo($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
+    public function editvideosubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("id","ID","trim");
+        $this->form_validation->set_rules("title","title","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data['isfeatured']=$this->config_model->getisfeatureddropdown();
+            $data['isnew']=$this->config_model->getisnewdropdown();
+            $data['categoryforconfig']=$this->categoryforconfig_model->getcategoryforconfigdropdown();
+            $data['selectedcategoryforconfig']=$this->config_model->getcategoryforconfigbyconfig($this->input->get_post('id'));
+            $data["page"]="editconfig";
+            $data["page2"]="block/configblock";
+            $data["title"]="Edit config";
+            $data["before"]=$this->config_model->beforeedit($this->input->get_post("id"));
+            $this->load->view("templatewith2",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("id");
+            
+            $title=$this->input->get_post("title");
+            $text=$this->input->get_post("text");
+            $date=$this->input->get_post("date");
+            
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'mp4|3gp|flv|mp3';
+            $this->load->library('upload', $config);
+            $filename="video";
+            $video="";
+            if (  $this->upload->do_upload($filename))
+            {
+                $uploaddata = $this->upload->data();
+                $video=$uploaddata['file_name'];
+            }
+        
+            if($video=="")
+            {
+            $video=$this->config_model->getvideobyid($id);
+               // print_r($image);
+                $video=$video->video;
+            }
+            
+            
+            if($this->config_model->editvideo($id,$title,$video)==0)
+                $data["alerterror"]="New video could not be Updated.";
+            else
+                $data["alertsuccess"]="video Updated Successfully.";
+            $data["redirect"]="site/viewvideo";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function deletevideo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->config_model->deletevideo($this->input->get("id"));
+        $data["redirect"]="site/viewvideo";
+        $this->load->view("redirect",$data);
+    }
+    
+    public function viewlogo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="viewlogo";
+        $data["base_url"]=site_url("site/viewlogojson");
+        $data["title"]="View logo";
+        $this->load->view("template",$data);
+    }
+    function viewlogojson()
+    {
+        $elements=array();
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`configlogo`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`configlogo`.`logo`";
+        $elements[1]->sort="1";
+        $elements[1]->header="logo";
+        $elements[1]->alias="logo";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`configlogo`.`timestamp`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Timestamp";
+        $elements[2]->alias="timestamp";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`configlogo`.`title`";
+        $elements[3]->sort="1";
+        $elements[3]->header="Title";
+        $elements[3]->alias="title";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="id";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `configlogo`");
+        $this->load->view("json",$data);
+    }
+
+    public function createlogo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="createlogo";
+        $data["title"]="Create logo";
+        $this->load->view("template",$data);
+    }
+    public function createlogosubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("title","title","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createlogo";
+            $data["title"]="Create logo";
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $title=$this->input->get_post("title");
+             
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="logo";
+			$logo="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$logo=$uploaddata['file_name'];
+			}
+            
+            
+            if($this->config_model->createlogo($title,$logo)==0)
+                $data["alerterror"]="New logo could not be created.";
+            else
+                $data["alertsuccess"]="logo created Successfully.";
+            $data["redirect"]="site/viewlogo";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function editlogo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editlogo";
+        $data["title"]="Edit logo";
+        $data["before"]=$this->config_model->beforeeditlogo($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
+    public function editlogosubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("id","ID","trim");
+        $this->form_validation->set_rules("title","title","trim");
+        
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="editlogo";
+            $data["title"]="Edit logo";
+            $data["before"]=$this->config_model->beforeeditlogo($this->input->get_post("id"));
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("id");
+            
+            $title=$this->input->get_post("title");
+            
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="logo";
+			$logo="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$logo=$uploaddata['file_name'];
+			}
+            if($logo=="")
+            {
+            $logo=$this->config_model->getlogobyid($id);
+               // print_r($logo);
+                $logo=$logo->logo;
+            }
+            
+            
+            
+            if($this->config_model->editlogo($id,$title,$logo)==0)
+                $data["alerterror"]="New logo could not be Updated.";
+            else
+                $data["alertsuccess"]="logo Updated Successfully.";
+            $data["redirect"]="site/viewlogo";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function deletelogo()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->config_model->deletelogo($this->input->get("id"));
+        $data["redirect"]="site/viewlogo";
+        $this->load->view("redirect",$data);
+    }
+    
+    public function viewcomment()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="viewcomment";
+        $data["base_url"]=site_url("site/viewcommentjson");
+        $data["title"]="View comment";
+        $this->load->view("template",$data);
+    }
+    function viewcommentjson()
+    {
+        $elements=array();
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`comment`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`comment`.`name`";
+        $elements[1]->sort="1";
+        $elements[1]->header="Name";
+        $elements[1]->alias="name";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`comment`.`email`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Email";
+        $elements[2]->alias="email";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`comment`.`phone`";
+        $elements[3]->sort="1";
+        $elements[3]->header="Phone";
+        $elements[3]->alias="phone";
+        
+        $elements[4]=new stdClass();
+        $elements[4]->field="`comment`.`comment`";
+        $elements[4]->sort="1";
+        $elements[4]->header="Comment";
+        $elements[4]->alias="comment";
+        
+        $elements[5]=new stdClass();
+        $elements[5]->field="`comment`.`timestamp`";
+        $elements[5]->sort="1";
+        $elements[5]->header="Timestamp";
+        $elements[5]->alias="timestamp";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="id";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `comment`");
+        $this->load->view("json",$data);
+    }
+
+    public function createcomment()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="createcomment";
+        $data["title"]="Create comment";
+        $this->load->view("template",$data);
+    }
+    public function createcommentsubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("name","Name","trim|required");
+        $this->form_validation->set_rules("email","email","trim");
+        $this->form_validation->set_rules("phone","phone","trim");
+        $this->form_validation->set_rules("comment","comment","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createcomment";
+            $data["title"]="Create comment";
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $name=$this->input->get_post("name");
+            $phone=$this->input->get_post("phone");
+            $email=$this->input->get_post("email");
+            $comment=$this->input->get_post("comment");
+            if($this->comment_model->create($name,$email,$phone,$comment)==0)
+                $data["alerterror"]="New comment could not be created.";
+            else
+                $data["alertsuccess"]="comment created Successfully.";
+            $data["redirect"]="site/viewcomment";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function editcomment()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editcomment";
+        $data["title"]="Edit comment";
+        $data["before"]=$this->comment_model->beforeedit($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
+    public function editcommentsubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("id","ID","trim");
+        $this->form_validation->set_rules("name","Name","trim");
+        $this->form_validation->set_rules("email","email","trim");
+        $this->form_validation->set_rules("phone","phone","trim");
+        $this->form_validation->set_rules("commemt","commemt","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="editcomment";
+            $data["title"]="Edit comment";
+            $data["before"]=$this->comment_model->beforeedit($this->input->get("id"));
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("id");
+            $name=$this->input->get_post("name");
+            $email=$this->input->get_post("email");
+            $phone=$this->input->get_post("phone");
+            $comment=$this->input->get_post("comment");
+            
+            if($this->comment_model->edit($id,$name,$email,$phone,$comment)==0)
+                $data["alerterror"]="New comment could not be Updated.";
+            else
+                $data["alertsuccess"]="comment Updated Successfully.";
+            $data["redirect"]="site/viewcomment";
+            $this->load->view("redirect",$data);
+        }
+    }
+    public function deletecomment()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->comment_model->delete($this->input->get("id"));
+        $data["redirect"]="site/viewcomment";
+        $this->load->view("redirect",$data);
+    }
+    //endcomment
 }
 ?>

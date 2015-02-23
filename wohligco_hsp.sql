@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2015 at 01:25 PM
+-- Generation Time: Feb 23, 2015 at 02:25 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `brandcategory` (
   `brand` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `brandcategory`
@@ -86,7 +86,11 @@ INSERT INTO `brandcategory` (`id`, `brand`, `category`) VALUES
 (6, 15, 1),
 (7, 15, 2),
 (8, 15, 3),
-(9, 1, 1);
+(9, 1, 1),
+(24, 16, 1),
+(25, 16, 2),
+(34, 17, 1),
+(35, 17, 2);
 
 -- --------------------------------------------------------
 
@@ -239,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `dineamenity` (
   `dine` int(11) NOT NULL,
   `amenity` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `dineamenity`
@@ -249,7 +253,8 @@ INSERT INTO `dineamenity` (`id`, `dine`, `amenity`) VALUES
 (4, 5, 1),
 (5, 5, 3),
 (6, 6, 2),
-(7, 6, 3);
+(7, 6, 3),
+(9, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -262,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `dinecategory` (
   `dine` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `dinecategory`
@@ -272,7 +277,8 @@ INSERT INTO `dinecategory` (`id`, `dine`, `category`) VALUES
 (12, 5, 1),
 (13, 5, 3),
 (14, 6, 1),
-(15, 6, 3);
+(15, 6, 3),
+(17, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -296,18 +302,23 @@ CREATE TABLE IF NOT EXISTS `hsp_brand` (
   `twitter` varchar(255) NOT NULL,
   `instagram` varchar(255) NOT NULL,
   `googleplus` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `specialoffer` text NOT NULL,
+  `specialofferimage` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `hsp_brand`
 --
 
-INSERT INTO `hsp_brand` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `logo`, `json`, `contactno`, `email`, `facebook`, `twitter`, `instagram`, `googleplus`) VALUES
-(1, 'Adidas', '9', 'Thane', '1', '1', 'Adidas is the best brand.', 'nav2.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '8989878788', 'adidas@gmail.com', '2', '2', '2', '2'),
-(13, 'asc', '2', '2', '1', '1', '2', 'Nature_at_its_Best!!!.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', ''),
-(14, '2', '2', '2', '1', '1', '2', '', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', ''),
-(15, 'demo', '10', '2', '1', '1', 'ajsnxaksj', 'event488.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"iuniu"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"kjnj"}]', '232323', 'EricVan@wohlig.com', '', '', '', '');
+INSERT INTO `hsp_brand` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `logo`, `json`, `contactno`, `email`, `facebook`, `twitter`, `instagram`, `googleplus`, `image`, `specialoffer`, `specialofferimage`) VALUES
+(1, 'Adidas', '9', 'Thane', '1', '1', 'Adidas is the best brand.', 'nav2.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '8989878788', 'adidas@gmail.com', '2', '2', '2', '2', '', '', ''),
+(13, 'asc', '2', '2', '1', '1', '2', 'Nature_at_its_Best!!!.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', ''),
+(14, '2', '2', '2', '1', '1', '2', '', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', ''),
+(15, 'demo', '10', '2', '1', '1', 'ajsnxaksj', 'event488.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"iuniu"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"kjnj"}]', '232323', 'EricVan@wohlig.com', '', '', '', '', '', '', ''),
+(16, '8', '8', '8', '1', '1', '8', 'block42.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"8"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"8"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"8"}]', '8', '8', '8', '8', '8', '8', 'main_banner4.jpg', '', ''),
+(17, '5', '5', '5', '1', '1', '5', 'block21.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"bhb"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"m j"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"iuniu"}]', '5', '5', '5', '5', '5', '5', 'main_banner_old.jpg', 'jsndck', 'main_banner_m3.jpg');
 
 -- --------------------------------------------------------
 
@@ -377,19 +388,24 @@ CREATE TABLE IF NOT EXISTS `hsp_dine` (
   `twitter` varchar(255) NOT NULL,
   `instagram` varchar(255) NOT NULL,
   `googleplus` varchar(255) NOT NULL,
+  `floor` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `specialoffer` text NOT NULL,
+  `specialofferimage` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `hsp_dine`
 --
 
-INSERT INTO `hsp_dine` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `json`, `logo`, `email`, `contactno`, `facebook`, `twitter`, `instagram`, `googleplus`) VALUES
-(1, 'avinash', '10', 'karjat', '0', '0', 'demo', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', 'event4881.jpg', '', '', '', '', '', ''),
-(2, 'avinash', '10', 'karjat', '0', '0', 'demo', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', 'Nature_at_its_Best!!!1.png', '', '', '', '', '', ''),
-(3, 'asxas', '2', 'Ghatkopar', '1', '1', 'jhbjh', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', '', '', '', '', '', '', ''),
-(5, '99', '9', '9', '1', '1', '9', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"9"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"9"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"9"}]', 'event4882.jpg', '', '', '', '', '', ''),
-(6, '2', '2', '2', '1', '1', '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', 'event48821.jpg', '2@2.com', '222', '2', '2', '2', '2');
+INSERT INTO `hsp_dine` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `json`, `logo`, `email`, `contactno`, `facebook`, `twitter`, `instagram`, `googleplus`, `floor`, `image`, `specialoffer`, `specialofferimage`) VALUES
+(1, 'avinash', '10', 'karjat', '0', '0', 'demo', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', 'event4881.jpg', '', '', '', '', '', '', '', '', '', ''),
+(2, 'avinash', '10', 'karjat', '0', '0', 'demo', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', 'Nature_at_its_Best!!!1.png', '', '', '', '', '', '', '', '', '', ''),
+(3, 'asxas', '2', 'Ghatkopar', '1', '1', 'jhbjh', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"kjjnk"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"nkj"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oini"}]', '', '', '', '', '', '', '', '', '', '', ''),
+(5, '99', '9', '9', '1', '1', '9', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"9"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"9"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"9"}]', 'event4882.jpg', '', '', '', '', '', '', '', '', '', ''),
+(6, '2', '2', '2', '1', '1', '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', 'event48821.jpg', '2@2.com', '222', '2', '2', '2', '2', '', '', '', ''),
+(7, '8', '8', '8', '1', '1', '8', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"6"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"6"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"6"}]', 'block43.jpg', '8', '8', '8', '8', '8', '8', '0', 'main_banner5.jpg', 'iuanis', 'main_banner_m4.jpg');
 
 -- --------------------------------------------------------
 

@@ -55,8 +55,8 @@ class Website extends CI_Controller
         //$data['search']=$this->dine_model->getbrandbysearch($searchtext);
         $category = "category1";
         //$data['catsearch']=$this->dine_model->getbrandbycategory($category);
-        $ammenity = "";
-        //$data['ammminitysearch'] = $this->dine_model->getdinerbyammenity($ammenity);
+        $amenity = "";
+        //$data['ammenitysearch'] = $this->dine_model->getdinerbyammenity($amenity);
 		$this->load->view( 'frontend/eat_list', $data );	
 	}
     public function eat_inner()

@@ -187,7 +187,7 @@ class dine_model extends CI_Model
     }
     public function getdinerbyammenity($a)
     {
-        $query=$this->db->query("SELECT * FROM `hsp_dine`")->result();
+        $query=$this->db->query("SELECT `hsp_dine`.`logo`,`hsp_dine`.`name`,`hsp_dine`.`hours`,`amenity`.`id` FROM `amenity` INNER JOIN `hsp_dine` ON ``")->result();
 		return $query;  
     }
 }

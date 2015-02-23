@@ -144,5 +144,10 @@ class brand_model extends CI_Model
          
 		
 	}
+    public function getall()
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_brand`")->result();
+		return $query;
+    }
 }
 ?>

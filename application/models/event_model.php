@@ -67,7 +67,7 @@ class event_model extends CI_Model
 	}
     public function getall()
     {
-        $query=$this->db->query("SELECT * FROM `hsp_event`")->result();
+        $query=$this->db->query("SELECT * FROM `hsp_event` WHERE `date`>CURRENT_DATE()")->result();
 		return $query;
     }
     

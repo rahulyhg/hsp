@@ -89,7 +89,7 @@
                                 <form method="post" accept-charset="utf-8" action="<?php echo site_url(" website/brands_list "); ?>">
                                     I am Looking For
                                     <select name="brandcategorysearch" class="select1">
-                                      <option value="">Select a cuisine</option>
+                                      <option value="">Select a Brand</option>
                                        <?php foreach($brandcategories as $brandcategory) { ?>
                                         <option value="<?php echo $brandcategory->id; ?>"><?php echo $brandcategory->name; ?></option>
                                         <?php }; ?>

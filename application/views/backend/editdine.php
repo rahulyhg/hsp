@@ -100,6 +100,19 @@
 				  </div>
 				</div>
            
+				<div class=" form-group">
+				  <label class="col-sm-2 control-label" for="normal-field">image</label>
+				  <div class="col-sm-4">
+					<input type="file" id="normal-field" class="form-control" name="image" value="<?php echo set_value('image',$before->image);?>">
+					<?php if($before->image == "")
+						 { }
+						 else
+						 { ?>
+							<img src="<?php echo base_url('uploads')."/".$before->image; ?>" width="140px" height="140px">
+						<?php }
+					?>
+				  </div>
+				</div>
            <div class=" form-group">
 				  <label class="col-sm-2 control-label">Category</label>
 				  <div class="col-sm-4">
@@ -110,6 +123,26 @@
 				  </div>
 				</div>
 				
+            <div class=" form-group">
+                <label class="col-sm-2 control-label" for="normal-field">specialoffer</label>
+                <div class="col-sm-8">
+                    <textarea name="specialoffer" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'specialoffer',$before->specialoffer);?></textarea>
+                </div>
+            </div>
+            
+				<div class=" form-group">
+				  <label class="col-sm-2 control-label" for="normal-field">specialofferimage</label>
+				  <div class="col-sm-4">
+					<input type="file" id="normal-field" class="form-control" name="specialofferimage" value="<?php echo set_value('specialofferimage',$before->specialofferimage);?>">
+					<?php if($before->specialofferimage == "")
+						 { }
+						 else
+						 { ?>
+							<img src="<?php echo base_url('uploads')."/".$before->specialofferimage; ?>" width="140px" height="140px">
+						<?php }
+					?>
+				  </div>
+				</div>
            <div class=" form-group">
 				  <label class="col-sm-2 control-label">Amenity</label>
 				  <div class="col-sm-4">

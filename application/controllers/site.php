@@ -515,6 +515,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("twitter","twitter","trim");
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
+        $this->form_validation->set_rules("specialoffer","specialoffer","trim");
         if($this->form_validation->run()==FALSE)
         {
             $data["alerterror"]=validation_errors();
@@ -542,6 +543,7 @@ class Site extends CI_Controller
             $instagram=$this->input->get_post("instagram");
             $googleplus=$this->input->get_post("googleplus");
             $categoryforbrand=$this->input->get_post("categoryforbrand");
+            $specialoffer=$this->input->get_post("specialoffer");
             
             
             $config['upload_path'] = './uploads/';
@@ -575,7 +577,72 @@ class Site extends CI_Controller
                 }
                 
 			}
-            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus)==0)
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $image=$this->image_lib->dest_image;
+                }
+                
+			}
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="specialofferimage";
+			$specialofferimage="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$specialofferimage=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $specialofferimage=$this->image_lib->dest_image;
+                }
+                
+			}
+//            echo $logo."<br>";
+//            echo $image;
+            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)==0)
                 $data["alerterror"]="New brand could not be created.";
             else
                 $data["alertsuccess"]="brand created Successfully.";
@@ -616,6 +683,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("twitter","twitter","trim");
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
+        $this->form_validation->set_rules("specialoffer","specialoffer","trim");
         if($this->form_validation->run()==FALSE)
         {
             $data["alerterror"]=validation_errors();
@@ -647,6 +715,7 @@ class Site extends CI_Controller
             $instagram=$this->input->get_post("instagram");
             $googleplus=$this->input->get_post("googleplus");
             $categoryforbrand=$this->input->get_post("categoryforbrand");
+            $specialoffer=$this->input->get_post("specialoffer");
             
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -689,7 +758,89 @@ class Site extends CI_Controller
                 $logo=$logo->logo;
             }
             
-            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus)==0)
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($image=="")
+            {
+                $image=$this->brand_model->getbrandimagebyid($id);
+                $image=$image->image;
+            }
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="specialofferimage";
+			$specialofferimage="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$specialofferimage=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $specialofferimage=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($specialofferimage=="")
+            {
+                $specialofferimage=$this->brand_model->getbrandspecialofferimagebyid($id);
+                $specialofferimage=$specialofferimage->specialofferimage;
+            }
+            
+            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)==0)
                 $data["alerterror"]="New brand could not be Updated.";
             else
                 $data["alertsuccess"]="brand Updated Successfully.";
@@ -1575,6 +1726,8 @@ class Site extends CI_Controller
             $twitter=$this->input->get_post("twitter");
             $instagram=$this->input->get_post("instagram");
             $googleplus=$this->input->get_post("googleplus");
+            $specialoffer=$this->input->get_post("specialoffer");
+            $floor=$this->input->get_post("floor");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -1608,7 +1761,71 @@ class Site extends CI_Controller
                 }
                 
 			}
-            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus)==0)
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $image=$this->image_lib->dest_image;
+                }
+                
+			}
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="specialofferimage";
+			$specialofferimage="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$specialofferimage=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $specialofferimage=$this->image_lib->dest_image;
+                }
+                
+			}
+            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)==0)
                 $data["alerterror"]="New dine could not be created.";
             else
                 $data["alertsuccess"]="dine created Successfully.";
@@ -1683,6 +1900,8 @@ class Site extends CI_Controller
             $twitter=$this->input->get_post("twitter");
             $instagram=$this->input->get_post("instagram");
             $googleplus=$this->input->get_post("googleplus");
+            $specialoffer=$this->input->get_post("specialoffer");
+            $floor=$this->input->get_post("floor");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -1726,7 +1945,92 @@ class Site extends CI_Controller
                 $logo=$logo->logo;
             }
             
-            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus)==0)
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($image=="")
+            {
+                $image=$this->dine_model->getdineimagebyid($id);
+                $image=$image->image;
+            }
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="specialofferimage";
+			$specialofferimage="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$specialofferimage=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $specialofferimage=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($specialofferimage=="")
+            {
+                $specialofferimage=$this->dine_model->getdinespecialofferimagebyid($id);
+                $specialofferimage=$specialofferimage->specialofferimage;
+            }
+            
+            
+            
+            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)==0)
                 $data["alerterror"]="New dine could not be Updated.";
             else
                 $data["alertsuccess"]="dine Updated Successfully.";

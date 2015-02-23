@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class dine_model extends CI_Model
 {
-    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus)
+    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)
     {
         $data=array(
             "name" => $name,
@@ -18,6 +18,10 @@ class dine_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "floor" => $floor,
+            "image" => $image,
+            "specialoffer" => $specialoffer,
+            "specialofferimage" => $specialofferimage,
             "json" => $json,
             "logo" => $logo
         );
@@ -66,7 +70,7 @@ class dine_model extends CI_Model
         $query=$this->db->get("hsp_dine")->row();
         return $query;
     }
-    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus)
+    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)
     {
         $data=array(
             "name" => $name,
@@ -81,6 +85,10 @@ class dine_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "floor" => $floor,
+            "image" => $image,
+            "specialoffer" => $specialoffer,
+            "specialofferimage" => $specialofferimage,
             "json" => $json,
             "logo" => $logo
         );
@@ -107,6 +115,18 @@ class dine_model extends CI_Model
 	public function getdinelogobyid($id)
 	{
 		$query=$this->db->query("SELECT `logo` FROM `hsp_dine` WHERE `id`='$id'")->row();
+		return $query;
+	}
+    
+	public function getdineimagebyid($id)
+	{
+		$query=$this->db->query("SELECT `image` FROM `hsp_dine` WHERE `id`='$id'")->row();
+		return $query;
+	}
+    
+	public function getdinespecialofferimagebyid($id)
+	{
+		$query=$this->db->query("SELECT `specialofferimage` FROM `hsp_dine` WHERE `id`='$id'")->row();
 		return $query;
 	}
     

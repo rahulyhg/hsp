@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class brand_model extends CI_Model
 {
-    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus)
+    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)
     {
         $data=array(
             "name" => $name,
@@ -19,6 +19,9 @@ class brand_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "image" => $image,
+            "specialoffer" => $specialoffer,
+            "specialofferimage" => $specialofferimage,
             "json" => $json
         );
         $query=$this->db->insert( "hsp_brand", $data );
@@ -54,7 +57,7 @@ class brand_model extends CI_Model
         $query=$this->db->get("hsp_brand")->row();
         return $query;
     }
-    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus)
+    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)
     {
         $data=array(
             "name" => $name,
@@ -70,6 +73,9 @@ class brand_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "image" => $image,
+            "specialoffer" => $specialoffer,
+            "specialofferimage" => $specialofferimage,
             "json" => $json
         );
         $this->db->where( "id", $id );
@@ -108,6 +114,17 @@ class brand_model extends CI_Model
 	public function getbrandlogobyid($id)
 	{
 		$query=$this->db->query("SELECT `logo` FROM `hsp_brand` WHERE `id`='$id'")->row();
+		return $query;
+	}
+	public function getbrandimagebyid($id)
+	{
+		$query=$this->db->query("SELECT `image` FROM `hsp_brand` WHERE `id`='$id'")->row();
+		return $query;
+	}
+    
+	public function getbrandspecialofferimagebyid($id)
+	{
+		$query=$this->db->query("SELECT `specialofferimage` FROM `hsp_brand` WHERE `id`='$id'")->row();
 		return $query;
 	}
     

@@ -43,22 +43,22 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="index.php">HOME
+        <li><a href="<?php echo site_url("website/deals_list"); ?>">HOME
           <div class="nav-button"></div>
           </a></li>
-        <li><a href="brands_list.php">BRANDS
+        <li><a href="<?php echo site_url("website/brands_list"); ?>">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="deals_list.php" class="selected">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>" class="selected">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="events_list.php">EVENTS
+          <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="eat_list.php">DINE
+          <li><a href="<?php echo site_url("website/eat_list"); ?>">DINE
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="contact.php">CONTACT
+          <li><a href="<?php echo site_url("website/contact"); ?>">CONTACT
           <div class="nav-button"></div>
           </a></li>
       </ul>
@@ -73,7 +73,7 @@
               <div class="images">
                 <ul class="slides">
                   <li>
-                      img src="<?php echo base_url("frontend")."/";?>images/classes01.jpg" alt=""/>
+                      <img src="<?php echo base_url("frontend")."/";?>images/classes01.jpg" alt=""/>
                        <div class="data">
                           <div class="sample_img" style="background-image: url('images/adidas.png')"></div>
                              <div class="sample_data">

@@ -76,22 +76,22 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="index.php">HOME
+        <li><a href="<?php echo site_url("website/index"); ?>">HOME
           <div class="nav-button"></div>
           </a></li>
-        <li><a href="brands_list.php" class="selected">BRANDS
+        <li><a href="<?php echo site_url("website/brands_list"); ?>" class="selected">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="deals_list.php">DEALS
+          <li><a href="<?php echo site_url("website/deal_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="events_list.php">EVENTS
+          <li><a href="<?php echo site_url("website/event_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="eat_list.php">DINE
+          <li><a href="<?php echo site_url("website/eat_list"); ?>">DINE
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="contact.php">CONTACT
+          <li><a href="<?php echo site_url("website/contact"); ?>">CONTACT
           <div class="nav-button"></div>
           </a></li>
       </ul>
@@ -103,7 +103,7 @@
     <div class="container">
       <div id="container" class="clearfix">
 
-          <div class="element home clearfix col1-3 full full-logo logo-adj">
+          <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url('uploads/').$branddata->logo?>');">
                
           </div>
 
@@ -112,8 +112,7 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
-                  <li><img src="<?php echo base_url("frontend")."/";?>images/classes01.jpg" alt="" /></li>
-                  <li><img src="<?php echo base_url("frontend")."/";?>images/classes02.jpg" alt="" /></li>
+                  <li><img src="<?php echo base_url("uploads")."/".$branddata->image; ?>" alt="" /></li>
                 </ul>
               </div>
             </div>
@@ -121,7 +120,7 @@
         </div>
         <div class="element home clearfix col1-3">
           <div class="info-icon icon_adjust">
-            <h2>Adidas</h2>
+            <h2><?php echo $branddata->name; ?></h2>
               <!--<div class="soc">
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
@@ -129,7 +128,7 @@
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
               </div>-->
           </div>
-          <div class="scrollbox"><p>One of the most respected sports brand - Adidas offers a wide range of sports footwear for key games such as soccer and cricket. Plus walking and running pairs are also displayed. The brand has also including fitness equipment and accessories and apparel. One of the most respected sports brand - Adidas offers a wide range of sports footwear for key games such as soccer and cricket. Plus walking and running pairs are also displayed. The brand has also including fitness equipment and accessories and apparel.</p>
+          <div class="scrollbox"><p><?php echo $branddata->description; ?></p>
         </div></div>
         <div class="element home clearfix col1-3">
           <div class="info-icon no-margin icon_adjust"><i class="icons details"></i>
@@ -139,7 +138,7 @@
             <p class="small">Location</p>
           </div>
           <div class="infos-right">
-            <p class="small">SkyZone Ground Level</p>
+            <p class="small"><?php echo $branddata->location; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -147,7 +146,7 @@
             <p class="small">Timings</p>
           </div>
           <div class="infos-right">
-            <p class="small">Sun-Thu 11am - 10pm and Fri-Sat 11am - 11.30pm</p>
+            <p class="small"><?php echo $branddata->hours; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -155,22 +154,23 @@
             <p class="small">Contact</p>
           </div>
           <div class="infos-right">
-            <p class="small">+91-22-40044061</p>
+            <p class="small"><?php echo $branddata->contactno; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
-            <p class="small" style="padding: 15px"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /> phoenixadidas@gmail.com</p>
+            <p class="small" style="padding: 15px"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /> <?php echo $branddata->email; ?></p>
           <div class="break"></div>
         </div>
-
+<?php if($branddata->specialoffer) { ?>
           <div class="element home clearfix col1-3 half detail">
           <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
             <h2>Special Offer</h2>
           </div>
-          <p style="width: 58%;">One of the most respected sports brand Adidas offers a wide range of sports footwear for key games such as soccer and cricket.</p>
-            <div class="sample_img"></div>
+          <p style="width: 58%;"><?php echo $branddata->specialoffer; ?></p>
+            <div class="sample_img" style="background-image: url('<?php echo base_url('uploads/').$branddata->specialofferimage; ?>'"></div>
           </div>
     </div>
+       <?php }; ?>
         <!--<div class="element home clearfix col1-3 full detail">
           <div class="info-icon icon_adjust_full"><i class="icons offer"></i>
             <h2>Special Offer</h2>

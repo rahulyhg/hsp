@@ -93,22 +93,22 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="index.php">HOME
+        <li><a href="<?php echo site_url("website/index"); ?>">HOME
           <div class="nav-button"></div>
           </a></li>
-        <li><a href="brands_list.php">BRANDS
+        <li><a href="<?php echo site_url("website/brands_list"); ?>">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="deals_list.php">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="events_list.php">EVENTS
+          <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="eat_list.php" class="selected">DINE
+          <li><a href="<?php echo site_url("website/eat_list"); ?>" class="selected">DINE
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="contact.php">CONTACT
+          <li><a href="<?php echo site_url("website/contact"); ?>">CONTACT
           <div class="nav-button"></div>
           </a></li>
       </ul>
@@ -124,8 +124,7 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
-                  <li><img src="<?php echo base_url("frontend")."/";?>images/event1.jpg" alt="" /></li>
-                  <li><img src="<?php echo base_url("frontend")."/";?>images/event2.jpg" alt="" /></li>
+                  <li><img src="<?php echo base_url("uploads/").$dinerdata->image; ?>" alt="" /></li>
                 </ul>
               </div>
             </div>
@@ -135,7 +134,7 @@
           <div class="info-icon"><i class="icons cup"></i>
             <h2>About Product</h2>
           </div>
-          <div class="scrollbox"><p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. </p></div>
+          <div class="scrollbox"><p><?php echo $dinerdata->description; ?></p></div>
           </div>
       
          <div class="element home clearfix col1-3">
@@ -146,7 +145,7 @@
             <p class="small">Hours</p>
           </div>
           <div class="infos-right">
-            <p class="small">10 AM TO 8.30 PM</p>
+            <p class="small"><?php echo $dinerdata->hours; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -154,7 +153,7 @@
             <p class="small">Floor</p>
           </div>
           <div class="infos-right">
-            <p class="small">First Floor<br /></p>
+            <p class="small"><?php echo $dinerdata->location; ?><br /></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -162,7 +161,7 @@
             <p class="small">Phone</p>
           </div>
           <div class="infos-right">
-            <p class="small">+91-22-40044061</p>
+            <p class="small"><?php echo $dinerdata->contactno; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -176,21 +175,23 @@
             </p>
           </div>
             <div class="soc" style="border-top: 1px solid #000;">
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/facebook.png" /></a> 
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/twitter.png" /></a>
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/youtube.png" /></a>   
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /></a>         
+                  <a href="<?php echo $dinerdata->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/facebook.png" /></a> 
+                  <a href="<?php echo $dinerdata->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/twitter.png" /></a>
+                  <a href="<?php echo $dinerdata->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
+                  <a href="<?php echo $dinerdata->youtube; ?>"><img src="<?php echo base_url("frontend")."/";?>images/youtube.png" /></a>   
+                  <a href="<?php echo $dinerdata->email; ?>"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /></a>         
               </div>
-        </div>
+        </div>          
+              <?php if($dinerdata->specialoffer) { ?>
            <div class="element home clearfix col1-3 half detail">
               <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
                 <h2>Special Offer</h2>
               </div>
-              <p style="width: 58%;">One of the most respected sports brand Adidas offers a wide range of sports footwear for key games such                            as soccer and cricket.</p>
-                <div class="sample_img"></div>
+              <p style="width: 58%;"><?php echo $dinerdata->specialoffer; ?></p>
+                <div class="sample_img" style="background-image: url('<?php echo base_url("uploads/").$dinerdata->specialofferimage; ?>')"></div>
             </div>
             </div>
+            <?php }; ?>
           </div>
   </div>
 </div>

@@ -32,22 +32,22 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="index.php">HOME
+        <li><a href="<?php echo site_url("website/index"); ?>">HOME
           <div class="nav-button"></div>
           </a></li>
-        <li><a href="brands_list.php">BRANDS
+        <li><a href="<?php echo site_url("website/brands_list"); ?>">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="deals_list.php">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="events_list.php">EVENTS
+          <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="eat_list.php" class="selected">DINE
+          <li><a href="<?php echo site_url("website/eat_list"); ?>" class="selected">DINE
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="contact.php">CONTACT
+          <li><a href="<?php echo site_url("website/contact"); ?>">CONTACT
           <div class="nav-button"></div>
           </a></li>
       </ul>
@@ -62,13 +62,10 @@
                  <div class="filter">
                      <div class="filterleft">
                            I am Looking For <select name="" class="select1">
-                            <option>Search by Cuisine</option>
-                            <option>Cafes</option>
-                            <option>Fast Food / Quick Bites</option>
-                            <option>Casual Dining</option>
-                            <option>Fine Dining</option>
-                             <option>Pubs / Lounges</option>
-                             <option>Desserts / Ice cream Parlours</option>
+                           <option value="">Select a cuisine</option>
+                           <?php foreach($dinercategories as $dinecategory) { ?>
+                            <option value="<?php echo $dinecategory->id;?>"><?php echo $dinecategory->name; ?></option>
+                            <?php }; ?>
                             </select>
                     </div>
                     <div class="filterright">
@@ -118,6 +115,7 @@
                     </div>     
                  </div>
                  <?php foreach($diners as $diner) { ?>
+                 <a href="<?php echo site_url("website/eat_inner")."?id=".$diner->id; ?>">
                 <div class="eat">
                     <div class="eat_img"></div>
                     <div class="eat_data">
@@ -127,6 +125,7 @@
                         <?php echo $diner->location; ?>
                     </div>
                 </div>
+                </a>
                 <?php }; ?>
             </div>
         </div>

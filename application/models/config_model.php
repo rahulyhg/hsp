@@ -184,5 +184,20 @@ class config_model extends CI_Model
          
 		
 	}
+    public function getalllogos()
+    {
+        $query=$this->db->query("SELECT `logo` FROM `configlogo`")->result();
+		return $query;
+    }
+    public function getconfig()
+    {
+        $query=$this->db->query("SELECT * FROM `config`")->result();
+		return $query;
+    }
+    public function getvideo()
+    {
+        $query=$this->db->query("SELECT * FROM `configvideo` WHERE `id` = 1")->row();
+		return $query;
+    }
 }
 ?>

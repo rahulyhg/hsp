@@ -24,33 +24,7 @@
         <div class="brand_ticker">
             <div id="slider" class="desktop_ticker">
               <ul>
-                        <li >
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand1.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand2.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand3.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand4.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand5.png); "></div>
-                        </li>
-                        <li >
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand6.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand7.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand8.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand9.png); "></div>
-                        </li>
-                        <li >
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand1.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand2.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand3.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand4.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand5.png); "></div>
-                        </li>
-                        <li >
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand6.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand7.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand8.png); "></div>
-                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand9.png); "></div>
-                        </li>   
-                        
+                       
               </ul>  
             </div>
              <div id="slider_m" class="mobile_ticker">
@@ -93,22 +67,22 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="index.php" class="selected">HOME
+        <li><a href="<?php echo site_url("website/index"); ?>" class="selected">HOME
           <div class="nav-button"></div>
           </a></li>
-        <li><a href="brands_list.php">BRANDS
+        <li><a href="<?php echo site_url("website/brands_list"); ?>">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="deals_list.php">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="events_list.php">EVENTS
+          <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="eat_list.php">DINE
+          <li><a href="<?php echo site_url("website/eat_list"); ?>">DINE
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="contact.php">CONTACT
+          <li><a href="<?php echo site_url("website/contact"); ?>">CONTACT
           <div class="nav-button"></div>
           </a></li>
       </ul>
@@ -123,80 +97,79 @@
 min-width: 100%; min-height: 100%;
 width: auto; height: auto; z-index: -100;
 background-size: cover;">
-                  <source src="<?php echo base_url("frontend")."/";?>video/video1.mp4" type="video/mp4">
+                  <source src="<?php echo base_url("uploads")."/".$video->video; ?>" type="video/mp4">
             </video>
           </div>
         </div>
         <div class="element home clearfix col1-3">
           <div class="info-icon"><i class="icons cup"></i>
-            <h2>About Us</h2>
+            <h2><?php echo $config[0]->title; ?></h2>
           </div>
-          <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+          <p><?php echo $config[0]->text; ?></p>
         </div>
         <div class="element  clearfix col1-3 home color pricing">
-          <h2><span>Lancome</span></h2>
-          <div class="price"><span>%</span> 15 off</div>
-          <p class="small"> from 20th to 23d November <br />
-            at our Phoenix boutique only<br />
+          <h2><span><?php echo $config[2]->title; ?></span></h2>
+          <div class="price"><span></span></div>
+          <p class="small"> <?php echo $config[2]->text; ?>
            </p>
         </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
-          <div class="images"><img src="<?php echo base_url("frontend")."/";?><img/block2.jpg" alt="" width="300" height="300" />
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[1]->image; ?>" alt="" width="300" height="300" />
               <div class="overlay">
-                <div class="left_div"><span>ZARA</span></div>
+                <div class="left_div"><span><?php echo $config[1]->title; ?></span></div>
                 <div class="view_btn">View More</div>
               </div>
           </div>
           </a> </div>
         <div class="element home clearfix col1-3 trainers">
           <div class="info-icon"><i class="icons trainer"></i>
-            <a href="#"><h2>Brands</h2></a>
+            <a href="#"><h2><?php echo $config[5]->title;?></h2></a>
           </div>
-          <p>Welcome to your High Street Phoenix shopping guide ! At HSP, we have hundreds of brands for every preference and price range, guaranteeing you will find whatever you are looking for. </p>
+          <p><?php echo $config[5]->text;?></p>
         </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
-          <div class="images"><img src="<?php echo base_url("frontend")."/";?><img/block3.jpg" alt="" width="300" height="300" />
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[3]->image; ?>" alt="" width="300" height="300" />
             <div class="overlay">
-                <div class="left_div"><span>VEROMODA</span></div>
+                <div class="left_div"><span><?php echo $config[3]->title;?></span></div>
                 <div class="view_btn">View More</div>
               </div>
           </div>
           </a> </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
-          <div class="images"><img src="<?php echo base_url("frontend")."/";?><img/block4.jpg" alt="" width="300" height="300"  />
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[4]->image; ?>" alt="" width="300" height="300"  />
             <div class="overlay">
-                <div class="left_div"><span>T.G.I Friday's</span></div>
+                <div class="left_div"><span><?php echo $config[4]->title;?></span></div>
                 <div class="view_btn">View More</div>
               </div>
           </div>
           </a> </div>
         <div class="element clearfix col1-3 news home"> <a href="">
-          <h5>Unleash your Child's Inner Artist</h5>
+          <h5><?php echo $config[6]->title;?></h5>
           </a>
-          <p>Register your kids for an exciting art and craft workshop ...</p>
+          <p><?php echo $config[6]->text;?></p>
           <a href="#">
           <div class="when">
-            <p class="small alignleft">Jan 21, 2014</p>
+            <p class="small alignleft"><?php echo $config[4]->date;?></p>
             <p class="small alignright">read more</p>
           </div>
           </a> </div>
         <div class="element home clearfix col1-3 news"> <a href="">
-          <h5>International Clown Festival</h5>
+          <h5><?php echo $config[7]->title;?></h5>
           </a>
-          <p>The International Clown Festival has been in India for over a month and this seems to be just like the fun event we witnessed in ...</p>
+          <p><?php echo $config[7]->text;?></p>
           <a href="#">
           <div class="when">
-            <p class="small alignleft">Jan 21, 2014</p>
+            <p class="small alignleft"><?php echo $config[7]->date; ?></p>
             <p class="small alignright">read more</p>
           </div>
           </a> </div>
         <div class="element home clearfix col1-3 news"> <a href="#">
-          <h5>Shop and Win</h5>
+          <h5><?php echo $config[8]->title;?></h5>
           </a>
-          <p>Grab daily and weekly Prizes too. Shop worth Rs.3000 or above and get a chance to win a trip to the destination ...</p>
+          <p><?php echo $config[8]->text;?></p>
           <a href="#">
           <div class="when">
-            <p class="small alignleft">Jan 21, 2014</p>
+            <p class="small alignleft"><?php echo $config[8]->date;?></p>
             <p class="small alignright">read more</p>
           </div>
           </a> </div>
@@ -209,12 +182,13 @@ background-size: cover;">
           </div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3772.560449584006!2d72.824564!3d18.99501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c6043c51b%3A0x469288721a1d52aa!2sHigh+Street+Phoenix!5e0!3m2!1sen!2sin!4v1416823845850" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
         </div>
+        <?php if($config[9]->title) { ?>
         <div class="element  clearfix col1-3 color home">
-          <h2><span>Parcos</span></h2>
+          <h2><span><?php echo $config[9]->title;?></span></h2>
           <div class="price"><span>get</span> Gift</div>
-          <p class="small">Get an Exclusive Gift 
-            on purchase of any large size*Fragance only at PARCOS</p>
+          <p class="small"><?php echo $config[9]->text;?></p>
         </div>
+        <?php }; ?>
         <div class="element clearfix col1-3 border contact home">
           <div id="contact">
             <div id="message"></div>

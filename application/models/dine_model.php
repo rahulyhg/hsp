@@ -64,7 +64,7 @@ class dine_model extends CI_Model
         $query=$this->db->get("hsp_dine")->row();
         return $query;
     }
-    function getsingledine($id)
+    public function getsingledine($id)
     {
         $this->db->where("id",$id);
         $query=$this->db->get("hsp_dine")->row();
@@ -166,6 +166,29 @@ class dine_model extends CI_Model
     {
         $query=$this->db->query("SELECT * FROM `hsp_dine`")->result();
         return $query;
+    }
+    public function getdinerbyletter($l)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_dine` WHERE `name` LIKE '$l'%")->result();
+		return $query;
+    }
+    public function getbrandbysearch($l)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_dine` WHERE `name` LIKE %'$l'%")->result();
+		return $query;
+    }
+    public function getbrandbycategory($cat)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_dine` WHERE `name` LIKE %'$l'%")->result();
+		return $query;
+    }
+    public function getdinerbyammenity($a)
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_dine`")->result();
+		return $query;  
     }
 }
 ?>

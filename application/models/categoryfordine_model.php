@@ -70,14 +70,7 @@ class categoryfordine_model extends CI_Model
     public function getcategoryfordinedropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `categoryfordine`  ORDER BY `id` ASC")->result();
-		$return=array(
-		);
-		foreach($query as $row)
-		{
-			$return[$row->id]=$row->name;
-		}
-		
-		return $return;
+		return $query;
 	}
 }
 ?>

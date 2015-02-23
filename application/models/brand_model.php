@@ -149,5 +149,23 @@ class brand_model extends CI_Model
         $query=$this->db->query("SELECT * FROM `hsp_brand`")->result();
 		return $query;
     }
+    public function getbrandbyletter($l)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE '$l'%")->result();
+		return $query;
+    }
+    public function getbrandbysearch($l)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE %'$l'%")->result();
+		return $query;
+    }
+    public function getbrandbycategory($cat)
+    {
+    
+        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE %'$l'%")->result();
+		return $query;
+    }
 }
 ?>

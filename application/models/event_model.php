@@ -65,6 +65,11 @@ class event_model extends CI_Model
 		$query=$this->db->query("SELECT `logo` FROM `hsp_event` WHERE `id`='$id'")->row();
 		return $query;
 	}
+    public function getall()
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_event`")->result();
+		return $query;
+    }
     
 }
 ?>

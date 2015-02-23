@@ -150,16 +150,17 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
+                 <?php foreach($events as $event) { ?>
                   <li>
-                      img src="<?php echo base_url("frontend")."/";?>images/classes01.jpg" alt=""/>
+                      <img src="<?php echo base_url("uploads")."/".$event->logo;?>" alt=""/>
                        <div class="data">           
                         <div class="info-icon icon_adjust"><i class="icons event"></i>
-                        <h2 style="float: left;">Event Name</h2>
+                        <h2 style="float: left;"><?php echo $event->name; ?></h2>
                             <div class="soc">
-                                <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
-                                <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
-                                <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
-                                <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
+                                <a href="<?php echo $event->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
+                                <a href="<?php echo $event->date; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
+                                <a href="<?php echo $event->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
+                                <a href="<?php echo $event->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>          
                             </div>
                         </div>
                           <p>
@@ -172,7 +173,7 @@
                             <p class="small">Date</p>
                           </div>
                           <div class="infos-right">
-                            <p class="small">04-12-2014</p>
+                            <p class="small"><?php echo $event->date; ?></p>
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
@@ -180,7 +181,7 @@
                             <p class="small">Day</p>
                           </div>
                           <div class="infos-right">
-                            <p class="small">Thursday</p>
+                            <p class="small"><?php echo $event->day; ?></p>
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
@@ -188,7 +189,7 @@
                             <p class="small">Time</p>
                           </div>
                           <div class="infos-right">
-                            <p class="small">11:00am - 13:30pm</p>
+                            <p class="small"><?php echo $event->time; ?></p>
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
@@ -203,59 +204,7 @@
                           <div class="break"></div>
                                        </div>
                                   </li>
-                    <li>
-                    img src="<?php echo base_url("frontend")."/";?>images/classes02.jpg" alt=""/>
-                    <div class="data">           
-                    <div class="info-icon icon_adjust"><i class="icons event"></i>
-                    <h2 style="float: left;">Event Name</h2>
-                        <div class="soc">
-                            <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
-                            <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
-                            <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
-                            <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
-                        </div>
-                    </div>
-                        <p>
-                        Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.
-                        Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
-                    <div class="info-icon no-margin icon_adjust">
-                        <h2 style="float: left;">Details</h2>
-                        </div>
-                        <div class="infos-left">
-                        <p class="small">Date</p>
-                        </div>
-                        <div class="infos-right">
-                        <p class="small">04-12-2014</p>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="borderline"></div>
-                        <div class="infos-left">
-                        <p class="small">Day</p>
-                        </div>
-                        <div class="infos-right">
-                        <p class="small">Thursday</p>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="borderline"></div>
-                        <div class="infos-left">
-                        <p class="small">Time</p>
-                        </div>
-                        <div class="infos-right">
-                        <p class="small">11:00am - 13:30pm</p>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="borderline"></div>
-                        <div class="infos-left">
-                        <p class="small">Venue</p>
-                        </div>
-                        <div class="infos-right">
-                        <p class="small">High Street Phoenix</p>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="borderline"></div>
-                        <div class="break"></div>
-                                    </div>
-                                </li>
+                                  <?php } ?>
                 </ul>
                 </div>
             </div>

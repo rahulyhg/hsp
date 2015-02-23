@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js"  dir="ltr" lang="en-US"> <!--<![endif]-->
 <head>
@@ -15,6 +14,7 @@
 <link href="<?php echo base_url("frontend")."/";?>css/retina-responsive.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'> 
+
 </head>
 <body> 
 <div id="wrap">
@@ -117,58 +117,24 @@
                         <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
                     </div>     
                  </div>
+                 <?php foreach($diners as $diner) { ?>
                 <div class="eat">
                     <div class="eat_img"></div>
                     <div class="eat_data">
                         <div class="heading">Hours</div>
-                        10:00am - 11.00am
+                        <?php echo $diner->hours; ?>
                         <div class="heading">Location</div>
-                        Ground Floor 1 A
+                        <?php echo $diner->location; ?>
                     </div>
                 </div>
-                <div class="eat">
-                    <div class="eat_img"></div>
-                    <div class="eat_data">
-                        <div class="heading">Hours</div>
-                        10:00am - 11.00am
-                        <div class="heading">Location</div>
-                        Ground Floor 1 A
-                    </div>
-                </div>
-                <div class="eat">
-                    <div class="eat_img"></div>
-                    <div class="eat_data">
-                        <div class="heading">Hours</div>
-                        10:00am - 11.00am
-                        <div class="heading">Location</div>
-                        Ground Floor 1 A
-                    </div>
-                </div>
-                <div class="eat">
-                    <div class="eat_img"></div>
-                    <div class="eat_data">
-                        <div class="heading">Hours</div>
-                        10:00am - 11.00am
-                        <div class="heading">Location</div>
-                        Ground Floor 1 A
-                    </div>
-                </div>
-                <div class="eat">
-                    <div class="eat_img"></div>
-                    <div class="eat_data">
-                        <div class="heading">Hours</div>
-                        10:00am - 11.00am
-                        <div class="heading">Location</div>
-                        Ground Floor 1 A
-                    </div>
-                </div>
+                <?php }; ?>
             </div>
         </div>
      </div>
 </div>
 <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
- <script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-easing-1.3.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/modernizr.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>

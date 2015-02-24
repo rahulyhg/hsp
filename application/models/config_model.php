@@ -272,5 +272,75 @@ class config_model extends CI_Model
 			return  1;
 	}
     
+	public function createdinebycsv($file)
+	{
+//            print_r($file);
+        foreach ($file as $row)
+        {
+            $brandid=0;
+            $category=$row['Category'];
+            $allcategories=explode(",",$category);
+            $name=$row['Name'];
+            $hours=$row['Hours'];
+            $location=$row['Location'];
+            $isfeatured=$row['isFeatured'];
+            $isnew=$row['isNew'];
+            $description=$row['Description'];
+            $logo=$row['Logo'];
+            
+            $data  = array(
+                "name" => $name,
+                "hours" => $hours,
+                "location" => $location,
+                "isfeatured" => $isfeatured,
+                "isnew" => $isnew,
+                "description" => $description,
+                "logo" => $logo
+                
+            );
+            $checkdinepresent=$this->db->query("SELECT COUNT(`id`) as `count1` FROM `hsp_dine` WHERE `name`='$name'")->row();
+//            print_r($data);
+            if($checkdinepresent->count1 == 0)
+            {
+                $query=$this->db->insert( 'hsp_dine', $data );
+                $dineid=$this->db->insert_id();
+            }
+            
+            if($dineid > 0)
+            {
+                if(empty($allcategories))
+                {
+                }
+                else
+                {
+                    foreach($allcategories as $key => $category)
+                    {
+                        $categoryquery=$this->db->query("SELECT * FROM `categoryfordine` where `name` LIKE '$category'")->row();
+                        if(empty($categoryquery))
+                        {
+                            $this->db->query("INSERT INTO `categoryfordine`(`name`) VALUES ('$category')");
+                            $categoryid=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $categoryid=$categoryquery->id;
+                        }
+
+                        $data2  = array(
+                            'dine' => $dineid,
+                            'category' => $categoryid,
+                        );
+                        $querydinecategory=$this->db->insert( 'dinecategory', $data2 );
+                    }
+                }
+            }
+            
+        }
+//		if(!$query)
+//			return  0;
+//		else
+			return  1;
+	}
+    
 }
 ?>

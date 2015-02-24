@@ -897,6 +897,45 @@ class Site extends CI_Controller
     }
 		
     
+    function uploaddinecsv()
+	{
+		$access = array("1");
+		$this->checkaccess($access);
+		$data[ 'page' ] = 'uploaddinecsv';
+		$data[ 'title' ] = 'Upload Dine';
+		$this->load->view( 'template', $data );
+	} 
+    
+    function uploaddinecsvsubmit()
+	{
+        $access = array("1");
+		$this->checkaccess($access);
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+        $this->load->library('upload', $config);
+        $filename="file";
+        $file="";
+        if (  $this->upload->do_upload($filename))
+        {
+            $uploaddata = $this->upload->data();
+            $file=$uploaddata['file_name'];
+            $filepath=$uploaddata['file_path'];
+        }
+        $fullfilepath=$filepath."".$file;
+        $file = $this->csvreader->parse_file($fullfilepath);
+        $id1=$this->config_model->createdinebycsv($file);
+//        echo $id1;
+        if($id1==0)
+        $data['alerterror']="New Dine could not be Uploaded.";
+		else
+		$data['alertsuccess']="Dine Uploaded Successfully.";
+//        $data['table']=$this->brand_model->viewbrand();
+		$data['page']='viewdine';
+		$data["redirect"]="site/viewdine";
+        $this->load->view("redirect",$data);
+    }
+		
+    
     //brandcategory
     public function viewbrandcategory()
     {

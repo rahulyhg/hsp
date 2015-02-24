@@ -110,10 +110,10 @@
                     </div>
                     <div class="filterright amenitylist">
                          Filter By Amenity
-                        <a href="1"><img src="<?php echo base_url("frontend")."/";?>images/amenity1.png" /></a>
-                        <a href="2"><img src="<?php echo base_url("frontend")."/";?>images/amenity2.png" /></a>
-                        <a href="3"><img src="<?php echo base_url("frontend")."/";?>images/amenity3.png" /></a>
-                        <a href="4"><img src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
+                        <a href="#"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" /></a>
+                        <a href="#"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" /></a>
+                        <a href="#"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" /></a>
+                        <a href="#"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
                     </div>     
                  </div>
                  <div class="alldiners">
@@ -162,6 +162,7 @@
                     console.log(alph);
                     console.log(search);
                     console.log(category);
+                    console.log(amenity);
                     if(!isnew)
                     {
                         first=0;
@@ -189,9 +190,10 @@
                     alph="";
                     callfilter(false);
                 });
-                $(".amenitylist a").click(function() {
-                    amenity = $(this).attr("href");
+                $(".amenitylist a img").click(function() {
+                    amenity = $(this).attr("alt");
                     callfilter(false);
+                    return false;
                 });
             });
         </script>

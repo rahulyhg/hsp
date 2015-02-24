@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="top_main">
-        <div class="top_main_img" ></div>
+        <div class="top_main_img" style="background-image: url("<?php echo base_url("uploads")."/".$config[9]->image; ?>");"></div>
         <div class="main_logo" style="background-image: url(<?php echo base_url("frontend")."/";?>images/hsp_main_logo.png); "></div>
         <div class="brand_ticker">
             <div id="slider" class="desktop_ticker">
@@ -108,9 +108,9 @@ background-size: cover;">
           <p><?php echo $config[0]->text; ?></p>
         </div>
         <div class="element  clearfix col1-3 home color pricing">
-          <h2><span><?php echo $config[2]->title; ?></span></h2>
+          <h2><span><?php echo $config[7]->title; ?></span></h2>
           <div class="price"><span></span></div>
-          <p class="small"> <?php echo $config[2]->text; ?>
+          <p class="small"> <?php echo $config[7]->text; ?>
            </p>
         </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
@@ -123,9 +123,9 @@ background-size: cover;">
           </a> </div>
         <div class="element home clearfix col1-3 trainers">
           <div class="info-icon"><i class="icons trainer"></i>
-            <a href="#"><h2><?php echo $config[5]->title;?></h2></a>
+            <a href="#"><h2><?php echo $config[2]->title;?></h2></a>
           </div>
-          <p><?php echo $config[5]->text;?></p>
+          <p><?php echo $config[2]->text;?></p>
         </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
           <div class="images"><img src="<?php echo base_url("uploads")."/".$config[3]->image; ?>" alt="" width="300" height="300" />
@@ -154,12 +154,12 @@ background-size: cover;">
           </div>
           </a> </div>
         <div class="element home clearfix col1-3 news"> <a href="">
-          <h5><?php echo $config[7]->title;?></h5>
+          <h5><?php echo $config[5]->title;?></h5>
           </a>
-          <p><?php echo $config[7]->text;?></p>
+          <p><?php echo $config[5]->text;?></p>
           <a href="#">
           <div class="when">
-            <p class="small alignleft"><?php echo $config[7]->date; ?></p>
+            <p class="small alignleft"><?php echo $config[5]->date; ?></p>
             <p class="small alignright">read more</p>
           </div>
           </a> </div>
@@ -182,11 +182,11 @@ background-size: cover;">
           </div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3772.560449584006!2d72.824564!3d18.99501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c6043c51b%3A0x469288721a1d52aa!2sHigh+Street+Phoenix!5e0!3m2!1sen!2sin!4v1416823845850" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
         </div>
-        <?php if($config[9]->title) { ?>
+        <?php if($config[10]->title) { ?>
         <div class="element  clearfix col1-3 color home">
-          <h2><span><?php echo $config[9]->title;?></span></h2>
+          <h2><span><?php echo $config[10]->title;?></span></h2>
           <div class="price"><span>get</span> Gift</div>
-          <p class="small"><?php echo $config[9]->text;?></p>
+          <p class="small"><?php echo $config[10]->text;?></p>
         </div>
         <?php }; ?>
         <div class="element clearfix col1-3 border contact home">

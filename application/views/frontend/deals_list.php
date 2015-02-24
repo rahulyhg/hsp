@@ -72,45 +72,39 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
+                 <?php foreach($deals as $deal) { ?>
                   <li>
-                      <img src="<?php echo base_url("frontend")."/";?>images/classes01.jpg" alt=""/>
+                      <img src="<?php echo base_url("uploads")."/".$deal->image; ?>" alt=""/>
                        <div class="data">
-                          <div class="sample_img" style="background-image: url('images/adidas.png')"></div>
+                          <div class="sample_img" style="background-image: url('<?php echo base_url("uploads")."/".$deal->logo; ?>')"></div>
                              <div class="sample_data">
                                 <div class="heading">Hours</div>
-                                10:00am - 11.00am
+                                <?php echo $deal->hours; ?>
                                 <div class="heading">Location</div>
-                                Ground Floor 1 A
+                                <?php echo $deal->location; ?>
                                 <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" class="star"/></div><br />
-                                FEATURED/NEW
+                                <?php if($deal->isfeatured==1) { ?>
+                                FEATURED
+                                <?php }; ?>
+                                <?php if($deal->isfeatured == 1 && $deal->isnew == 1) { ?>
+                                 /
+                                <?php }; ?>
+                                <?php if($deal->isnew == 1){ ?>
+                                NEW
+                                <?php }; ?>
                             </div>
-                            <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
-                            <div class="btn btn_slide">Visit Brands</div>
+                            <p><?php echo $deal->description; ?></p>
+                           <a href="<?php echo site_url("website/brands_inner")."?id=".$deal->id; ?>"> <div class="btn btn_slide">Visit Brand</div></a>
                        </div>
                   </li>
-                  <li>
-                      img src="<?php echo base_url("frontend")."/";?>images/classes02.jpg" alt=""/>
-                       <div class="data">
-                          <div class="sample_img" style="background-image: url('images/nike.png')"></div>
-                             <div class="sample_data">
-                                <div class="heading">Hours</div>
-                                08:00am - 10.00am
-                                <div class="heading">Location</div>
-                                Ground Floor 1 A
-                                <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" class="star"/></div><br />
-                                FEATURED/NEW
-                            </div>
-                            <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
-                            <div class="btn btn_slide">Visit Brands</div>
-                       </div>
-                  </li>
+                  <?php }; ?>
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="element home clearfix col1-3 full detail adjust">
+        <!--<div class="element home clearfix col1-3 full detail adjust">
           <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
             <h2>OTHER DEALS</h2>
           </div>
@@ -127,9 +121,9 @@
             <div class="dimg">
               <div class="odeal_btn">Visit Brand</div>
             </div>
-          </div>
+          </div>-->
 
-        <div class="element home clearfix col1-3 full detail adjust">
+        <!--<div class="element home clearfix col1-3 full detail adjust">
           <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
             
           </div>
@@ -146,7 +140,7 @@
             <div class="dimg">
               <div class="odeal_btn">Visit Brand</div>
             </div>
-          </div>
+          </div>-->
     </div>
   </div>
 </div>

@@ -210,7 +210,7 @@ class dine_model extends CI_Model
         }
         else
         {
-            $query=$this->db->query("SELECT DISTINCT(`hsp_dine`.`id`) AS `id`, `hsp_dine`.`logo` AS `logo`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`name` AS `name` FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT DISTINCT(`hsp_dine`.`id`) AS `id`, `hsp_dine`.`logo` AS `logo`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`name` AS `name` FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` INNER JOIN `dineamenity` ON `hsp_dine`.`id`=`dineamenity`.`dine` WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
         }
         return $query;
     }

@@ -191,7 +191,7 @@ class config_model extends CI_Model
     }
     public function getconfig()
     {
-        $query=$this->db->query("SELECT * FROM `config`")->result();
+        $query=$this->db->query("SELECT * FROM `config` ORDER BY `id`")->result();
 		return $query;
     }
     public function getvideo()

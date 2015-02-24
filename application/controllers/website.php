@@ -42,13 +42,14 @@ class Website extends CI_Controller
     public function deals_list()
 	{
 		$data[ 'title' ] = 'Welcome';
+        $data['deals']=$this->dinedeal_model->getalldeals();
 		$this->load->view( 'frontend/deals_list', $data );	
 	}
     public function eat_list()
 	{
 		$data[ 'title' ] = 'Dine';
         $data['diners']=$this->dine_model->getall();
-        $data['dinercategories']=$this->categoryfordine_model->getcategoryfordinedropdown();
+        $data['dinercategories']=$this->categoryfordine_model->getdinecategorydropdown();
         $letter = "a";
         //$data['lettersearch']=$this->dine_model->getdinerbyletter($letter);
         $searchtext = "a";
@@ -111,9 +112,6 @@ class Website extends CI_Controller
         
         $data['message']=$this->dine_model->getdinerbyfilter($alph,$search,$category,$amenity,$first);
         $this->load->view('json', $data);
-    }
-    
-	
-    
+    } 
 }
 ?>

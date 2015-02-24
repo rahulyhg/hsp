@@ -199,5 +199,78 @@ class config_model extends CI_Model
         $query=$this->db->query("SELECT * FROM `configvideo` WHERE `id` = 1")->row();
 		return $query;
     }
+    
+   
+    
+	public function createbrandbycsv($file)
+	{
+//            print_r($file);
+        foreach ($file as $row)
+        {
+            $brandid=0;
+            $category=$row['Category'];
+            $allcategories=explode(",",$category);
+            $name=$row['Name'];
+            $hours=$row['Hours'];
+            $location=$row['Location'];
+            $isfeatured=$row['isFeatured'];
+            $isnew=$row['isNew'];
+            $description=$row['Description'];
+            $logo=$row['Logo'];
+            
+            $data  = array(
+                "name" => $name,
+                "hours" => $hours,
+                "location" => $location,
+                "isfeatured" => $isfeatured,
+                "isnew" => $isnew,
+                "description" => $description,
+                "logo" => $logo
+                
+            );
+            $checkbrandpresent=$this->db->query("SELECT COUNT(`id`) as `count1` FROM `hsp_brand` WHERE `name`='$name'")->row();
+//            print_r($data);
+            if($checkbrandpresent->count1 == 0)
+            {
+                $query=$this->db->insert( 'hsp_brand', $data );
+                $brandid=$this->db->insert_id();
+            }
+            
+            if($brandid > 0)
+            {
+                if(empty($allcategories))
+                {
+                }
+                else
+                {
+                    foreach($allcategories as $key => $category)
+                    {
+                        $categoryquery=$this->db->query("SELECT * FROM `categoryforbrand` where `name` LIKE '$category'")->row();
+                        if(empty($categoryquery))
+                        {
+                            $this->db->query("INSERT INTO `categoryforbrand`(`name`) VALUES ('$category')");
+                            $categoryid=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $categoryid=$categoryquery->id;
+                        }
+
+                        $data2  = array(
+                            'brand' => $brandid,
+                            'category' => $categoryid,
+                        );
+                        $queryproductimage=$this->db->insert( 'brandcategory', $data2 );
+                    }
+                }
+            }
+            
+        }
+//		if(!$query)
+//			return  0;
+//		else
+			return  1;
+	}
+    
 }
 ?>

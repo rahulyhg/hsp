@@ -657,6 +657,7 @@ class Site extends CI_Controller
         $data['isfeatured']=$this->brand_model->getisfeatureddropdown();
         $data['isnew']=$this->brand_model->getisnewdropdown();
         $data['categoryforbrand']=$this->categoryforbrand_model->getcategoryforbranddropdown();
+        
         $data['selectedcategoryforbrand']=$this->brand_model->getcategoryforbrandbybrand($this->input->get_post('id'));
         $data["page"]="editbrand";
         $data["page2"]="block/brandblock";
@@ -883,16 +884,16 @@ class Site extends CI_Controller
         }
         $fullfilepath=$filepath."".$file;
         $file = $this->csvreader->parse_file($fullfilepath);
-        $id1=$this->brand_model->createbycsv($file);
+        $id1=$this->config_model->createbrandbycsv($file);
 //        echo $id1;
         if($id1==0)
         $data['alerterror']="New brand could not be Uploaded.";
 		else
 		$data['alertsuccess']="Brand Uploaded Successfully.";
-        $data['table']=$this->brand_model->viewbrand();
+//        $data['table']=$this->brand_model->viewbrand();
 		$data['page']='viewbrand';
-		$data['title']='View Brand';
-		$this->load->view('template',$data);
+		$data["redirect"]="site/viewbrand";
+        $this->load->view("redirect",$data);
     }
 		
     

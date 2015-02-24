@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class dinedeal_model extends CI_Model
 {
-    public function create($dine,$description,$isfeatured,$json)
+    public function create($dine,$description,$isfeatured,$json,$name)
     {
-        $data=array("dine" => $dine,"description" => $description,"isfeatured" => $isfeatured,"json" => $json);
+        $data=array("dine" => $dine,"description" => $description,"isfeatured" => $isfeatured,"json" => $json,"name" => $name);
         $query=$this->db->insert( "hsp_dinedeal", $data );
         $id=$this->db->insert_id();
         if(!$query)
@@ -25,9 +25,9 @@ class dinedeal_model extends CI_Model
         $query=$this->db->get("hsp_dinedeal")->row();
         return $query;
     }
-    public function edit($id,$dine,$description,$isfeatured,$json)
+    public function edit($id,$dine,$description,$isfeatured,$json,$name)
     {
-        $data=array("dine" => $dine,"description" => $description,"isfeatured" => $isfeatured,"json" => $json);
+        $data=array("dine" => $dine,"description" => $description,"isfeatured" => $isfeatured,"json" => $json,"name" => $name);
         $this->db->where( "id", $id );
         $query=$this->db->update( "hsp_dinedeal", $data );
         return 1;

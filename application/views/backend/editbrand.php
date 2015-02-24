@@ -71,6 +71,13 @@
                     <?php echo form_dropdown( "isnew",$isnew,set_value( 'isnew',$before->isnew),"class='chzn-select form-control'");?>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="normal-field">Stars</label>
+                <div class="col-sm-4">
+                    <input type="text" id="normal-field" class="form-control" name="stars" value='<?php echo set_value(' stars ',$before->stars);?>'>
+                </div>
+            </div>
             <div class=" form-group">
                 <label class="col-sm-2 control-label" for="normal-field">Description</label>
                 <div class="col-sm-8">

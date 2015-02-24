@@ -544,6 +544,7 @@ class Site extends CI_Controller
             $googleplus=$this->input->get_post("googleplus");
             $categoryforbrand=$this->input->get_post("categoryforbrand");
             $specialoffer=$this->input->get_post("specialoffer");
+            $stars=$this->input->get_post("stars");
             
             
             $config['upload_path'] = './uploads/';
@@ -642,7 +643,7 @@ class Site extends CI_Controller
 			}
 //            echo $logo."<br>";
 //            echo $image;
-            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)==0)
+            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)==0)
                 $data["alerterror"]="New brand could not be created.";
             else
                 $data["alertsuccess"]="brand created Successfully.";
@@ -717,6 +718,7 @@ class Site extends CI_Controller
             $googleplus=$this->input->get_post("googleplus");
             $categoryforbrand=$this->input->get_post("categoryforbrand");
             $specialoffer=$this->input->get_post("specialoffer");
+            $stars=$this->input->get_post("stars");
             
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -841,7 +843,7 @@ class Site extends CI_Controller
                 $specialofferimage=$specialofferimage->specialofferimage;
             }
             
-            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)==0)
+            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)==0)
                 $data["alerterror"]="New brand could not be Updated.";
             else
                 $data["alertsuccess"]="brand Updated Successfully.";
@@ -1767,7 +1769,7 @@ class Site extends CI_Controller
             $instagram=$this->input->get_post("instagram");
             $googleplus=$this->input->get_post("googleplus");
             $specialoffer=$this->input->get_post("specialoffer");
-            $floor=$this->input->get_post("floor");
+            $description=$this->input->get_post("description");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -1865,7 +1867,7 @@ class Site extends CI_Controller
                 }
                 
 			}
-            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)==0)
+            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description)==0)
                 $data["alerterror"]="New dine could not be created.";
             else
                 $data["alertsuccess"]="dine created Successfully.";
@@ -1942,6 +1944,7 @@ class Site extends CI_Controller
             $googleplus=$this->input->get_post("googleplus");
             $specialoffer=$this->input->get_post("specialoffer");
             $floor=$this->input->get_post("floor");
+            $description=$this->input->get_post("description");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -2070,7 +2073,7 @@ class Site extends CI_Controller
             
             
             
-            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)==0)
+            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description)==0)
                 $data["alerterror"]="New dine could not be Updated.";
             else
                 $data["alertsuccess"]="dine Updated Successfully.";
@@ -2369,7 +2372,8 @@ class Site extends CI_Controller
             $description=$this->input->get_post("description");
             $isfeatured=$this->input->get_post("isfeatured");
             $json=$this->input->get_post("json");
-            if($this->dinedeal_model->create($dine,$description,$isfeatured,$json)==0)
+            $name=$this->input->get_post("name");
+            if($this->dinedeal_model->create($dine,$description,$isfeatured,$json,$name)==0)
                 $data["alerterror"]="New dinedeal could not be created.";
             else
                 $data["alertsuccess"]="dinedeal created Successfully.";
@@ -2418,7 +2422,8 @@ class Site extends CI_Controller
             $description=$this->input->get_post("description");
             $isfeatured=$this->input->get_post("isfeatured");
             $json=$this->input->get_post("json");
-            if($this->dinedeal_model->edit($id,$dine,$description,$isfeatured,$json)==0)
+            $name=$this->input->get_post("name");
+            if($this->dinedeal_model->edit($id,$dine,$description,$isfeatured,$json,$name)==0)
                 $data["alerterror"]="New dinedeal could not be Updated.";
             else
                 $data["alertsuccess"]="dinedeal Updated Successfully.";

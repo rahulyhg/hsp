@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class brand_model extends CI_Model
 {
-    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)
+    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)
     {
         $data=array(
             "name" => $name,
@@ -22,6 +22,7 @@ class brand_model extends CI_Model
             "image" => $image,
             "specialoffer" => $specialoffer,
             "specialofferimage" => $specialofferimage,
+            "stars" => $stars,
             "json" => $json
         );
         $query=$this->db->insert( "hsp_brand", $data );
@@ -57,7 +58,7 @@ class brand_model extends CI_Model
         $query=$this->db->get("hsp_brand")->row();
         return $query;
     }
-    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage)
+    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)
     {
         $data=array(
             "name" => $name,
@@ -76,6 +77,7 @@ class brand_model extends CI_Model
             "image" => $image,
             "specialoffer" => $specialoffer,
             "specialofferimage" => $specialofferimage,
+            "stars" => $stars,
             "json" => $json
         );
         $this->db->where( "id", $id );

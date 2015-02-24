@@ -62,19 +62,17 @@
                                 <input type="text" id="normal-field" class="form-control" name="googleplus" value='<?php echo set_value(' googleplus ');?>'>
                             </div>
                         </div>
-<!--
-                        <div class=" form-group">
-                            <label class="col-sm-2 control-label" for="normal-field">Json</label>
-                            <div class="col-sm-8">
-                                <textarea name="json" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'json');?></textarea>
-                            </div>
-                        </div>
--->
-                       
                         <div class=" form-group">
                             <label class="col-sm-2 control-label" for="normal-field">Logo</label>
                             <div class="col-sm-4">
                                 <input type="file" id="normal-field" class="form-control" name="logo" value='<?php echo set_value(' logo ');?>'>
+                            </div>
+                        </div>
+                        
+                        <div class=" form-group">
+                            <label class="col-sm-2 control-label" for="normal-field">Description</label>
+                            <div class="col-sm-8">
+                                <textarea name="description" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'description');?></textarea>
                             </div>
                         </div>
                     <div class="form-group hidden" >

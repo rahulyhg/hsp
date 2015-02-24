@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class event_model extends CI_Model
 {
-    public function create($name,$date,$day,$time,$json,$logo,$facebook,$twitter,$instagram,$googleplus)
+    public function create($name,$date,$day,$time,$json,$logo,$facebook,$twitter,$instagram,$googleplus,$description)
     {
         $data=array(
             "name" => $name,
@@ -15,6 +15,7 @@ class event_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "description" => $description,
             "json" => $json
         );
         $query=$this->db->insert( "hsp_event", $data );
@@ -36,7 +37,7 @@ class event_model extends CI_Model
         $query=$this->db->get("hsp_event")->row();
         return $query;
     }
-    public function edit($id,$name,$date,$day,$time,$json,$logo,$facebook,$twitter,$instagram,$googleplus)
+    public function edit($id,$name,$date,$day,$time,$json,$logo,$facebook,$twitter,$instagram,$googleplus,$description)
     {
         $data=array(
             "name" => $name,
@@ -48,6 +49,7 @@ class event_model extends CI_Model
             "twitter" => $twitter,
             "instagram" => $instagram,
             "googleplus" => $googleplus,
+            "description" => $description,
             "json" => $json
         );
         $this->db->where( "id", $id );

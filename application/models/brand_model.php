@@ -149,23 +149,26 @@ class brand_model extends CI_Model
         $query=$this->db->query("SELECT * FROM `hsp_brand`")->result();
 		return $query;
     }
-    public function getbrandbyletter($l)
+    public function getbrandbyfilter($alph,$search,$category,$first)
     {
-    
-        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE '$l'%")->result();
-		return $query;
+        $totalnum=6;
+        $filtercat="";
+        if($category!="")
+        {
+            $filtercat="AND `brandcategory`.`category`='$category'";
+        }
+        
+        if($alph!="")
+        {
+            $query=$this->db->query("SELECT * FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
+            
+        }
+        else
+        {
+            $query=$this->db->query("SELECT * FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
+        }
+        return $query;
     }
-    public function getbrandbysearch($l)
-    {
     
-        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE %'$l'%")->result();
-		return $query;
-    }
-    public function getbrandbycategory($cat)
-    {
-    
-        $query=$this->db->query("SELECT * FROM `hsp_brand` WHERE `name` LIKE %'$l'%")->result();
-		return $query;
-    }
 }
 ?>

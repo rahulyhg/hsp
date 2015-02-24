@@ -190,5 +190,29 @@ class dine_model extends CI_Model
         $query=$this->db->query("SELECT `hsp_dine`.`logo`,`hsp_dine`.`name`,`hsp_dine`.`hours`,`amenity`.`id` FROM `amenity` INNER JOIN `hsp_dine` ON ``")->result();
 		return $query;  
     }
+    public function getdinerbyfilter($alph,$search,$category,$amenity,$first)
+    {
+        $totalnum=6;
+        $filtercat="";
+        $filteramenity="";
+        if($category!="")
+        {
+            $filtercat="AND `dinecategory`.`category`='$category'";
+        }
+        if($amenity!="")
+        {
+            $filteramenity="AND `dineamenity`.`amenity`='$amenity'";
+        }
+        
+        if($alph!="")
+        {
+            $query=$this->db->query("SELECT * FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
+        }
+        else
+        {
+            $query=$this->db->query("SELECT DISTINCT(`hsp_dine`.`id`) AS `id`, `hsp_dine`.`logo` AS `logo`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`name` AS `name` FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
+        }
+        return $query;
+    }
 }
 ?>

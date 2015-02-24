@@ -37,7 +37,7 @@ class Website extends CI_Controller
     public function contact()
 	{
 		$data[ 'title' ] = 'Welcome';
-		$this->load->view( 'frontend/brands_list', $data );	
+		$this->load->view( 'frontend/contact', $data );	
 	}
     public function deals_list()
 	{
@@ -92,6 +92,26 @@ class Website extends CI_Controller
 		$data[ 'title' ] = 'Welcome';
 		$this->load->view( 'frontend/press', $data );	
 	}
+    public function brandfilter() 
+    {
+        $alph=$this->input->get_post("alph");
+        $search=$this->input->get_post("search");
+        $category=$this->input->get_post("category");
+        $first=$this->input->get_post("first");
+        $data['message']=$this->brand_model->getbrandbyfilter($alph,$search,$category,$first);
+        $this->load->view( 'json', $data );	
+    }
+    public function dinefilter()
+    {
+        $alph=$this->input->get_post("alph");
+        $search=$this->input->get_post("search");
+        $category=$this->input->get_post("category");
+        $amenity=$this->input->get_post("amenity");
+        $first=$this->input->get_post("first");
+        
+        $data['message']=$this->dine_model->getdinerbyfilter($alph,$search,$category,$amenity,$first);
+        $this->load->view('json', $data);
+    }
     
 	
     

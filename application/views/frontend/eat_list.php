@@ -14,6 +14,8 @@
 <link href="<?php echo base_url("frontend")."/";?>css/retina-responsive.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'> 
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 </head>
 <body> 
@@ -61,7 +63,7 @@
             <div class="brand_list">
                  <div class="filter">
                      <div class="filterleft">
-                           I am Looking For <select name="" class="select1">
+                           I am Looking For <select name="" class="select1 dinercategorytosearch">
                            <option value="">Select a cuisine</option>
                            <?php foreach($dinercategories as $dinecategory) { ?>
                             <option value="<?php echo $dinecategory->id;?>"><?php echo $dinecategory->name; ?></option>
@@ -72,7 +74,7 @@
                         <input name="search" type="text" class="input1 search" id="search" placeholder="Search Directory" size="30" title="Search *"/>
                     </div>     
                  </div>
-                 <div class="range">
+                 <div class="range atoz">
                     <a href="#">A</a>
                     <a href="#">B</a>
                     <a href="#">C</a>
@@ -106,15 +108,16 @@
                             <option>Search By Deal</option>
                             </select>
                     </div>
-                    <div class="filterright">
+                    <div class="filterright amenitylist">
                          Filter By Amenity
-                        <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity1.png" /></a>
-                        <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity2.png" /></a>
-                        <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity3.png" /></a>
-                        <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
+                        <a href="1"><img src="<?php echo base_url("frontend")."/";?>images/amenity1.png" /></a>
+                        <a href="2"><img src="<?php echo base_url("frontend")."/";?>images/amenity2.png" /></a>
+                        <a href="3"><img src="<?php echo base_url("frontend")."/";?>images/amenity3.png" /></a>
+                        <a href="4"><img src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
                     </div>     
                  </div>
-                 <?php foreach($diners as $diner) { ?>
+                 <div class="alldiners">
+                 <!--<?php foreach($diners as $diner) { ?>
                  <a href="<?php echo site_url("website/eat_inner")."?id=".$diner->id; ?>">
                 <div class="eat">
                     <div class="eat_img"></div>
@@ -126,11 +129,73 @@
                     </div>
                 </div>
                 </a>
-                <?php }; ?>
+                <?php }; ?>-->
+                </div>
             </div>
         </div>
      </div>
 </div>
+
+<script>
+            var alph="";
+            var search="";
+            var category="";
+            var amenity = "";
+            var first="";
+            $(document).ready(function() {
+                
+                function adddiners(data,isnew) {
+                    console.log(document.location.origin);
+                    if(!isnew)
+                    {
+                        $(".alldiners").html("");
+                    }
+                    for(var i=0;i<data.length;i++)
+                    {
+                        var text='<div class="eat"><a href="#/website/eat_inner?id='+data[i].id+'"><div class="eat_img"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
+                        $(".alldiners").append(text);
+                    }
+//                    $('#container').isotope('reLayout');
+                }
+                
+                function callfilter(isnew) {
+                    console.log(alph);
+                    console.log(search);
+                    console.log(category);
+                    if(!isnew)
+                    {
+                        first=0;
+                    }
+                    console.log(first);
+                    $.getJSON("<?php echo site_url("website/dinefilter");?>",{alph:alph,search:search,category:category,amenity:amenity,first:first},function(data) {
+                        console.log(data);
+                        adddiners(data,isnew);
+                    });
+                };
+                callfilter(false);  
+                $(".atoz a").click(function() {
+                    alph=$(this).text();
+                    search="";
+                    $(".input1.search").val("");
+                    callfilter(false);
+                    return false;
+                });
+                $(".dinercategorytosearch").change(function () {
+                    category=$(this).val();
+                    callfilter(false);
+                });
+                $(".input1.search").keyup(function() {
+                    search=$(this).val();
+                    alph="";
+                    callfilter(false);
+                });
+                $(".amenitylist a").click(function() {
+                    amenity = $(this).attr("href");
+                    callfilter(false);
+                });
+            });
+        </script>
+
 <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>

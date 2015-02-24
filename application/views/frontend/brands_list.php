@@ -19,7 +19,7 @@
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
+    /*$(document).ready(function () {
     size = $(".brand").size();
     x=6;
     console.log(size);
@@ -29,7 +29,7 @@
         console.log(x);
         $('.brand:lt('+x+')').show();
     });
-});
+});*/
     </script>
 </head>
 
@@ -88,7 +88,7 @@
                             <div class="filterleft">                                
                                 <form method="post" accept-charset="utf-8" action="<?php echo site_url(" website/brands_list "); ?>">
                                     I am Looking For
-                                    <select name="brandcategorysearch" class="select1">
+                                    <select name="brandcategorysearch" class="select1 brandcategorysearch">
                                       <option value="">Select a Brand</option>
                                        <?php foreach($brandcategories as $brandcategory) { ?>
                                         <option value="<?php echo $brandcategory->id; ?>"><?php echo $brandcategory->name; ?></option>
@@ -100,7 +100,7 @@
                                 <input name="search" class="input1 search" type="text" id="search" placeholder="Search Directory" size="30" title="Search *" />
                             </div>
                         </div>
-                        <div class="range">
+                        <div class="range atoz">
                             <a href="#">A</a>
                             <a href="#">B</a>
                             <a href="#">C</a>
@@ -128,37 +128,81 @@
                             <a href="#">Y</a>
                             <a href="#">Z</a>
                         </div>
-                        <?php foreach($brands as $brand) { ?>
-                        <div class="brand" style="display:none">
-                           <a href="<?php echo site_url("/website/brands_inner")."/?id=".$brand->id; ?>">
-                            <div class="deal-img" style="background-image: url('<?php echo base_url("/uploads")."/".$brand->logo; ?>'); "></div>
-                            <div class="deal_data">
-                                <div class="heading">Hours</div>
-                                <?php echo $brand->hours; ?>
-                                <div class="heading">Location</div>
-                                <?php echo $brand->location; ?>
-                                <div class="heading">
-                                    <img src="<?php echo base_url("frontend")."/";?>images/star.png" />
-                                </div>
-                                <?php if($brand->isfeatured==1) { ?>
-                                FEATURED <?php }; ?>
-                                <?php if($brand->isfeatured==1 && $brand->isnew==1){ ?>
-                                /
-                                <?php }; ?>
-                                <?php if($brand->isnew==1){ ?> 
-                                NEW
-                                <?php }; ?>
-                            </div>
+                        <div class="allbrands">
+                        
                         </div>
-                        </a>
-                        <?php }; ?>
                         <div class="btn-data" id="loadmorebrands">
-                            <input type="submit" class="btn" value="Load More Brands +" />
+                            <button class="btn loadmorebrands" value="Load More Brands +" />Load More Brands +</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
+        <script>
+            
+            
+            var alph="";
+            var search="";
+            var category="";
+            var first="";
+            $(document).ready(function() {
+                
+                function addbrands(data,isnew) {
+                    
+                    if(!isnew)
+                    {
+                        $(".allbrands").html("");
+                    }
+                    for(var i=0;i<data.length;i++)
+                    {
+                        var text='<div class="brand" style=""><a href="http://localhost/hsp/index.php/website/brands_inner/?id=15"><div class="deal-img" style="background-image: url(\'http://localhost/hsp/uploads/event488.jpg\'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
+                        $(".allbrands").append(text);
+                    }
+//                    $('#container').isotope('reLayout');
+                }
+                
+                function callfilter(isnew) {
+                    if(!isnew)
+                    {
+                        first=0;
+                    }
+                    console.log(first);
+                    $.getJSON("<?php echo site_url("website/brandfilter");?>",{alph:alph,search:search,category:category,first:first},function(data) {
+                        console.log(data);
+                        addbrands(data,isnew);
+                    });
+                };
+                
+                callfilter(false);
+                
+                
+                $(".atoz a").click(function() {
+                    alph=$(this).text();
+                    search="";
+                    $(".input1.search").val("");
+                    callfilter(false);
+                    return false;
+                });
+                $(".brandcategorysearch").change(function () {
+                    category=$(this).val();
+                    callfilter(false);
+                });
+                $(".input1.search").keyup(function() {
+                    search=$(this).val();
+                    alph="";
+                    callfilter(false);
+                });
+                $(".loadmorebrands").click(function() {
+                    first=$(".allbrands .brand").length;
+                    callfilter(true);
+                });
+                
+                
+            });
+        </script>
+        
         <?php $this->load->view("frontend/footer");?>
         <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>

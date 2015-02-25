@@ -42,5 +42,10 @@ class dinedeal_model extends CI_Model
         $query=$this->db->query("SELECT `hsp_dine`.`id` AS `id`, `hsp_dine`.`logo` AS `logo`, `hsp_dine`.`image` AS `image`, `hsp_dine`.`hours` AS `hours`, `hsp_dine`.`location` AS `location`, `hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`, `hsp_dinedeal`.`description` AS `description` FROM `hsp_dine` INNER JOIN `hsp_dinedeal` ON `hsp_dinedeal`.`dine` = `hsp_dine`.`id`")->result();
         return $query;
     }
+    public function getdealnames()
+    {
+        $query=$this->db->query("SELECT `id`, `name` FROM `hsp_dinedeal`")->result();
+        return $query;
+    }
 }
 ?>

@@ -127,6 +127,7 @@
                             <a href="#">X</a>
                             <a href="#">Y</a>
                             <a href="#">Z</a>
+                            <a href="#">#</a>
                         </div>
                         <div class="allbrands">
                         
@@ -157,7 +158,9 @@
                     }
                     for(var i=0;i<data.length;i++)
                     {
-                        var text='<div class="brand" style=""><a href="http://localhost/hsp/index.php/website/brands_inner/?id=15"><div class="deal-img" style="background-image: url(\'http://localhost/hsp/uploads/event488.jpg\'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
+                        var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
+                        console.log(loc);
+                        var text='<div class="brand" style=""><a href="#/website/eat_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
                         $(".allbrands").append(text);
                     }
 //                    $('#container').isotope('reLayout');

@@ -101,11 +101,15 @@
                     <a href="#">X</a>
                     <a href="#">Y</a>
                     <a href="#">Z</a>
+                    <a href="#">#</a>
                 </div>
                 <div class="filter">
                      <div class="filterleft">
-                           Search By Deal <select name="" class="select1">
-                            <option>Search By Deal</option>
+                           Search By Deal <select name="" class="select1 dealsearch">
+                            <option value="">Search By Deal</option>
+                            <?php foreach($dealnames as $dealname) { ?>
+                            <option value="<?php echo $dealname->id; ?>"><?php echo $dealname->name; ?></option>
+                            <?php } ?>
                             </select>
                     </div>
                     <div class="filterright amenitylist">
@@ -141,6 +145,7 @@
             var search="";
             var category="";
             var amenity = "";
+            var deal = "";
             var first="";
             $(document).ready(function() {
                 
@@ -152,7 +157,8 @@
                     }
                     for(var i=0;i<data.length;i++)
                     {
-                        var text='<div class="eat"><a href="#/website/eat_inner?id='+data[i].id+'"><div class="eat_img"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
+                        var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
+                        var text='<div class="eat"><a href="#/website/eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
                         $(".alldiners").append(text);
                     }
 //                    $('#container').isotope('reLayout');
@@ -194,6 +200,10 @@
                     amenity = $(this).attr("alt");
                     callfilter(false);
                     return false;
+                });
+                $(".dealsearch").change(function() {
+                    deal=$(this).val();
+                    callfilter(false);
                 });
             });
         </script>

@@ -169,15 +169,17 @@
             <p class="small">Amenity</p>
           </div>
           <div class="infos-right">
-            <p class="small"> 
-                  <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity1_w.png" /></a>
-                  <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity2_w.png" /></a>
+            <p class="small">
+               
+                <?php foreach ($dineramenities as $ame) { ?>
+                      <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity<?php echo $ame->id;?>_w.png" /></a>
+                  <?php }; ?>
             </p>
           </div>
             <div class="soc" style="border-top: 1px solid #000;">
                   <a href="<?php echo $dinerdata->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/facebook.png" /></a> 
                   <a href="<?php echo $dinerdata->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/twitter.png" /></a>
-                  <a href="<?php echo $dinerdata->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
+                  <a href="<?php echo $dinerdata->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
                   <a href="<?php echo $dinerdata->youtube; ?>"><img src="<?php echo base_url("frontend")."/";?>images/youtube.png" /></a>   
                   <a href="<?php echo $dinerdata->email; ?>"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /></a>         
               </div>

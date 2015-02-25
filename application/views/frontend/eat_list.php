@@ -75,6 +75,7 @@
                     </div>     
                  </div>
                  <div class="range atoz">
+                    <a href="#">#</a>
                     <a href="#">A</a>
                     <a href="#">B</a>
                     <a href="#">C</a>
@@ -101,7 +102,6 @@
                     <a href="#">X</a>
                     <a href="#">Y</a>
                     <a href="#">Z</a>
-                    <a href="#">#</a>
                 </div>
                 <div class="filter">
                      <div class="filterleft">
@@ -114,10 +114,10 @@
                     </div>
                     <div class="filterright amenitylist">
                          Filter By Amenity
-                        <a href="#"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" /></a>
-                        <a href="#"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" /></a>
-                        <a href="#"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" /></a>
-                        <a href="#"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours"/></a>
+                        <a class="amenity1"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" class="amenity1" /></a>
+                        <a class="amenity2"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" class="amenity2" /></a>
+                        <a class="amenity3"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" class="amenity3" /></a>
+                        <a class="amenity4"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours" class="amenity4" /></a>
                     </div>     
                  </div>
                  <div class="alldiners">
@@ -144,13 +144,15 @@
             var alph="";
             var search="";
             var category="";
-            var amenity = "";
-            var deal = "";
+            var amenity1 = "0";            
+            var amenity2 = "0";            
+            var amenity3 = "0";            
+            var amenity4 = "0";            
             var first="";
             $(document).ready(function() {
                 
                 function adddiners(data,isnew) {
-                    console.log(document.location.origin);
+                    console.log(data);
                     if(!isnew)
                     {
                         $(".alldiners").html("");
@@ -168,13 +170,13 @@
                     console.log(alph);
                     console.log(search);
                     console.log(category);
-                    console.log(amenity);
+                    console.log(amenity1);
                     if(!isnew)
                     {
                         first=0;
                     }
                     console.log(first);
-                    $.getJSON("<?php echo site_url("website/dinefilter");?>",{alph:alph,search:search,category:category,amenity:amenity,first:first},function(data) {
+                    $.getJSON("<?php echo site_url("website/dinefilter");?>",{alph:alph,search:search,category:category,amenity1:amenity1,amenity2:amenity2,amenity3:amenity3,amenity4:amenity4,first:first},function(data) {
                         console.log(data);
                         adddiners(data,isnew);
                     });
@@ -196,8 +198,43 @@
                     alph="";
                     callfilter(false);
                 });
-                $(".amenitylist a img").click(function() {
-                    amenity = $(this).attr("alt");
+                $(".amenitylist amenity1 img").click(function() {
+                    if(amenity1 == "")
+                    {
+                        amenity1 = $(this).attr("alt");
+                    }else{
+                        amenity1 = "";
+                    };
+                    callfilter(false);
+                    return false;
+                });
+                $(".amenitylist amenity1 img").click(function() {
+                    if(amenity2 == "")
+                    {
+                        amenity2 = $(this).attr("alt");
+                    }else{
+                        amenity2 = "";
+                    };
+                    callfilter(false);
+                    return false;
+                });
+                $(".amenitylist amenity1 img").click(function() {
+                    if(amenity3 == "")
+                    {
+                        amenity3 = $(this).attr("alt");
+                    }else{
+                        amenity3 = "";
+                    };
+                    callfilter(false);
+                    return false;
+                });
+                $(".amenitylist amenity1 img").click(function() {
+                    if(amenity4 == "")
+                    {
+                        amenity4 = $(this).attr("alt");
+                    }else{
+                        amenity4 = "";
+                    };
                     callfilter(false);
                     return false;
                 });

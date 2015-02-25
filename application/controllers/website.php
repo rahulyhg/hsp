@@ -42,7 +42,7 @@ class Website extends CI_Controller
     public function deals_list()
 	{
 		$data[ 'title' ] = 'Welcome';
-        $data['deals']=$this->dinedeal_model->getalldeals();
+        $data['deals']=$this->branddeal_model->getalldeals();
 		$this->load->view( 'frontend/deals_list', $data );	
 	}
     public function eat_list()
@@ -66,6 +66,7 @@ class Website extends CI_Controller
         $dinerid = $this->input->get_post("id");
 		$data[ 'title' ] = 'Welcome';
         $data['dinerdata']=$this->dine_model->getsingledine($dinerid);
+        $data['dineramenities']=$this->amenity_model->getdineramenity($dinerid);
 		$this->load->view( 'frontend/eat_inner', $data );	
 	}
     public function event_inner()
@@ -108,10 +109,13 @@ class Website extends CI_Controller
         $alph=$this->input->get_post("alph");
         $search=$this->input->get_post("search");
         $category=$this->input->get_post("category");
-        $amenity=$this->input->get_post("amenity");
+        $amenity1=$this->input->get_post("amenity1");
+        $amenity2=$this->input->get_post("amenity2");
+        $amenity3=$this->input->get_post("amenity3");
+        $amenity4=$this->input->get_post("amenity4");
         $first=$this->input->get_post("first");
         
-        $data['message']=$this->dine_model->getdinerbyfilter($alph,$search,$category,$amenity,$first);
+        $data['message']=$this->dine_model->getdinerbyfilter($alph,$search,$category,$amenity1,$amenity2,$amenity3,$amenity4,$first);
         $this->load->view('json', $data);
     } 
 }

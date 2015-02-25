@@ -79,5 +79,10 @@ class Amenity_model extends CI_Model
 		
 		return $return;
 	}
+    public function getdineramenity($id)
+    {
+        $query=$this->db->query("SELECT `dineamenity`.`amenity` AS `id` FROM `dineamenity` INNER JOIN `hsp_dine` ON `hsp_dine`.`id` = `dineamenity`.`dine` WHERE `hsp_dine`.`id`='$id'")->result();
+		return $query;
+    }
 }
 ?>

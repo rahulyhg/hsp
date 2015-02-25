@@ -101,6 +101,7 @@
                             </div>
                         </div>
                         <div class="range atoz">
+                            <a href="#">#</a>
                             <a href="#">A</a>
                             <a href="#">B</a>
                             <a href="#">C</a>
@@ -127,7 +128,6 @@
                             <a href="#">X</a>
                             <a href="#">Y</a>
                             <a href="#">Z</a>
-                            <a href="#">#</a>
                         </div>
                         <div class="allbrands">
                         

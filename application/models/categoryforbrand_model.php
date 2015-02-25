@@ -82,5 +82,10 @@ class categoryforbrand_model extends CI_Model
 //		$query=$this->db->query("SELECT * FROM `categoryforbrand`  ORDER BY `id` ASC")->result();
 //		return $query;
 	}
+    public function getcategorydropdown()
+    {
+        $query=$this->db->query("SELECT * FROM `categoryforbrand`  ORDER BY `id` ASC")->result();
+        return $query;
+    }
 }
 ?>

@@ -160,7 +160,7 @@
                     {
                         var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
                         console.log(loc);
-                        var text='<div class="brand" style=""><a href="#/website/eat_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
+                        var text='<div class="brand" style=""><a href="brands_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
                         $(".allbrands").append(text);
                     }
 //                    $('#container').isotope('reLayout');

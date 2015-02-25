@@ -194,6 +194,7 @@ class dine_model extends CI_Model
     {
         $totalnum=6;
         $filtercat="";
+        $selectfields="DISTINCT(`hsp_dine`.`id`) AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
         $filteramenity="";
         if($category!="")
         {
@@ -203,19 +204,18 @@ class dine_model extends CI_Model
         {
             $filteramenity="AND `dineamenity`.`amenity`='$amenity'";
         }
-        
         if($alph!="")
         {
             if($alph == "#")
             {
-                $query=$this->db->query("SELECT DISTINCT(`hsp_brand`.`id`) AS `id`,`hsp_brand`.`name` AS `name`,`hsp_brand`.`hours` AS `hours`,`hsp_brand`.`location` AS `location`,`hsp_brand`.`logo` AS `logo`,`hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew` FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` regexp '^[0-9]+' $filtercat LIMIT $first,$totalnum")->result();
+                $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` regexp '^[0-9]+' $filtercat LIMIT $first,$totalnum")->result();
             }else{
-            $query=$this->db->query("SELECT * FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
             }
         }
         else
         {
-            $query=$this->db->query("SELECT DISTINCT(`hsp_dine`.`id`) AS `id`, `hsp_dine`.`logo` AS `logo`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`name` AS `name` FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` INNER JOIN `dineamenity` ON `hsp_dine`.`id`=`dineamenity`.`dine` WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` INNER JOIN `dineamenity` ON `hsp_dine`.`id`=`dineamenity`.`dine` WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
         }
         return $query;
     }

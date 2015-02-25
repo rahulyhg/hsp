@@ -210,7 +210,7 @@
             </div>
             </div>
         </div>
-         <div class="element home clearfix col1-3 full detail">
+         <!--<div class="element home clearfix col1-3 full detail">
           <div class="info-icon icon_adjust_full"><i class="icons event"></i>
             <h2>Other Events At The Mall</h2>
           </div>
@@ -237,7 +237,7 @@
                     <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
                 </div>
             </div>
-          </div>
+          </div>-->
     </div>
   </div>
 </div>

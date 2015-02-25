@@ -117,7 +117,7 @@
   <div id="content">
     <div class="container">
       <div id="container" class="clearfix">
-            <div class="element home clearfix col1-3 full full-logo logo-adj">
+            <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url("uploads")."/".$dinerdata->logo; ?>');" >
           </div>
        <div class="element  clearfix col2-3 home bg centered slider">
           <div class="bg-image">

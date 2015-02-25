@@ -24,7 +24,7 @@ class Website extends CI_Controller
     public function brands_list()
 	{
         $data['brands']= $this->brand_model->getall();
-        $data['brandcategories']= $this->categoryforbrand_model->getcategoryforbranddropdown();
+        $data['brandcategories']= $this->categoryforbrand_model->getcategorydropdown();
         $letter = "a";
         //$data['lettersearch']=$this->brand_model->getbrandbyletter($letter);
         $searchtext = "a";

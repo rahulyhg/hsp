@@ -155,6 +155,7 @@ class brand_model extends CI_Model
     {
         $totalnum=6;
         $filtercat="";
+        $selectfields="DISTINCT(`hsp_brand`.`id`) AS `id`,`hsp_brand`.`name` AS `name`,`hsp_brand`.`hours` AS `hours`,`hsp_brand`.`location` AS `location`,`hsp_brand`.`logo` AS `logo`,`hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew`";
         if($category!="")
         {
             $filtercat="AND `brandcategory`.`category`='$category'";
@@ -164,14 +165,14 @@ class brand_model extends CI_Model
         {
             if($alph == "#")
             {
-                $query=$this->db->query("SELECT DISTINCT(`hsp_brand`.`id`) AS `id`,`hsp_brand`.`name` AS `name`,`hsp_brand`.`hours` AS `hours`,`hsp_brand`.`location` AS `location`,`hsp_brand`.`logo` AS `logo`,`hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew` FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` regexp '^[0-9]+' $filtercat LIMIT $first,$totalnum")->result();
+                $query=$this->db->query("SELECT $selectfields FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` regexp '^[0-9]+' $filtercat LIMIT $first,$totalnum")->result();
             }else{
-            $query=$this->db->query("SELECT DISTINCT(`hsp_brand`.`id`) AS `id`,`hsp_brand`.`name` AS `name`,`hsp_brand`.`hours` AS `hours`,`hsp_brand`.`location` AS `location`,`hsp_brand`.`logo` AS `logo`,`hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew` FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
             }
         }
         else
         {
-            $query=$this->db->query("SELECT DISTINCT(`hsp_brand`.`id`) AS `id`,`hsp_brand`.`name` AS `name`,`hsp_brand`.`hours` AS `hours`,`hsp_brand`.`location` AS `location`,`hsp_brand`.`logo` AS `logo`,`hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew` FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `hsp_brand` INNER JOIN `brandcategory` ON `hsp_brand`.`id`=`brandcategory`.`brand` WHERE `hsp_brand`.`name` LIKE '%$search%' $filtercat LIMIT $first,$totalnum")->result();
         }
         return $query;
     }

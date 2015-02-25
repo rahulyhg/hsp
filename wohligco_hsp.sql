@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2015 at 02:25 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Generation Time: Feb 25, 2015 at 12:06 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `accesslevel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -49,10 +47,9 @@ INSERT INTO `accesslevel` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `amenity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `order` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `order` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -72,10 +69,9 @@ INSERT INTO `amenity` (`id`, `name`, `order`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `brandcategory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `brand` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `category` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
@@ -99,10 +95,9 @@ INSERT INTO `brandcategory` (`id`, `brand`, `category`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `categoryforbrand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `order` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `order` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -121,10 +116,9 @@ INSERT INTO `categoryforbrand` (`id`, `name`, `order`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `categoryfordine` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `order` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `order` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -142,13 +136,12 @@ INSERT INTO `categoryfordine` (`id`, `name`, `order`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `comment` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -165,14 +158,13 @@ INSERT INTO `comment` (`id`, `name`, `email`, `phone`, `comment`, `timestamp`) V
 --
 
 CREATE TABLE IF NOT EXISTS `config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` text NOT NULL,
   `text` text NOT NULL,
   `image` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `config`
@@ -187,7 +179,9 @@ INSERT INTO `config` (`id`, `title`, `text`, `image`, `date`, `timestamp`) VALUE
 (6, 'Unleash your Child''s Inner Artist', 'Register your kids for an exciting art and craft workshop ...', '', '0000-00-00', '2015-02-23 11:26:45'),
 (7, 'International Clown Festival', 'The International Clown Festival has been in India for over a month and this seems to be just like the fun event we witnessed in ...', '', '0000-00-00', '2015-02-23 11:27:12'),
 (8, 'Shop and Win', 'Grab daily and weekly Prizes too. Shop worth Rs.3000 or above and get a chance to win a trip to the destination ...', '', '0000-00-00', '2015-02-23 11:27:42'),
-(9, 'Contact Us', '', '', '0000-00-00', '2015-02-23 11:27:53');
+(9, 'Shop & Win', 'Grab daily and weekly Prizes too. Shop worth Rs.3000 or above and get a chance to win a trip to the destination ...', '', '2015-03-10', '2015-02-25 10:40:11'),
+(10, 'Home Banner', '', 'main_banner6.jpg', '0000-00-00', '2015-02-24 12:58:33'),
+(11, 'demo', 'demo', '', '0000-00-00', '2015-02-24 12:59:56');
 
 -- --------------------------------------------------------
 
@@ -196,12 +190,11 @@ INSERT INTO `config` (`id`, `title`, `text`, `image`, `date`, `timestamp`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `configlogo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `configlogo`
@@ -209,7 +202,11 @@ CREATE TABLE IF NOT EXISTS `configlogo` (
 
 INSERT INTO `configlogo` (`id`, `title`, `logo`, `timestamp`) VALUES
 (1, 'Adidas', 'brand1.png', '2015-02-23 11:08:31'),
-(2, 'demo', 'brand2.png', '2015-02-23 11:03:17');
+(2, 'demo', 'brand2.png', '2015-02-23 11:03:17'),
+(3, 'pixolo', 'pixolo.png', '2015-02-25 11:04:57'),
+(4, 'wohlig', 'wohlig.png', '2015-02-25 11:04:57'),
+(5, 'tushar', 'tushar.png', '2015-02-25 11:06:04'),
+(6, 'cs', 'cs.png', '2015-02-25 11:06:04');
 
 -- --------------------------------------------------------
 
@@ -218,11 +215,10 @@ INSERT INTO `configlogo` (`id`, `title`, `logo`, `timestamp`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `configvideo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -239,10 +235,9 @@ INSERT INTO `configvideo` (`id`, `title`, `video`, `timestamp`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `dineamenity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `dine` int(11) NOT NULL,
-  `amenity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `amenity` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
@@ -263,10 +258,9 @@ INSERT INTO `dineamenity` (`id`, `dine`, `amenity`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `dinecategory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `dine` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `category` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
@@ -287,7 +281,7 @@ INSERT INTO `dinecategory` (`id`, `dine`, `category`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_brand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `hours` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
@@ -305,20 +299,21 @@ CREATE TABLE IF NOT EXISTS `hsp_brand` (
   `image` varchar(255) NOT NULL,
   `specialoffer` text NOT NULL,
   `specialofferimage` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+  `stars` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `hsp_brand`
 --
 
-INSERT INTO `hsp_brand` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `logo`, `json`, `contactno`, `email`, `facebook`, `twitter`, `instagram`, `googleplus`, `image`, `specialoffer`, `specialofferimage`) VALUES
-(1, 'Adidas', '9', 'Thane', '1', '1', 'Adidas is the best brand.', 'nav2.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '8989878788', 'adidas@gmail.com', '2', '2', '2', '2', '', '', ''),
-(13, 'asc', '2', '2', '1', '1', '2', 'Nature_at_its_Best!!!.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', ''),
-(14, '2', '2', '2', '1', '1', '2', '', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', ''),
-(15, 'demo', '10', '2', '1', '1', 'ajsnxaksj', 'event488.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"iuniu"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"kjnj"}]', '232323', 'EricVan@wohlig.com', '', '', '', '', '', '', ''),
-(16, '8', '8', '8', '1', '1', '8', 'block42.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"8"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"8"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"8"}]', '8', '8', '8', '8', '8', '8', 'main_banner4.jpg', '', ''),
-(17, '5', '5', '5', '1', '1', '5', 'block21.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"bhb"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"m j"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"iuniu"}]', '5', '5', '5', '5', '5', '5', 'main_banner_old.jpg', 'jsndck', 'main_banner_m3.jpg');
+INSERT INTO `hsp_brand` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`, `description`, `logo`, `json`, `contactno`, `email`, `facebook`, `twitter`, `instagram`, `googleplus`, `image`, `specialoffer`, `specialofferimage`, `stars`) VALUES
+(1, 'Adidas', '9', 'Thane', '1', '1', 'Adidas is the best brand.', 'nav2.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '8989878788', 'adidas@gmail.com', '2', '2', '2', '2', '', '', '', ''),
+(13, 'asc', '2', '2', '1', '1', '2', 'Nature_at_its_Best!!!.png', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', '', ''),
+(14, '2', '2', '2', '1', '1', '2', '', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', '', '', '', '', '', '', '', '', '', ''),
+(15, 'demo', '10', '2', '1', '1', 'ajsnxaksj', 'event488.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"iuniu"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"kjnj"}]', '232323', 'EricVan@wohlig.com', '', '', '', '', '', '', '', ''),
+(16, '8', '8', '8', '1', '1', '8', 'block42.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"8"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"8"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"8"}]', '8', '8', '8', '8', '8', '8', 'main_banner4.jpg', '', '', ''),
+(17, '5', '5', '5', '1', '1', '5', 'block21.jpg', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"bhb"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"m j"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"iuniu"}]', '5', '5', '5', '5', '5', '5', 'main_banner_old.jpg', 'jsndck', 'main_banner_m3.jpg', ''),
+(18, 'new brand', '10-12', 'gr floor', '0', '1', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -327,11 +322,10 @@ INSERT INTO `hsp_brand` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_brandcategory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `brand` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `order` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `order` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -349,12 +343,11 @@ INSERT INTO `hsp_brandcategory` (`id`, `brand`, `name`, `order`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_branddeal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `brand` int(11) NOT NULL,
   `description` text NOT NULL,
   `json` text NOT NULL,
-  `isfeatured` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `isfeatured` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -373,7 +366,7 @@ INSERT INTO `hsp_branddeal` (`id`, `brand`, `description`, `json`, `isfeatured`)
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_dine` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `hours` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
@@ -391,8 +384,7 @@ CREATE TABLE IF NOT EXISTS `hsp_dine` (
   `floor` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `specialoffer` text NOT NULL,
-  `specialofferimage` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `specialofferimage` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
@@ -414,11 +406,10 @@ INSERT INTO `hsp_dine` (`id`, `name`, `hours`, `location`, `isfeatured`, `isnew`
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_dinecategory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `order` int(11) NOT NULL,
-  `dine` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `dine` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
@@ -437,23 +428,24 @@ INSERT INTO `hsp_dinecategory` (`id`, `name`, `order`, `dine`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_dinedeal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `dine` int(11) NOT NULL,
   `description` text NOT NULL,
   `isfeatured` varchar(255) NOT NULL,
-  `json` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `json` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `hsp_dinedeal`
 --
 
-INSERT INTO `hsp_dinedeal` (`id`, `dine`, `description`, `isfeatured`, `json`) VALUES
-(1, 2, 'desc', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
-(2, 1, 'desc1', '0', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
-(3, 1, 'asxasx', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
-(4, 6, 'demo', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"demo"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"demo"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"demo"}]');
+INSERT INTO `hsp_dinedeal` (`id`, `name`, `dine`, `description`, `isfeatured`, `json`) VALUES
+(1, 'Deal 1', 2, 'desc', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
+(2, 'DEal 2', 1, 'desc1', '0', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
+(3, 'Deal 33', 1, 'asxasx', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"axa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"asxa"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"axas"}]'),
+(4, 'Deal 4', 6, 'demo', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"demo"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"demo"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"demo"}]'),
+(5, 'demosjhbsj', 1, 'jhbjc', '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]');
 
 -- --------------------------------------------------------
 
@@ -462,7 +454,7 @@ INSERT INTO `hsp_dinedeal` (`id`, `dine`, `description`, `isfeatured`, `json`) V
 --
 
 CREATE TABLE IF NOT EXISTS `hsp_event` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `day` varchar(255) NOT NULL,
@@ -473,17 +465,19 @@ CREATE TABLE IF NOT EXISTS `hsp_event` (
   `twitter` varchar(255) NOT NULL,
   `instagram` varchar(255) NOT NULL,
   `googleplus` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `hsp_event`
 --
 
-INSERT INTO `hsp_event` (`id`, `name`, `date`, `day`, `time`, `json`, `logo`, `facebook`, `twitter`, `instagram`, `googleplus`) VALUES
-(1, 'cultural', '2015-02-11', 'Monday', '10-2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"aaa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"jhbjh"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oijoi"}]', 'event48812.jpg', '2', '2', '2', '2'),
-(2, 'demo', '2015-02-06', 'Tuesday', '10 AM to 2 PM', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"aaa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"jhbjh"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oijoi"}]', '31.jpg', '', '', '', ''),
-(3, '2', '2015-02-07', '2', '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', 'event48811.jpg', '', '', '', '');
+INSERT INTO `hsp_event` (`id`, `name`, `date`, `day`, `time`, `json`, `logo`, `facebook`, `twitter`, `instagram`, `googleplus`, `description`) VALUES
+(1, 'cultural', '2015-02-11', 'Monday', '10-2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"aaa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"jhbjh"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oijoi"}]', 'event48812.jpg', '2', '2', '2', '2', ''),
+(2, 'demo', '2015-02-06', 'Tuesday', '10 AM to 2 PM', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"aaa"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"jhbjh"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"oijoi"}]', '31.jpg', '', '', '', '', ''),
+(3, '2', '2015-02-07', '2', '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"textarea","classes":"","placeholder":"","value":"2"},{"label":"Meta Keywords","type":"textarea","classes":"","placeholder":"","value":"2"}]', 'event48811.jpg', '', '', '', '', ''),
+(8, 'Event Demo', '2015-02-25', '', '', '', '', '', '', '', '', 'andlkadkas'),
+(10, 'event New', '2015-02-25', 'wed', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -492,9 +486,8 @@ INSERT INTO `hsp_event` (`id`, `name`, `date`, `day`, `time`, `json`, `logo`, `f
 --
 
 CREATE TABLE IF NOT EXISTS `logintype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -514,7 +507,7 @@ INSERT INTO `logintype` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
@@ -523,8 +516,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `parent` int(11) NOT NULL,
   `isactive` int(11) NOT NULL,
   `order` int(11) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `icon` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
@@ -556,8 +548,7 @@ INSERT INTO `menu` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `
 
 CREATE TABLE IF NOT EXISTS `menuaccess` (
   `menu` int(11) NOT NULL,
-  `access` int(11) NOT NULL,
-  UNIQUE KEY `menu` (`menu`,`access`)
+  `access` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -591,9 +582,8 @@ INSERT INTO `menuaccess` (`menu`, `access`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `statuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -614,7 +604,7 @@ INSERT INTO `statuses` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -625,8 +615,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) NOT NULL,
   `socialid` varchar(255) NOT NULL,
   `logintype` int(11) NOT NULL,
-  `json` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `json` text NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
@@ -650,12 +639,11 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp
 --
 
 CREATE TABLE IF NOT EXISTS `userlog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `onuser` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
@@ -696,6 +684,273 @@ INSERT INTO `userlog` (`id`, `onuser`, `status`, `description`, `timestamp`) VAL
 (31, 4, 6, 'User Details Edited', '2014-12-03 10:36:49'),
 (32, 8, 6, 'User Details Edited', '2014-12-03 10:47:16');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accesslevel`
+--
+ALTER TABLE `accesslevel`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `amenity`
+--
+ALTER TABLE `amenity`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `brandcategory`
+--
+ALTER TABLE `brandcategory`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categoryforbrand`
+--
+ALTER TABLE `categoryforbrand`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categoryfordine`
+--
+ALTER TABLE `categoryfordine`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `config`
+--
+ALTER TABLE `config`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `configlogo`
+--
+ALTER TABLE `configlogo`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `configvideo`
+--
+ALTER TABLE `configvideo`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dineamenity`
+--
+ALTER TABLE `dineamenity`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dinecategory`
+--
+ALTER TABLE `dinecategory`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_brand`
+--
+ALTER TABLE `hsp_brand`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_brandcategory`
+--
+ALTER TABLE `hsp_brandcategory`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_branddeal`
+--
+ALTER TABLE `hsp_branddeal`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_dine`
+--
+ALTER TABLE `hsp_dine`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_dinecategory`
+--
+ALTER TABLE `hsp_dinecategory`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_dinedeal`
+--
+ALTER TABLE `hsp_dinedeal`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hsp_event`
+--
+ALTER TABLE `hsp_event`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logintype`
+--
+ALTER TABLE `logintype`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menuaccess`
+--
+ALTER TABLE `menuaccess`
+ ADD UNIQUE KEY `menu` (`menu`,`access`);
+
+--
+-- Indexes for table `statuses`
+--
+ALTER TABLE `statuses`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `userlog`
+--
+ALTER TABLE `userlog`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accesslevel`
+--
+ALTER TABLE `accesslevel`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `amenity`
+--
+ALTER TABLE `amenity`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `brandcategory`
+--
+ALTER TABLE `brandcategory`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+--
+-- AUTO_INCREMENT for table `categoryforbrand`
+--
+ALTER TABLE `categoryforbrand`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `categoryfordine`
+--
+ALTER TABLE `categoryfordine`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `config`
+--
+ALTER TABLE `config`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `configlogo`
+--
+ALTER TABLE `configlogo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `configvideo`
+--
+ALTER TABLE `configvideo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `dineamenity`
+--
+ALTER TABLE `dineamenity`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `dinecategory`
+--
+ALTER TABLE `dinecategory`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `hsp_brand`
+--
+ALTER TABLE `hsp_brand`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `hsp_brandcategory`
+--
+ALTER TABLE `hsp_brandcategory`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `hsp_branddeal`
+--
+ALTER TABLE `hsp_branddeal`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `hsp_dine`
+--
+ALTER TABLE `hsp_dine`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `hsp_dinecategory`
+--
+ALTER TABLE `hsp_dinecategory`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `hsp_dinedeal`
+--
+ALTER TABLE `hsp_dinedeal`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `hsp_event`
+--
+ALTER TABLE `hsp_event`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `logintype`
+--
+ALTER TABLE `logintype`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `statuses`
+--
+ALTER TABLE `statuses`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `userlog`
+--
+ALTER TABLE `userlog`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

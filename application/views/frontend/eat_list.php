@@ -158,7 +158,7 @@
                     for(var i=0;i<data.length;i++)
                     {
                         var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
-                        var text='<div class="eat"><a href="#/website/eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
+                        var text='<div class="eat"><a href="eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
                         $(".alldiners").append(text);
                     }
 //                    $('#container').isotope('reLayout');

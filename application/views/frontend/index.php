@@ -24,7 +24,15 @@
         <div class="brand_ticker">
             <div id="slider" class="desktop_ticker">
               <ul>
-                       
+                       <?php for($i=0; $i<count($brandticker); $i++) { ?>
+                       <?php if($i==0 || $i%5==0) { ?>
+                       <li >
+                        <?php }; ?>
+                            <div class="ticker_brand" style="background-image: url(<?php echo base_url("uploads")."/".$brandticker[$i]->logo; ?>); "></div>
+                        <?php if($i%5 == 4) { ?>
+                        </li>
+                        <?php }; ?>
+                       <?php } ?>
               </ul>  
             </div>
              <div id="slider_m" class="mobile_ticker">
@@ -185,7 +193,7 @@ background-size: cover;">
         <?php if($config[10]->title) { ?>
         <div class="element  clearfix col1-3 color home">
           <h2><span><?php echo $config[10]->title;?></span></h2>
-          <div class="price"><span>get</span> Gift</div>
+          <div class="price"><span></span></div>
           <p class="small"><?php echo $config[10]->text;?></p>
         </div>
         <?php }; ?>

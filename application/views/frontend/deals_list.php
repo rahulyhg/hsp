@@ -72,7 +72,8 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
-                 <?php foreach($deals as $deal) { ?>
+                <?php if(count($deals)>0) { 
+                    foreach($deals as $deal) { ?>
                   <li>
                       <img src="<?php echo base_url("uploads")."/".$deal->image; ?>" alt=""/>
                        <div class="data">
@@ -97,7 +98,9 @@
                            <a href="<?php echo site_url("website/brands_inner")."?id=".$deal->id; ?>"> <div class="btn btn_slide">Visit Brand</div></a>
                        </div>
                   </li>
-                  <?php }; ?>
+                  <?php }; }else{ ?>
+                    <p>No Deals available currently</p>
+                   <?php }; ?>
                 </ul>
               </div>
             </div>

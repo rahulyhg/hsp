@@ -150,7 +150,8 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
-                 <?php foreach($events as $event) { ?>
+                <?php if(count($events)>0) { 
+                    foreach($events as $event) { ?>
                   <li>
                       <img src="<?php echo base_url("uploads")."/".$event->logo;?>" alt=""/>
                        <div class="data">           
@@ -204,7 +205,9 @@
                           <div class="break"></div>
                                        </div>
                                   </li>
-                                  <?php } ?>
+                                  <?php }  }else { ?>
+                                  <p>No events coming up anytime soon</p>
+                                  <?php }?>
                 </ul>
                 </div>
             </div>

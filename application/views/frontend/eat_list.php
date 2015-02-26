@@ -198,43 +198,43 @@
                     alph="";
                     callfilter(false);
                 });
-                $(".amenitylist amenity1 img").click(function() {
-                    if(amenity1 == "")
+                $(".amenitylist a img").click(function() {
+                    if($(this).attr("alt") == "1")
                     {
-                        amenity1 = $(this).attr("alt");
-                    }else{
-                        amenity1 = "";
-                    };
-                    callfilter(false);
-                    return false;
-                });
-                $(".amenitylist amenity1 img").click(function() {
-                    if(amenity2 == "")
+                        if(amenity1 == "0")
+                        {
+                            amenity1 = $(this).attr("alt");
+                        }else{
+                            amenity1 = "0";
+                        };
+                    }
+                    if($(this).attr("alt") == "2")
                     {
-                        amenity2 = $(this).attr("alt");
-                    }else{
-                        amenity2 = "";
-                    };
-                    callfilter(false);
-                    return false;
-                });
-                $(".amenitylist amenity1 img").click(function() {
-                    if(amenity3 == "")
+                        if(amenity2 == "0")
+                        {
+                            amenity2 = $(this).attr("alt");
+                        }else{
+                            amenity2 = "0";
+                        };
+                    }
+                    if($(this).attr("alt") == "3")
                     {
-                        amenity3 = $(this).attr("alt");
-                    }else{
-                        amenity3 = "";
+                        if(amenity3 == "0")
+                        {
+                            amenity3 = $(this).attr("alt");
+                        }else{
+                            amenity3 = "0";
+                        };
                     };
-                    callfilter(false);
-                    return false;
-                });
-                $(".amenitylist amenity1 img").click(function() {
-                    if(amenity4 == "")
+                    if($(this).attr("alt") == "4")
                     {
-                        amenity4 = $(this).attr("alt");
-                    }else{
-                        amenity4 = "";
-                    };
+                        if(amenity4 == "0")
+                        {
+                            amenity4 = $(this).attr("alt");
+                        }else{
+                            amenity4 = "0";
+                        };
+                    }
                     callfilter(false);
                     return false;
                 });

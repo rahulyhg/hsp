@@ -107,7 +107,7 @@
                
           </div>
 
-       <div class="element  clearfix col2-3 home bg centered slider">
+       <div class="element home clearfix col1-3 half half-img">
           <div class="bg-image">
             <div class="flexslider">
               <div class="images">

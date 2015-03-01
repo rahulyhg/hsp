@@ -193,35 +193,23 @@ class dine_model extends CI_Model
     public function getdinerbyfilter($alph,$search,$category,$amenity1,$amenity2,$amenity3,$amenity4,$first)
     {
         $totalnum=6;
-        $selectfields="DISTINCT(`hsp_dine`.`id`) AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
+        $selectfields=" `hsp_dine`.`id` AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
         $am = "";
         if($amenity1 != "0")
         {
-            $am= $am.$amenity1;
+            $am= $am."AND `dineamenity`.`amenity`= '$amenity1'";
         };
         if($amenity2 != "0")
         {
-            if($am == "") { 
-                $am= $am.$amenity2; 
-            }else{
-                $am= $am.",".$amenity2;
-            };
+            $am= $am."AND `dineamenity`.`amenity`= '$amenity2'";
         };
         if($amenity3 != "0")
         {
-            if($am == "") { 
-                $am= $am.$amenity3; 
-            }else{
-                $am= $am.",".$amenity3;
-            };
+            $am= $am."AND `dineamenity`.`amenity`= '$amenity3'";
         };
         if($amenity4 != "0")
         {
-            if($am == "") { 
-                $am= $am.$amenity4; 
-            }else{
-                $am= $am.",".$amenity4;
-            };
+            $am= $am."AND `dineamenity`.`amenity`= '$amenity4'";
         };
         
         $filtercat="";
@@ -231,8 +219,8 @@ class dine_model extends CI_Model
         if($am!="")
         {
             $inneramenity = " INNER JOIN `dineamenity` ON `dineamenity`.`dine` = `hsp_dine`.`id`";
-        $selectfields="DISTINCT(`hsp_dine`.`id`) AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
-            $filteramenity="AND `dineamenity`.`amenity` IN ($am)";
+        $selectfields=" `hsp_dine`.`id` AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
+            $filteramenity = $am;
         }
         if($category!="")
         {
@@ -242,14 +230,14 @@ class dine_model extends CI_Model
         {
             if($alph == "#")
             {
-                $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` regexp '^[0-9]+' $filtercat LIMIT $first,$totalnum")->result();
+                $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` regexp '^[0-9]+' $filtercat GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum")->result();
             }else{
-            $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum")->result();
             }
         }
         else
         {
-            $query=$this->db->query("SELECT $selectfields FROM `dinecategory` INNER JOIN `hsp_dine` ON `dinecategory`.`dine` = `hsp_dine`.`id` $inneramenity WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat $filteramenity LIMIT $first,$totalnum")->result();
+            $query=$this->db->query("SELECT $selectfields FROM `dinecategory` INNER JOIN `hsp_dine` ON `dinecategory`.`dine` = `hsp_dine`.`id` $inneramenity WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat $filteramenity GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum  ")->result();
         }
         return $query;
     }

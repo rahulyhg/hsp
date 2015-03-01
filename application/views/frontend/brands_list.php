@@ -78,68 +78,69 @@
                 </ul>
             </div>
         </header>
+        
+        
         <div id="content">
-            <div id="container" class="clearfix">
-                <div class="element home clearfix full">
-                    <div class="full-logo full-logo-brand">BRANDS</div>
-                    <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris.</p>
-                    <div class="brand_list">
-                        <div class="filter">
-                            <div class="filterleft">                                
-                                <form method="post" accept-charset="utf-8" action="<?php echo site_url(" website/brands_list "); ?>">
-                                    I am Looking For
-                                    <select name="brandcategorysearch" class="select1 brandcategorysearch">
-                                      <option value="">Select a Brand</option>
-                                       <?php foreach($brandcategories as $brandcategory) { ?>
+      <div id="container" class="clearfix">
+        <div class="element home clearfix full">
+            <div class="full-logo full-logo-brand">BRANDS</div>
+            <p class="full-data">Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris.</p>
+            <div class="brand_list">
+                <div class="filter">
+                    <div class="filterleft">
+                        I am Looking For <select name="" class="select1 brandcategorysearch">
+                            <option value="">Search By Category</option>
+                            <?php foreach($brandcategories as $brandcategory) { ?>
                                         <option value="<?php echo $brandcategory->id; ?>"><?php echo $brandcategory->name; ?></option>
-                                        <?php }; ?>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="filterright">
-                                <input name="search" class="input1 search" type="text" id="search" placeholder="Search Directory" size="30" title="Search *" />
-                            </div>
-                        </div>
-                        <div class="range atoz">
-                            <a href="#">#</a>
-                            <a href="#">A</a>
-                            <a href="#">B</a>
-                            <a href="#">C</a>
-                            <a href="#">D</a>
-                            <a href="#">E</a>
-                            <a href="#">F</a>
-                            <a href="#">G</a>
-                            <a href="#">H</a>
-                            <a href="#">I</a>
-                            <a href="#">J</a>
-                            <a href="#">K</a>
-                            <a href="#">L</a>
-                            <a href="#">M</a>
-                            <a href="#">N</a>
-                            <a href="#">O</a>
-                            <a href="#">P</a>
-                            <a href="#">Q</a>
-                            <a href="#">R</a>
-                            <a href="#">S</a>
-                            <a href="#">T</a>
-                            <a href="#">U</a>
-                            <a href="#">V</a>
-                            <a href="#">W</a>
-                            <a href="#">X</a>
-                            <a href="#">Y</a>
-                            <a href="#">Z</a>
-                        </div>
-                        <div class="allbrands">
-                        
-                        </div>
-                        <div class="btn-data" id="loadmorebrands">
-                            <button class="btn loadmorebrands" value="Load More Brands +" />Load More Brands +</button>
-                        </div>
+                            <?php }; ?>
+                        </select>
                     </div>
+                    <div class="filterright">
+                        <input name="search" class="input1 search" type="text" id="search" placeholder="Search Directory" size="30" title="Search *"/>
+                    </div>     
+                </div>
+                <div class="range atoz">
+                    <a href="#">#</a>
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                    <a href="#">D</a>
+                    <a href="#">E</a>
+                    <a href="#">F</a>
+                    <a href="#">G</a>
+                    <a href="#">H</a>
+                    <a href="#">I</a>
+                    <a href="#">J</a>
+                    <a href="#">K</a>
+                    <a href="#">L</a>
+                    <a href="#">M</a>
+                    <a href="#">N</a>
+                    <a href="#">O</a>
+                    <a href="#">P</a>
+                    <a href="#">Q</a>
+                    <a href="#">R</a>
+                    <a href="#">S</a>
+                    <a href="#">T</a>
+                    <a href="#">U</a>
+                    <a href="#">V</a>
+                    <a href="#">W</a>
+                    <a href="#">X</a>
+                    <a href="#">Y</a>
+                    <a href="#">Z</a>
+               </div>
+                 
+                <div class="full-list">
+                    
+                    
+                    
+                    <div class="btn-data loadmorebrands">
+                    <input type="submit" class="btn loadmorebrands" value="Load More Brands +" />
+                </div>
                 </div>
             </div>
         </div>
-        
+       </div>
+</div>  
         
         <script>
             
@@ -154,15 +155,28 @@
                     
                     if(!isnew)
                     {
-                        $(".allbrands").html("");
+                        $(".full-list").html("");
                     }
                     for(var i=0;i<data.length;i++)
                     {
-                        var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
-                        console.log(loc);
-                        var text='<div class="brand" style=""><a href="brands_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>2<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>';
-                        $(".allbrands").append(text);
-                    }
+                        var text = "";
+                        if(i%2 == 0)
+                        {
+                            text = text.concat('<div class="brands">');
+                            var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
+                            if(i+1 < data.length)
+                            {
+                                var loc2 = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i+1].logo;
+                            };
+                            text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>');
+                            if(i+1 < data.length)
+                            {
+                                text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i+1].id+'"><div class="deal-img" style="background-image: url('+loc2+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>');
+                            };
+                            text = text.concat('</div>');
+                            $(".full-list").append(text);
+                        };
+                    };
 //                    $('#container').isotope('reLayout');
                 }
                 
@@ -182,6 +196,8 @@
                 
                 
                 $(".atoz a").click(function() {
+                    $(".atoz a").removeClass("makered");
+                    $(this).addClass("makered");
                     alph=$(this).text();
                     search="";
                     $(".input1.search").val("");
@@ -193,6 +209,8 @@
                     callfilter(false);
                 });
                 $(".input1.search").keyup(function() {
+                    $(".atoz a").removeClass("makered");
+                    $(this).addClass("makered");
                     search=$(this).val();
                     alph="";
                     callfilter(false);

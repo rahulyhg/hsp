@@ -116,62 +116,54 @@
   </header>
   <div id="content">
     <div class="container">
-      <div id="container" class="clearfix">
-            <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url("uploads")."/".$dinerdata->logo; ?>');" >
+     
+     <div id="container" class="clearfix">
+            <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url("uploads")."/".$dinerdata->logo; ?>');">
           </div>
-       <div class="element  clearfix col2-3 home bg centered slider">
-          <div class="bg-image">
-            <div class="flexslider">
-              <div class="images">
-                <ul class="slides">
-                  <li><img src="<?php echo base_url("uploads/").$dinerdata->image; ?>" alt="" /></li>
-                </ul>
-              </div>
-            </div>
+       <div class="element home clearfix col1-3 half half-img">
+              <img src="<?php echo base_url("uploads")."/".$dinerdata->image; ?>" alt="" />
           </div>
-        </div>
           <div class="element home clearfix col1-3">
           <div class="info-icon"><i class="icons cup"></i>
             <h2>About Product</h2>
           </div>
-          <div class="scrollbox"><p><?php echo $dinerdata->description; ?></p></div>
+          <div class="scrollbox brand-desc"><p><?php echo $dinerdata->description; ?> </p></div>
           </div>
       
          <div class="element home clearfix col1-3">
           <div class="info-icon no-margin icon_adjust"><i class="icons details"></i>
             <h2>Details</h2>
           </div>
-          <div class="infos-left">
+          <div class="infos-left il">
             <p class="small">Hours</p>
           </div>
-          <div class="infos-right">
+          <div class="infos-right lr">
             <p class="small"><?php echo $dinerdata->hours; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
-          <div class="infos-left">
+          <div class="infos-left il">
             <p class="small">Floor</p>
           </div>
-          <div class="infos-right">
+          <div class="infos-right lr">
             <p class="small"><?php echo $dinerdata->location; ?><br /></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
-          <div class="infos-left">
+          <div class="infos-left il">
             <p class="small">Phone</p>
           </div>
-          <div class="infos-right">
+          <div class="infos-right lr">
             <p class="small"><?php echo $dinerdata->contactno; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
-             <div class="infos-left">
+             <div class="infos-left il">
             <p class="small">Amenity</p>
           </div>
-          <div class="infos-right">
-            <p class="small">
-               
-                <?php foreach ($dineramenities as $ame) { ?>
+          <div class="infos-right lr">
+            <p class="small"> 
+                  <?php foreach ($dineramenities as $ame) { ?>
                       <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity<?php echo $ame->id;?>_w.png" /></a>
                   <?php }; ?>
             </p>
@@ -179,11 +171,14 @@
             <div class="soc" style="border-top: 1px solid #000;">
                   <a href="<?php echo $dinerdata->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/facebook.png" /></a> 
                   <a href="<?php echo $dinerdata->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/twitter.png" /></a>
-                  <a href="<?php echo $dinerdata->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
-                  <a href="<?php echo $dinerdata->youtube; ?>"><img src="<?php echo base_url("frontend")."/";?>images/youtube.png" /></a>   
-                  <a href="<?php echo $dinerdata->email; ?>"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /></a>         
+                  <a href="<?php echo $dinerdata->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
+                  <a href="<?php echo $dinerdata->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/youtube.png" /></a>   
+                  <a href="<?php echo $dinerdata->email; ?>"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /></a>          
               </div>
-        </div>          
+        </div>
+    </div>
+                                 
+            <!--SPECIAL OFFERS
               <?php if($dinerdata->specialoffer) { ?>
            <div class="element home clearfix col1-3 half detail">
               <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
@@ -193,8 +188,8 @@
                 <div class="sample_img" style="background-image: url('<?php echo base_url("uploads/").$dinerdata->specialofferimage; ?>')"></div>
             </div>
             </div>
-            <?php }; ?>
-          </div>
+            <?php }; ?>-->
+         
   </div>
 </div>
 <?php $this->load->view("frontend/footer");?>

@@ -55,17 +55,17 @@
       </ul>
     </div>
   </header>
-<div id="content">
+  <div id="content">
     <div id="container" class="clearfix">
         <div class="element home clearfix full">
             <div class="full-logo full-logo-eat">DINE</div>
-            <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+            <p class="full-data">Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
             <div class="brand_list">
                  <div class="filter">
                      <div class="filterleft">
                            I am Looking For <select name="" class="select1 dinercategorytosearch">
-                           <option value="">Select a cuisine</option>
-                           <?php foreach($dinercategories as $dinecategory) { ?>
+                            <option value="">Search by Cuisine</option>
+                            <?php foreach($dinercategories as $dinecategory) { ?>
                             <option value="<?php echo $dinecategory->id;?>"><?php echo $dinecategory->name; ?></option>
                             <?php }; ?>
                             </select>
@@ -104,14 +104,60 @@
                     <a href="#">Z</a>
                 </div>
                 <div class="filter">
+                     <!--<div class="filterleft">
+                           Search By Deal <select name="" class="select1">
+                            <option>Search By Deal</option>
+                            </select>
+                    </div>-->
+                    <div class="filterright rt-ame amenitylist">
+                         Filter By Amenity
+                        <a href="" class="amenity1"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" class="amenity1"/></a>
+                        <a href="" class="amenity2"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" class="amenity2"/></a>
+                        <a href="" class="amenity3"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" class="amenity3"/></a>
+                        <a href="" class="amenity4"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" class="amenity4" title="Happy Hours"/></a>
+                    </div>     
+                 </div>
+                <div class="full-list">
+                    
+                    <div class="btn-data">
+                        <input type="submit" class="btn" value="Load More Brands +" />
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+  
+  
+  
+  
+  
+  
+<!--  
+<div id="content">
+    <div id="container" class="clearfix">
+        <div class="element home clearfix full">
+            <div class="full-logo full-logo-eat">DINE</div>
+            <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+            <div class="brand_list">
+                 <div class="filter">
                      <div class="filterleft">
-                           Search By Deal <select name="" class="select1 dealsearch">
-                            <option value="">Search By Deal</option>
-                            <?php foreach($dealnames as $dealname) { ?>
-                            <option value="<?php echo $dealname->id; ?>"><?php echo $dealname->name; ?></option>
-                            <?php } ?>
+                           I am Looking For <select name="" class="select1 dinercategorytosearch">
+                           <option value="">Select a cuisine</option>
+                           <?php foreach($dinercategories as $dinecategory) { ?>
+                            <option value="<?php echo $dinecategory->id;?>"><?php echo $dinecategory->name; ?></option>
+                            <?php }; ?>
                             </select>
                     </div>
+                    <div class="filterright">
+                        <input name="search" type="text" class="input1 search" id="search" placeholder="Search Directory" size="30" title="Search *"/>
+                    </div>     
+                 </div>
+                 <div class="range atoz">
+                    <a href="#">Z</a>
+                </div>
+                <div class="filter">
+                     
                     <div class="filterright amenitylist">
                          Filter By Amenity
                         <a class="amenity1"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" class="amenity1" /></a>
@@ -121,24 +167,12 @@
                     </div>     
                  </div>
                  <div class="alldiners">
-                 <!--<?php foreach($diners as $diner) { ?>
-                 <a href="<?php echo site_url("website/eat_inner")."?id=".$diner->id; ?>">
-                <div class="eat">
-                    <div class="eat_img"></div>
-                    <div class="eat_data">
-                        <div class="heading">Hours</div>
-                        <?php echo $diner->hours; ?>
-                        <div class="heading">Location</div>
-                        <?php echo $diner->location; ?>
-                    </div>
-                </div>
-                </a>
-                <?php }; ?>-->
+                
                 </div>
             </div>
         </div>
      </div>
-</div>
+</div>-->
 
 <script>
             var alph="";
@@ -155,14 +189,27 @@
                     console.log(data);
                     if(!isnew)
                     {
-                        $(".alldiners").html("");
-                    }
+                        $(".full-list").html("");
+                    };
                     for(var i=0;i<data.length;i++)
                     {
-                        var loc = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
-                        var text='<div class="eat"><a href="eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a</div>';
-                        $(".alldiners").append(text);
-                    }
+                        var text = "";
+                        if(i%2 == 0)
+                        {
+                            var loc1 = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i].logo;
+                            if(i+1 < data.length)
+                            {
+                                var loc2 = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i+1].logo;
+                            };
+                            text = text.concat('<div class="dine"><div class="eat"><a href="eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc1+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a></div>');
+                            if(i+1 <data.length)
+                            {
+                                text = text.concat('<div class="eat"><a href="eat_inner?id='+data[i+1].id+'"><div class="eat_img" style="background-image: url('+loc2+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'</div></a</div>');
+                            };
+                            text = text.concat('</div>');
+                            $(".full-list").append(text);
+                        };
+                    };
 //                    $('#container').isotope('reLayout');
                 }
                 
@@ -174,7 +221,7 @@
                     if(!isnew)
                     {
                         first=0;
-                    }
+                    };
                     console.log(first);
                     $.getJSON("<?php echo site_url("website/dinefilter");?>",{alph:alph,search:search,category:category,amenity1:amenity1,amenity2:amenity2,amenity3:amenity3,amenity4:amenity4,first:first},function(data) {
                         console.log(data);
@@ -183,6 +230,8 @@
                 };
                 callfilter(false);  
                 $(".atoz a").click(function() {
+                    $(".atoz a").removeClass("makered");
+                    $(this).addClass("makered");
                     alph=$(this).text();
                     search="";
                     $(".input1.search").val("");
@@ -195,6 +244,7 @@
                 });
                 $(".input1.search").keyup(function() {
                     search=$(this).val();
+                    $(".atoz a").removeClass("makered");
                     alph="";
                     callfilter(false);
                 });
@@ -203,8 +253,11 @@
                     {
                         if(amenity1 == "0")
                         {
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity1_w.png");
                             amenity1 = $(this).attr("alt");
-                        }else{
+                        }else
+                        {
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity1.png");
                             amenity1 = "0";
                         };
                     }
@@ -212,8 +265,10 @@
                     {
                         if(amenity2 == "0")
                         {
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity2_w.png");
                             amenity2 = $(this).attr("alt");
                         }else{
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity2.png");
                             amenity2 = "0";
                         };
                     }
@@ -221,8 +276,10 @@
                     {
                         if(amenity3 == "0")
                         {
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity3_w.png");
                             amenity3 = $(this).attr("alt");
                         }else{
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity3.png");
                             amenity3 = "0";
                         };
                     };
@@ -230,8 +287,10 @@
                     {
                         if(amenity4 == "0")
                         {
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity4_w.png");
                             amenity4 = $(this).attr("alt");
                         }else{
+                            $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity4.png");
                             amenity4 = "0";
                         };
                     }

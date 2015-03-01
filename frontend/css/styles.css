@@ -112,7 +112,7 @@ p.small {font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weig
 .col1-3 p { padding:3px 20px 3px 20px; }
 p.blockquote {font-style:italic; font-weight:400; font-family:'Volkhov', Georgia, "Times New Roman", Times, serif; padding-top:15px; }
 a { color:#fff; text-decoration:none; }
-a:hover { color:#ec2829; text-decoration:none; }
+a:hover { /*color:#ec2829;*/ text-decoration:none; }
 /* End Typography
 --------------------------------------------------------------------------------------------------------*/
 
@@ -206,8 +206,10 @@ a .info-icon:hover {background-color:#101010; }
 --------------------------------------------------------------------------------------------------------*/
 .images img, .bg-image img {width:100%; display: block; max-width: 100% !important; z-index:9; box-shadow: #000 0em 0em 0em;  }
 .infos {width:300px; height:300px; top:0; left:0px; border:0; padding:0; display:block; z-index:1; background:#101010; position:absolute; }
-.infos-left {float:left; padding:12px 20px 12px 0; }
-.infos-right { padding:12px 0px 12px 0px; border-left:1px solid #000; margin-left:100px;}
+/*.infos-left {float:left; padding:12px 20px 12px 0; }*/
+/*.infos-right { padding:12px 0px 12px 0px; border-left:1px solid #000; margin-left:100px;}*/
+.infos-left {float:left; padding:0px; }
+.infos-right { padding:0px; margin-left:100px;}
 
 .icons { float:left; height:64px; width:64px; margin-right:20px; border-right:1px solid #000; display:inline-block }
 .email {background:url(../images/bg-email.png) center no-repeat; background-size:24px 24px; }
@@ -359,15 +361,15 @@ ul.social a { text-decoration:none; height:20px; color: #333; float: left; margi
 /*All Pages*/
 
 .half{width: 620px;}
-.icon_adjust{width: 620px;}
+.icon_adjust{width: 100% !important;}
 .full{width: 100% !important;}
 .icon_adjust_full{width: 100%;}
-
+.full-deals{width: 1270px !important;}
 /*Listing Pages*/
 
 #wrapper{margin-bottom: 0px;}
 .heading{color: #f00;margin-top: 10px;}
-.full p{width: 90%;margin: 20px auto;}
+.full p{width: 100%;margin: 5px auto;}
 .full-logo{background-repeat: no-repeat;background-color: #000;background-position: center;text-align: center;color: #fff;font-size: 2.5em;background-size: cover;height: 250px;line-height: 250px;}
 .logo-adj{background-size: inherit;}
 .full-logo-brand{background-image: url('../images/brand.png');}
@@ -382,9 +384,10 @@ ul.social a { text-decoration:none; height:20px; color: #333; float: left; margi
 
 /*brand_list*/
 
-.brand_list,.eat_list{width: 80%;margin: auto;}
+.brand_list,.eat_list{width: 80%;margin: auto;height: auto;}
 .filter{width: 100%;height: 100px;}
 .range{width: 100%;line-height: 50px;}
+.makered{ color: red; }
 .filterleft{width:50%;border-right: 1px solid #fff; float: left;padding-left: 8%;}
 .filterright{width: 50%;float: left;padding-left: 25px;}
 .input1{border: 1px solid #fff;}
@@ -392,11 +395,11 @@ ul.social a { text-decoration:none; height:20px; color: #333; float: left; margi
 .range a{margin: 13px;}
 .search{background: url('../images/search.png') no-repeat right;}
 .select1{border: 1px solid #fff;height: 50px;}
-.brand,.eat{width: 50%;height: 200px;float: left;margin-top: 30px;}
-.deal-img,.eat_img{width: 50%;height: 200px;float: left;background-position: center;background-repeat: no-repeat;}
-.deal-img{background-image: url('../images/deal.png');}
-.eat_img{background-image: url('../images/mm.png');}
-.deal_data,.eat_data{width: 50%;float: left;font-size: 15px;line-height: 27px;}
+.brand,.eat{width: 49%;height: 200px;float: left;margin-right: 1%;}
+.deal-img,.eat_img{width: 50%;height: 200px;float: left;background-position: center;background-repeat: no-repeat;background-size: contain;}
+.deal-img{background-image: url('../images/addidas_logo.jpg');}
+.eat_img{background-image: url('../images/california_pizza.jpg');}
+.deal_data,.eat_data{width: 50%;float: left;font-size: 15px;line-height: 27px;padding-left: 20px;}
 .eat_data{padding-top: 30px;}
 .select_cusine,.input1{background-color: #000;height: 50px;}
 .btn{background-color:#ED2029;height: 40px;color: #fff;width: 100%;}
@@ -414,6 +417,7 @@ ul.social a { text-decoration:none; height:20px; color: #333; float: left; margi
 .odeal_btn{margin-top: 25%;}
 .deal_btn:hover{background-color: #101010;}
 .dimg{width: 25%;height: 200px;float: left;background-position: center;background-repeat: no-repeat;line-height: 27px;}
+
 
 /*Event List*/
 .desc1 p{text-align: left;padding: 0px !important;}
@@ -434,4 +438,22 @@ ul.social a { text-decoration:none; height:20px; color: #333; float: left; margi
 /*Jobs*/
 .header{padding: 8px 10px 0 10px;}
 
-.btn_slide{width: 25%;margin-right: 10%;float: right;}
+.btn_slide{width: 25%;margin-right: 10%;float: right;height: 40px;line-height: 40px;}
+
+.half-img >img{height: 100%;}
+
+.full-p{width: 50% !important;}
+.odeal_btn{margin-right: 20%;}
+.data-adj{height: 145px;}
+.sd-adj{height: 125px;}
+.full-data{padding: 0 5% 2% 5%;}
+.rt-ame{float: right;}
+.brand-desc,.eat-desc{height: 200px;}
+.sp-offer{width: 70%;float: left;height: 200px;}
+.sp-offer-img{width: 28%;float: left;height: 215px;overflow: hidden;}
+.lr,.il{padding: 10px !important;}
+.img-adj{padding: 10px;}
+.full-list{height: auto !important;}
+.brands,.dine{height: 200px;margin-top: 50px;}
+.event-data-adj{height: 290px !important;width: 98% !important;}
+.sp-img{padding-left:15px;}

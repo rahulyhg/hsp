@@ -306,7 +306,7 @@
 
 <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
+<!--<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>-->
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-easing-1.3.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/modernizr.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>

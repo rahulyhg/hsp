@@ -164,9 +164,7 @@
                                 <a href="<?php echo $event->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>          
                             </div>
                         </div>
-                          <p>
-                          Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.
-                          Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+                          <p><?php echo $event->description; ?></p>
                                           <div class="info-icon no-margin icon_adjust">
                             <h2 style="float: left;">Details</h2>
                           </div>

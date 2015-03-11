@@ -103,7 +103,7 @@
     <div class="container">
       <div id="container" class="clearfix">
 
-          <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url('uploads')."/".$branddata->logo?>');">
+          <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php if($branddata->logo != "") { echo base_url('uploads')."/".$branddata->logo; }else { echo base_url('uploads')."/nologo.jpg"; }?>');">
                
           </div>
 
@@ -112,7 +112,7 @@
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
-                  <li><img src="<?php echo base_url("uploads")."/".$branddata->image; ?>" alt="" /></li>
+                  <li><img src="<?php if($branddata->image != "") {echo base_url("uploads")."/".$branddata->image;} else { echo base_url("uploads")."/noimage.jpg"; } ?>" alt="" /></li>
                 </ul>
               </div>
             </div>
@@ -128,7 +128,7 @@
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
               </div>-->
           </div>
-          <div class="scrollbox"><p><?php echo $branddata->description; ?></p>
+          <div class="scrollbox"><p><?php if($branddata->description != ""){ echo $branddata->description;}else{ echo "NA"; }; ?></p>
         </div></div>
         <div class="element home clearfix col1-3">
           <div class="info-icon no-margin icon_adjust"><i class="icons details"></i>
@@ -138,7 +138,7 @@
             <p class="small">Location</p>
           </div>
           <div class="infos-right">
-            <p class="small"><?php echo $branddata->location; ?></p>
+            <p class="small"><?php if($branddata->location != ""){ echo $branddata->location;}else{ echo "NA"; }; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -146,7 +146,7 @@
             <p class="small">Timings</p>
           </div>
           <div class="infos-right">
-            <p class="small"><?php echo $branddata->hours; ?></p>
+            <p class="small"><?php if($branddata->hours != ""){ echo $branddata->hours;}else{ echo "NA"; }; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -154,11 +154,11 @@
             <p class="small">Contact</p>
           </div>
           <div class="infos-right">
-            <p class="small"><?php echo $branddata->contactno; ?></p>
+            <p class="small"><?php if($branddata->contactno != ""){ echo $branddata->contactno;}else{ echo "NA"; }; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
-            <p class="small" style="padding: 15px"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /> <?php echo $branddata->email; ?></p>
+            <p class="small" style="padding: 15px"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /> <?php if($branddata->email != ""){ echo $branddata->email;}else{ echo "NA"; }; ?></p>
           <div class="break"></div>
         </div>
 <?php if($branddata->specialoffer) { ?>

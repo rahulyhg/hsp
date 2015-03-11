@@ -118,16 +118,16 @@
     <div class="container">
      
      <div id="container" class="clearfix">
-            <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php echo base_url("uploads")."/".$dinerdata->logo; ?>');">
+            <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php if($dinerdata->logo != "") { echo base_url("uploads")."/".$dinerdata->logo; }else{ echo base_url("uploads")."/nologo.jpg"; }; ?>');">
           </div>
        <div class="element home clearfix col1-3 half half-img">
-              <img src="<?php echo base_url("uploads")."/".$dinerdata->image; ?>" alt="" />
+              <img src="<?php if($dinerdata->image != "") { echo base_url("uploads")."/".$dinerdata->image;} else{ echo base_url("uploads")."/noimage.jpg"; }; ?>" alt="" />
           </div>
           <div class="element home clearfix col1-3">
           <div class="info-icon"><i class="icons cup"></i>
             <h2>About Product</h2>
           </div>
-          <div class="scrollbox brand-desc"><p><?php echo $dinerdata->description; ?> </p></div>
+          <div class="scrollbox brand-desc"><p><?php if($dinerdata->description != ""){ echo $dinerdata->description;}else { echo "Description not specified";}; ?> </p></div>
           </div>
       
          <div class="element home clearfix col1-3">
@@ -138,7 +138,7 @@
             <p class="small">Hours</p>
           </div>
           <div class="infos-right lr">
-            <p class="small"><?php echo $dinerdata->hours; ?></p>
+            <p class="small"><?php if($dinerdata->hours != ""){ echo $dinerdata->hours;}else{ echo "NA"; }; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -146,7 +146,7 @@
             <p class="small">Floor</p>
           </div>
           <div class="infos-right lr">
-            <p class="small"><?php echo $dinerdata->location; ?><br /></p>
+            <p class="small"><?php if($dinerdata->location != ""){ echo $dinerdata->location;}else{ echo "NA"; }; ?><br /></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>
@@ -154,7 +154,7 @@
             <p class="small">Phone</p>
           </div>
           <div class="infos-right lr">
-            <p class="small"><?php echo $dinerdata->contactno; ?></p>
+            <p class="small"><?php if($dinerdata->contactno != ""){ echo $dinerdata->contactno;}else{ echo "NA"; }; ?></p>
           </div>
           <div class="clear"></div>
           <div class="borderline"></div>

@@ -194,34 +194,61 @@ class dine_model extends CI_Model
     {
         $totalnum=6;
         $selectfields=" `hsp_dine`.`id` AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
-        $am = "";
-        if($amenity1 != "0")
+        
+        $amselect = "";
+        $aminnerjoin = "";
+        $amwhere = "";
+        $amhaving = "";
+        $amcount = 0;
+        if(($amenity1 + $amenity2 + $amenity3 + $amenity4) > 0)
         {
-            $am= $am."AND `dineamenity`.`amenity`= '$amenity1'";
+            $amselect = ",count(distinct `dineamenity`.`amenity`) as `amu` ";
+            $aminnerjoin = " INNER JOIN `dineamenity` ON `dineamenity`.`dine` = `hsp_dine`.`id` ";
+            $amwhere = " AND (";
+            $amhaving = "HAVING `amu` = 1";
         };
-        if($amenity2 != "0")
+        if($amenity1 != 0)
         {
-            $am= $am."AND `dineamenity`.`amenity`= '$amenity2'";
+            $amwhere = "$amwhere `dineamenity`.`amenity` = 1";
+            $amcount = $amcount+1;
         };
-        if($amenity3 != "0")
+        if($amenity2 != 0)
         {
-            $am= $am."AND `dineamenity`.`amenity`= '$amenity3'";
+            if($amcount > 0)
+            {
+                $amwhere = "$amwhere OR `dineamenity`.`amenity` = 2";
+            }else{
+                $amwhere = "$amwhere `dineamenity`.`amenity` = 2";
+            };
+            $amcount = $amcount+1;
         };
-        if($amenity4 != "0")
+        if($amenity3 != 0)
         {
-            $am= $am."AND `dineamenity`.`amenity`= '$amenity4'";
+            if($amcount > 0)
+            {
+                $amwhere = "$amwhere OR `dineamenity`.`amenity` = 3";
+            }else{
+                $amwhere = "$amwhere `dineamenity`.`amenity` = 3";
+            };
+            $amcount = $amcount+1;
+        };
+        if($amenity4 != 0)
+        {
+            if($amcount > 0)
+            {
+                $amwhere = "$amwhere OR `dineamenity`.`amenity` = 4";
+            }else{
+                $amwhere = "$amwhere `dineamenity`.`amenity` = 4";
+            };
+            $amcount = $amcount+1;
+        };
+        if(($amenity1 + $amenity2 + $amenity3 + $amenity4) > 0)
+        {
+            $amwhere = "$amwhere )";
+            $amhaving = "HAVING `amu` = '$amcount'";
         };
         
         $filtercat="";
-        $filteramenity="";
-        $inneramenity="";
-        
-        if($am!="")
-        {
-            $inneramenity = " INNER JOIN `dineamenity` ON `dineamenity`.`dine` = `hsp_dine`.`id`";
-        $selectfields=" `hsp_dine`.`id` AS `id`,`hsp_dine`.`name` AS `name`,`hsp_dine`.`hours` AS `hours`,`hsp_dine`.`location` AS `location`,`hsp_dine`.`logo` AS `logo`,`hsp_dine`.`isfeatured` AS `isfeatured`, `hsp_dine`.`isnew` AS `isnew`";
-            $filteramenity = $am;
-        }
         if($category!="")
         {
             $filtercat="AND `dinecategory`.`category`='$category'";
@@ -231,14 +258,16 @@ class dine_model extends CI_Model
             if($alph == "#")
             {
                 $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` regexp '^[0-9]+' $filtercat GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum")->result();
-            }else{
+            }else{                
             $query=$this->db->query("SELECT $selectfields FROM `hsp_dine` INNER JOIN `dinecategory` ON `hsp_dine`.`id`=`dinecategory`.`dine` WHERE `hsp_dine`.`name` LIKE '$alph%' $filtercat GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum")->result();
             }
         }
         else
         {
-            $query=$this->db->query("SELECT $selectfields FROM `dinecategory` INNER JOIN `hsp_dine` ON `dinecategory`.`dine` = `hsp_dine`.`id` $inneramenity WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat $filteramenity GROUP BY `hsp_dine`.`id` LIMIT $first,$totalnum  ")->result();
-        }
+            $q = "SELECT $selectfields $amselect FROM `dinecategory` INNER JOIN `hsp_dine` ON `dinecategory`.`dine` = `hsp_dine`.`id` $aminnerjoin WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat $amwhere GROUP BY `hsp_dine`.`id` $amhaving LIMIT $first,$totalnum";
+            
+            $query=$this->db->query("SELECT $selectfields $amselect FROM `dinecategory` INNER JOIN `hsp_dine` ON `dinecategory`.`dine` = `hsp_dine`.`id` $aminnerjoin WHERE `hsp_dine`.`name` LIKE '%$search%' $filtercat $amwhere GROUP BY `hsp_dine`.`id` $amhaving LIMIT $first,$totalnum")->result();
+        };
         return $query;
     }
 }

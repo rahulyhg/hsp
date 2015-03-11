@@ -133,9 +133,10 @@
                     
                     
                     
-                    <div class="btn-data loadmorebrands">
-                    <input type="submit" class="btn loadmorebrands" value="Load More Brands +" />
+                    
                 </div>
+                <div class="btn-data loadmorebrands">
+                    <input type="submit" class="btn" value="Load More Brands +" />
                 </div>
             </div>
         </div>
@@ -159,6 +160,36 @@
                     }
                     for(var i=0;i<data.length;i++)
                     {
+                        if(data[i].logo == "")
+                        {
+                            data[i].logo = "nologo.jpg";
+                        };
+                        
+                        if(data[i].location == "")
+                        {
+                            data[i].location = "NA";
+                        };
+                        
+                        if(data[i].hours == "")
+                        {
+                            data[i].hours = "NA";
+                        };
+                        
+                        if(i+1 < data.length)
+                            {
+                             if(data[i+1].logo == "")
+                        {
+                            data[i+1].logo = "nologo.jpg";
+                        };
+if(data[i+1].location == "")
+                        {
+                            data[i+1].location = "NA";
+                        };
+if(data[i+1].hours == "")
+                        {
+                            data[i+1].hours = "NA";
+                        };   
+                            };
                         var text = "";
                         if(i%2 == 0)
                         {
@@ -178,6 +209,9 @@
                         };
                     };
 //                    $('#container').isotope('reLayout');
+                    $('#container').isotope({masonry: {
+    columnWidth: 200
+  }});
                 }
                 
                 function callfilter(isnew) {
@@ -216,7 +250,7 @@
                     callfilter(false);
                 });
                 $(".loadmorebrands").click(function() {
-                    first=$(".allbrands .brand").length;
+                    first=$(".brands .brand").length;
                     callfilter(true);
                 });
                 

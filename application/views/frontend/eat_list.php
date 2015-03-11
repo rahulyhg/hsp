@@ -119,9 +119,10 @@
                  </div>
                 <div class="full-list">
                     
-                    <div class="btn-data">
-                        <input type="submit" class="btn" value="Load More Brands +" />
-                    </div>
+                    
+                </div>
+                <div class="btn-data loadmorebrands">
+                    <input type="submit" class="btn" value="Load More Brands +" />
                 </div>
             </div>
         </div>
@@ -193,6 +194,36 @@
                     };
                     for(var i=0;i<data.length;i++)
                     {
+                        if(data[i].logo == "")
+                        {
+                            data[i].logo = "nologo.jpg";
+                        };
+                        if(data[i].location == "")
+                        {
+                            data[i].location = "Not Specified";
+                        };
+                        
+                        if(data[i].hours == "")
+                        {
+                            data[i].hours = "Not Specified";
+                        };
+                        if(i+1 <data.length)
+                            {
+                        if(data[i+1].logo == "")
+                        {
+                            data[i+1].logo = "nologo.jpg";
+                        };
+                                if(data[i+1].location == "")
+                        {
+                            data[i+1].location = "Not Specified";
+                        };
+                                if(data[i+1].hours == "")
+                        {
+                            data[i+1].hours = "Not Specified";
+                        };
+                            };
+                        
+                        
                         var text = "";
                         if(i%2 == 0)
                         {
@@ -211,7 +242,10 @@
                         };
                     };
 //                    $('#container').isotope('reLayout');
-                }
+                    $('#container').isotope({masonry: {
+    columnWidth: 200
+  }});
+                };
                 
                 function callfilter(isnew) {
                     console.log(alph);
@@ -251,6 +285,8 @@
                 $(".amenitylist a img").click(function() {
                     if($(this).attr("alt") == "1")
                     {
+                        $(".atoz a").removeClass("makered");
+                        alph="";
                         if(amenity1 == "0")
                         {
                             $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity1_w.png");
@@ -263,6 +299,8 @@
                     }
                     if($(this).attr("alt") == "2")
                     {
+                        $(".atoz a").removeClass("makered");
+                        alph="";
                         if(amenity2 == "0")
                         {
                             $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity2_w.png");
@@ -274,6 +312,8 @@
                     }
                     if($(this).attr("alt") == "3")
                     {
+                        $(".atoz a").removeClass("makered");
+                        alph="";
                         if(amenity3 == "0")
                         {
                             $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity3_w.png");
@@ -285,6 +325,8 @@
                     };
                     if($(this).attr("alt") == "4")
                     {
+                        $(".atoz a").removeClass("makered");
+                        alph="";
                         if(amenity4 == "0")
                         {
                             $(this).attr("src","<?php echo base_url("frontend")."/";?>images/amenity4_w.png");
@@ -296,11 +338,16 @@
                     }
                     callfilter(false);
                     return false;
+                    
+                    
                 });
-                $(".dealsearch").change(function() {
-                    deal=$(this).val();
-                    callfilter(false);
-                });
+                $(".loadmorebrands").click(function() {
+                        console.log(first);
+                    first=$(".dine .eat").length;
+                        
+                    callfilter(true);
+                    });
+                
             });
         </script>
 

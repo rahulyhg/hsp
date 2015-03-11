@@ -19,6 +19,7 @@ class Website extends CI_Controller
         $brandid = $this->input->get_post("id");
 		$data[ 'title' ] = 'Welcome';
         $data['branddata'] = $this->brand_model->getsinglebrand($brandid);
+        $data['branddeals'] = $this->branddeal_model->getsinglebranddeals($brandid);
 		$this->load->view( 'frontend/brands_inner', $data );	
 	}
     public function brands_list()
@@ -43,6 +44,7 @@ class Website extends CI_Controller
 	{
 		$data[ 'title' ] = 'Welcome';
         $data['deals']=$this->branddeal_model->getalldeals();
+        $data['normaldeals']=$this->branddeal_model->getnormaldeals();
 		$this->load->view( 'frontend/deals_list', $data );	
 	}
     public function eat_list()
@@ -78,6 +80,7 @@ class Website extends CI_Controller
 	{
 		$data[ 'title' ] = 'Welcome';
         $data['events'] = $this->event_model->getall();
+        $data['oldevents'] = $this->event_model->getoldevent();
 		$this->load->view( 'frontend/events_list', $data );	
 	}
     public function jobs()

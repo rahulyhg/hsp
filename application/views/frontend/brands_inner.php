@@ -171,20 +171,22 @@
           </div>
     </div>
        <?php }; ?>
-        <!--<div class="element home clearfix col1-3 full detail">
+       <?php foreach($branddeals as $branddeal) { ?>
+        <div class="element home clearfix col1-3 full detail">
           <div class="info-icon icon_adjust_full"><i class="icons offer"></i>
             <h2>Special Offer</h2>
           </div>
-          <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+          <p><?php echo $branddeal->description; ?></p>
             <div class="sample_img"></div>
                 <ul class="share">
                 <li><div id="fb-root"></div></li>
                 <li><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div></li>
-                <li><a class="twitter-share-button" href="https://twitter.com/share" data-related="twitterdev" data-size="small" data-count="none">Tweet</a></li>
+                <li><a class="twitter-share-button" href="https://twitter.com/share" data-related="twitterdev" data-size="small" data-count="none"></a></li>
                 <li><div class="g-plusone" data-annotation="none" data-width="300"></div></li>
                <li><a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="none" data-pin-height="12"></a></li>
             </ul>
-           </div>-->
+           </div>
+           <?php }; ?>
     </div>
     <!-- end container -->
   </div>

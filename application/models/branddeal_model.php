@@ -39,7 +39,17 @@ class branddeal_model extends CI_Model
     }
     public function getalldeals()
     {
-        $query=$this->db->query("SELECT `hsp_brand`.`id` AS `id`, `hsp_brand`.`logo` AS `logo`, `hsp_brand`.`image` AS `image`, `hsp_brand`.`hours` AS `hours`, `hsp_brand`.`location` AS `location`, `hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew`, `hsp_branddeal`.`description` AS `description` FROM `hsp_brand` INNER JOIN `hsp_branddeal` ON `hsp_branddeal`.`brand` = `hsp_brand`.`id`")->result();
+        $query=$this->db->query("SELECT `hsp_brand`.`id` AS `id`, `hsp_brand`.`logo` AS `logo`, `hsp_brand`.`image` AS `image`, `hsp_brand`.`hours` AS `hours`, `hsp_brand`.`location` AS `location`, `hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew`, `hsp_branddeal`.`description` AS `description` FROM `hsp_brand` INNER JOIN `hsp_branddeal` ON `hsp_branddeal`.`brand` = `hsp_brand`.`id` WHERE `hsp_branddeal`.`isfeatured`=1")->result();
+        return $query;
+    }
+    public function getnormaldeals()
+    {
+        $query=$this->db->query("SELECT `hsp_brand`.`id` AS `id`, `hsp_brand`.`logo` AS `logo`, `hsp_brand`.`image` AS `image`, `hsp_brand`.`hours` AS `hours`, `hsp_brand`.`location` AS `location`, `hsp_brand`.`isfeatured` AS `isfeatured`, `hsp_brand`.`isnew` AS `isnew`, `hsp_branddeal`.`description` AS `description` FROM `hsp_brand` INNER JOIN `hsp_branddeal` ON `hsp_branddeal`.`brand` = `hsp_brand`.`id` WHERE `hsp_branddeal`.`isfeatured`=0")->result();
+        return $query;
+    }
+    public function getsinglebranddeals($id)
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_branddeal` WHERE `brand` = '$id'")->result();
         return $query;
     }
 }

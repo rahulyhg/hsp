@@ -211,34 +211,38 @@
             </div>
             </div>
         </div>
-         <!--<div class="element home clearfix col1-3 full detail">
+        <?php foreach($oldevents as $oldevent) { ?>
+         <div class="element home clearfix col1-3 full detail">
           <div class="info-icon icon_adjust_full"><i class="icons event"></i>
             <h2>Other Events At The Mall</h2>
           </div>
-            <div class="sample_img" style="background-image: url('images/add.png');"></div>
-            <div class="event-data">
-                <div class="data1">
-                    <div class="sample_data">
-                        <h6>LORUM LIPSUM</h6>
-                       SUNDAY, SEP 7</br>10-12 P.M.
+           
+            <div class="sample_img" style="background-image: url('<?php echo base_url("uploads")."/".$oldevent->logo; ?>');"></div>
+            
+                <div class="event-data">
+                    <div class="data1">
+                       <div class="sample_data">
+                        <h6><?php echo $oldevent->name; ?></h6>
+                       <?php echo $oldevent->day; ?>, <?php echo $oldevent->date; ?></br><?php echo $oldevent->time; ?>
                      </div>
                     <div class="sample_data">
                       <div class="btn">Visit Brand</div>
                     </div>
                     <div class="sample_data">
                       <div class="soc">
-                          <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
-                          <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
-                          <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
-                          <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
+                          <a href="<?php echo $oldevent->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
+                          <a href="<?php echo $oldevent->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
+                          <a href="<?php echo $oldevent->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
+                          <a href="<?php echo $oldevent->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
                         </div>
                     </div>
                  </div>
                 <div class="data2">
-                    <p>Phasellus leo ante, posuere in fringilla vitae, pretium at dui. Fusce et neque quis odio gravida auctor vel non mauris. Vivamus gravida aliquet eros.</p>
+                    <p><?php echo $oldevent->description; ?></p>
                 </div>
             </div>
-          </div>-->
+          </div>
+            <?php }; ?>
     </div>
   </div>
 </div>

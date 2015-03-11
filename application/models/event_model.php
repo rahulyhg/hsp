@@ -72,6 +72,11 @@ class event_model extends CI_Model
         $query=$this->db->query("SELECT * FROM `hsp_event` WHERE `date`>= CURRENT_DATE()")->result();
 		return $query;
     }
+    public function getoldevent()
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_event` WHERE `date`< CURRENT_DATE()")->result();
+		return $query;
+    }
     
 }
 ?>

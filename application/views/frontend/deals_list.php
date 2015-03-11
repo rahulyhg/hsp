@@ -125,25 +125,26 @@
               <div class="odeal_btn">Visit Brand</div>
             </div>
           </div>-->
-
-        <!--<div class="element home clearfix col1-3 full detail adjust">
+<?php foreach($normaldeals as $normaldeal) { ?>
+        <div class="element home clearfix col1-3 full detail adjust">
           <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
             
           </div>
-            <div class="dimg" style="background-image: url('images/add.png')"></div>
-            <div class="dimg" style="background-image: url('images/deal.png')"></div>
+            <div class="dimg" style="background-image: url('<?php echo base_url("uploads")."/".$normaldeal->image; ?>')"></div>
+            <div class="dimg" style="background-image: url('<?php echo base_url("uploads")."/".$normaldeal->logo; ?>')"></div>
             <div class="dimg">
                 <div class="heading">Hours</div>
-                10:00am - 11.00am
+                <?php echo $normaldeal->hours; ?>
                 <div class="heading">Location</div>
-                Ground Floor 1 A
+                <?php echo $normaldeal->location; ?>
                 <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" /></div>
-                FEATURED/NEW
+                <!--FEATURED/NEW-->
             </div>
             <div class="dimg">
-              <div class="odeal_btn">Visit Brand</div>
+                <a href="<?php echo site_url("website/brands_inner")."?id=".$normaldeal->id; ?>"><div class="odeal_btn">Visit Brand</div></a>
             </div>
-          </div>-->
+          </div>
+          <?php }; ?>
     </div>
   </div>
 </div>

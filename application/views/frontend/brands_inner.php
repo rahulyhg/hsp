@@ -85,7 +85,7 @@
           <li><a href="<?php echo site_url("website/deal_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="<?php echo site_url("website/event_list"); ?>">EVENTS
+          <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
           <div class="nav-button"></div>
           </a></li>
           <li><a href="<?php echo site_url("website/eat_list"); ?>">DINE

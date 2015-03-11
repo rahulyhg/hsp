@@ -177,8 +177,7 @@
               </div>
         </div>
     </div>
-                                 
-            <!--SPECIAL OFFERS
+                          
               <?php if($dinerdata->specialoffer) { ?>
            <div class="element home clearfix col1-3 half detail">
               <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
@@ -188,7 +187,7 @@
                 <div class="sample_img" style="background-image: url('<?php echo base_url("uploads/").$dinerdata->specialofferimage; ?>')"></div>
             </div>
             </div>
-            <?php }; ?>-->
+            <?php }; ?>
          
   </div>
 </div>

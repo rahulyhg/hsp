@@ -47,5 +47,10 @@ class dinedeal_model extends CI_Model
         $query=$this->db->query("SELECT `id`, `name` FROM `hsp_dinedeal`")->result();
         return $query;
     }
+    public function getdinerdeals($id)
+    {
+        $query=$this->db->query("SELECT * FROM `hsp_dinedeal` WHERE `dine` = '$id'")->result();
+        return $query;
+    }
 }
 ?>

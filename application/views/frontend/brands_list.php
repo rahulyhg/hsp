@@ -199,10 +199,10 @@ if(data[i+1].hours == "")
                             {
                                 var loc2 = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i+1].logo;
                             };
-                            text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>');
+                            text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i].id+'"><div class="deal-img" style="background-image: url('+loc+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'<div class="heading"><img src="<?php echo base_url("frontend")."/"; ?>images/star.png"><img src="<?php echo base_url("frontend")."/"; ?>images/star.png"></div>FEATURED / NEW</div></a></div>');
                             if(i+1 < data.length)
                             {
-                                text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i+1].id+'"><div class="deal-img" style="background-image: url('+loc2+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'<div class="heading"><img src="http://localhost/hsp/frontend/images/star.png"><img src="http://localhost/hsp/frontend/images/star.png"></div>FEATURED / NEW</div></a></div>');
+                                text=text.concat('<div class="brand" style=""><a href="brands_inner?id='+data[i+1].id+'"><div class="deal-img" style="background-image: url('+loc2+'); "></div><div class="deal_data"><div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'<div class="heading"><img src="<?php echo base_url("frontend")."/"; ?>images/star.png"><img src="<?php echo base_url("frontend")."/"; ?>images/star.png"></div>FEATURED / NEW</div></a></div>');
                             };
                             text = text.concat('</div>');
                             $(".full-list").append(text);

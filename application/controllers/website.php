@@ -69,6 +69,7 @@ class Website extends CI_Controller
 		$data[ 'title' ] = 'Welcome';
         $data['dinerdata']=$this->dine_model->getsingledine($dinerid);
         $data['dineramenities']=$this->amenity_model->getdineramenity($dinerid);
+        $data['dinerdeals']=$this->dinedeal_model->getdinerdeals($dinerid);
 		$this->load->view( 'frontend/eat_inner', $data );	
 	}
     public function event_inner()

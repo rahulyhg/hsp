@@ -1,11 +1,11 @@
 input, textarea, select#contact { display: block; width: auto; margin: 0; padding: 0px; border: none; overflow:visible }
 
 #contact label { display: none; float: none; height:0px; }
-input, textarea, select { width:300px; height:64px; padding:0px 20px 1px 20px; font: 18px 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:100; border:0; border-bottom:1px solid #000; background:#101010; color:#fff; letter-spacing:-1px; -webkit-transition: all 0.2s ease 0s; -moz-transition: all 0.2s ease 0s; -o-transition: all 0.2s ease 0s; transition: all 0.2s ease 0s; float:none;font-family: 'Lato', sans-serif;}
+input, textarea, select { width:300px; height:64px; padding:0px 10px 2px 10px; font: 16px 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight:100; border:0; border-bottom:1px solid #000; background:#101010; color:#fff; letter-spacing:0px; -webkit-transition: all 0.2s ease 0s; -moz-transition: all 0.2s ease 0s; -o-transition: all 0.2s ease 0s; transition: all 0.2s ease 0s; float:none;font-family: 'Lato', sans-serif;}
 
 #contact textarea { margin-bottom:0px; margin-right:0px !important; width:236px; border:0px; border-right:1px solid #000;  display:block; position:absolute; bottom:0px; left:0px; line-height:1.5; padding:14px 20px 22px 20px;}
 
-input:focus, textarea:focus, select:focus { background:#191919; }
+/*input:focus, textarea:focus, select:focus { background:#191919; }*/
 input.submit { display:block; position:absolute; bottom:0px; right:0px; width:64px; height:108px; -moz-transition: all 0.2s ease 0s; -o-transition: all 0.2s ease 0s; transition: all 0.2s ease 0s; border:0px; padding:0px; background:url(../images/bg-submit.png) center center no-repeat #191919; background-size:24px 28px; text-indent:-9999px; cursor:pointer}
 #contact input.submit:hover { background-color:#101010; }
 

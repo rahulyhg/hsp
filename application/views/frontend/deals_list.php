@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Deals | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -14,31 +14,41 @@
 <link href="<?php echo base_url("frontend")."/";?>css/retina-responsive.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-<style>
-    .flexslider .slides img 
-    {
-        width: 50%; 
-        display: block; 
-        float: left;
-    }
-    .flexslider .slides .star{
-        width: 20px;
-    }
-    .sample_data{margin-bottom: 5%;}
-</style>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
+    <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
+    <script>
+        $(function () {
+            var $window = $(window);        //Window object
+            var scrollTime = 1.2;           //Scroll time
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            $window.on("mousewheel DOMMouseScroll", function (event) {
+                event.preventDefault();
+                var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+                var scrollTop = $window.scrollTop();
+                var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+                TweenMax.to($window, scrollTime, {
+                    scrollTo: { y: finalScroll, autoKill: true },
+                    ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+                    autoKill: true,
+                    overwrite: 5
+                });
+            });
+        });
+        </script>
 </head>
 <body>
 <div id="wrap">
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
-  <div id="quick-info" class="clearfix">
+  <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
-  <header id="wrapper" class="clearfix">
+  <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
@@ -66,38 +76,53 @@
   </header>
   <div id="content">
     <div class="container">
-      <div id="container" class="clearfix">
-        <div class="element  clearfix col2-3 home bg centered slider full detail deals">
+      <div id="container" class="clearfix container_about">
+        <div class="element  clearfix col2-3 home bg centered slider full detail deals deals_slide">
           <div class="bg-image">
             <div class="flexslider">
               <div class="images">
                 <ul class="slides">
                 <?php if(count($deals)>0) { 
                     foreach($deals as $deal) { ?>
-                  <li>
-                      <img src="<?php echo base_url("uploads")."/".$deal->image; ?>" alt=""/>
+                  <a href="<?php echo site_url("website/deals_inner"); ?>"><li>
+                      <div class="deal_img">
+                          <table align="center" valign="center">
+                              <tr>
+                                <td><img src="<?php echo base_url("uploads")."/".$deal->image; ?>"/></td>
+                              </tr>
+                          </table>
+                      </div>
                        <div class="data">
                           <div class="sample_img" style="background-image: url('<?php echo base_url("uploads")."/".$deal->logo; ?>')"></div>
                              <div class="sample_data">
-                                <div class="heading">Hours</div>
-                                <?php echo $deal->hours; ?>
+                                <div class="heading">Title of brand</div>
+                                Access
+                                <div class="heading">Duration of deal</div>
+                                Access
+                                <!--<div class="heading">Hours</div>
+                                <?php //echo $deal->hours; ?>-->
                                 <div class="heading">Location</div>
                                 <?php echo $deal->location; ?>
-                                <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" class="star"/></div><br />
+                                <div class="deal_feature">
+                                    <div class="heading head_deal_feature" >
+                                        <img src="<?php echo base_url("frontend")."/";?>images/star.png" height="30" width="30" class="star"/></div><br />
+                                    </div>
+                                
                                 <?php if($deal->isfeatured==1) { ?>
-                                FEATURED
+                                <span class="head_deal_feature">FEATURED</span>
                                 <?php }; ?>
                                 <?php if($deal->isfeatured == 1 && $deal->isnew == 1) { ?>
                                  /
                                 <?php }; ?>
                                 <?php if($deal->isnew == 1){ ?>
-                                NEW
+                                <span class="head_deal_feature">NEW</span>
                                 <?php }; ?>
                             </div>
                             <p><?php echo $deal->description; ?></p>
                            <a href="<?php echo site_url("website/brands_inner")."?id=".$deal->id; ?>"> <div class="btn btn_slide">Visit Brand</div></a>
                        </div>
                   </li>
+                    </a>
                   <?php }; }else{ ?>
                     <p>No Deals available currently</p>
                    <?php }; ?>
@@ -118,7 +143,7 @@
                 10:00am - 11.00am
                 <div class="heading">Location</div>
                 Ground Floor 1 A
-                <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" /></div>
+                <div class="heading"><img src="<?php //echo base_url("frontend")."/";?>images/star.png" /></div>
                 FEATURED/NEW
             </div>
             <div class="dimg">
@@ -128,16 +153,20 @@
 <?php foreach($normaldeals as $normaldeal) { ?>
         <div class="element home clearfix col1-3 full detail adjust">
           <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
-            
+                Other Deals
           </div>
             <div class="dimg" style="background-image: url('<?php echo base_url("uploads")."/".$normaldeal->image; ?>')"></div>
-            <div class="dimg" style="background-image: url('<?php echo base_url("uploads")."/".$normaldeal->logo; ?>')"></div>
+            <!--<div class="dimg deal_desc" style="background-image: url('<?php //echo base_url("uploads")."/".$normaldeal->logo; ?>')"></div>-->
+
+            <div class="dimg deal_desc"><?php echo $deal->description; ?></div>
             <div class="dimg">
+                <div class="heading">Duration of deal</div>
+                <?php echo $normaldeal->hours; ?>
                 <div class="heading">Hours</div>
                 <?php echo $normaldeal->hours; ?>
                 <div class="heading">Location</div>
                 <?php echo $normaldeal->location; ?>
-                <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" /></div>
+                <!--<div class="heading"><img src="<?php //echo base_url("frontend")."/";?>images/star.png" /></div>-->
                 <!--FEATURED/NEW-->
             </div>
             <div class="dimg">
@@ -147,6 +176,7 @@
           <?php }; ?>
     </div>
   </div>
+</div>
 </div>
 <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>

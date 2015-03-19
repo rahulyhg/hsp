@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class dine_model extends CI_Model
 {
-    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)
+    public function create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$duration)
     {
         $data=array(
             "name" => $name,
@@ -23,6 +23,7 @@ class dine_model extends CI_Model
             "specialoffer" => $specialoffer,
             "specialofferimage" => $specialofferimage,
             "json" => $json,
+            "duration" => $duration,
             "logo" => $logo
         );
         $query=$this->db->insert( "hsp_dine", $data );
@@ -70,7 +71,7 @@ class dine_model extends CI_Model
         $query=$this->db->get("hsp_dine")->row();
         return $query;
     }
-    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor)
+    public function edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$duration)
     {
         $data=array(
             "name" => $name,
@@ -90,6 +91,7 @@ class dine_model extends CI_Model
             "specialoffer" => $specialoffer,
             "specialofferimage" => $specialofferimage,
             "json" => $json,
+            "duration" => $duration,
             "logo" => $logo
         );
         $this->db->where( "id", $id );

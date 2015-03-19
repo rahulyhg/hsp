@@ -117,14 +117,16 @@
   <div id="content">
     <div class="container">
       <div id="container" class="clearfix">
-        <div class="element clearfix col2-3 home bg centered">
+        <div class="element clearfix col2-3 home bg centered slider">
           <div class="bg-image">
-              <video autoplay loop width="620" height="620" style="position: fixed; right: 0; bottom: 0;
-min-width: 100%; min-height: 100%;
-width: auto; height: auto; z-index: -100;
-background-size: cover;">
-                  <source src="video/video1.mp4" type="video/mp4">
-            </video>
+            <div class="flexslider">
+              <div class="images">
+                <ul class="slides">
+                  <li><img src="http://hepta.me/hsp/frontend/images/classes01.jpg" alt="" /></li>
+                  <li><img src="http://hepta.me/hsp/frontend/images/classes04.jpg" alt="" /></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         <div class="element home clearfix col1-3">
@@ -291,19 +293,22 @@ background-size: cover;">
   </ul>
 </div>
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="js/jquery-easing-1.3.js" type="text/javascript"></script>
 <script src="js/modernizr.js" type="text/javascript"></script>
-<script src="js/responsive-nav.js" type="text/javascript"></script>
-<script src="js/scrollup.js" type="text/javascript"></script>
-<script src="js/input.fields.js" type="text/javascript"></script>
 <script src="js/custom.js" type="text/javascript"></script>
-<script src="js/jquery.gomap-1.3.2.min.js" type="text/javascript"></script>
 <script src="js/jquery.isotope.min.js" type="text/javascript"></script>
 <script src="js/jquery.ba-bbq.min.js" type="text/javascript"></script>
 <script src="js/jquery.isotope.load_home.js" type="text/javascript"></script>
-<script src="js/jquery.form.js" type="text/javascript"></script>
+<script src="js/responsive-nav.js" type="text/javascript"></script>
+<script src="js/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script defer src="js/jquery.flexslider-min.js"></script>
+<script src="js/scrollup.js" type="text/javascript"></script>
 <script src="js/preloader.js" type="text/javascript"></script>
 <script src="js/retina.js" type="text/javascript"></script>
+<script src="js/input.fields.js" type="text/javascript"></script>
+<script src="js/jquery.gomap-1.3.2.min.js" type="text/javascript"></script>
+<script src="js/jquery.form.js" type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 <script src="js/jquery.counterup.min.js"></script>
 </body>

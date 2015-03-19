@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Contact | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -15,20 +15,40 @@
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />    
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
+    <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
+    <script>
+        $(function () {
+            var $window = $(window);        //Window object
+            var scrollTime = 1.2;           //Scroll time
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            $window.on("mousewheel DOMMouseScroll", function (event) {
+                event.preventDefault();
+                var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+                var scrollTop = $window.scrollTop();
+                var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+                TweenMax.to($window, scrollTime, {
+                    scrollTo: { y: finalScroll, autoKill: true },
+                    ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+                    autoKill: true,
+                    overwrite: 5
+                });
+            });
+        });
+        </script>
 </head>
 <body>
 <div id="wrap">
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
-  <div id="quick-info" class="clearfix">
+  <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
-  <header id="wrapper" class="clearfix">
+  <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
@@ -56,7 +76,7 @@
   </header>
   <div id="content">
     <div class="container">
-      <div id="container" class="clearfix">
+      <div id="container" class="clearfix container_about">
         <div class="element  clearfix col2-3 home bg centered">
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3772.560449584006!2d72.824564!3d18.99501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c6043c51b%3A0x469288721a1d52aa!2sHigh+Street+Phoenix!5e0!3m2!1sen!2sin!4v1417674505103" width="600" height="620" frameborder="0" style="border:0"></iframe>
         </div>

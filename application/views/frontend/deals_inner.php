@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
-<title>Jobs | High Street Phoenix</title>
+<title>Deals | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/styles.css" rel="stylesheet" type="text/css" media="screen" />
@@ -13,16 +13,7 @@
 <link href="<?php echo base_url("frontend")."/";?>css/jquery.fancybox.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/retina-responsive.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />
-<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'> 
-<style>
-    .icon_adjust{
-        width: 630px;
-    }
-    .bg-image img{
-        height: 100%;
-    }
-</style>
-
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
     <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
@@ -47,7 +38,7 @@
         </script>
 </head>
 <body>
-<div id="wrap" class="wrap_jobs">
+<div id="wrap">
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
@@ -62,13 +53,13 @@
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
       <ul id="filters" class="option-set clearfix" data-option-key="filter">
-        <li><a href="<?php echo site_url("website/index"); ?>">HOME
+        <li><a href="<?php echo site_url("website/deals_list"); ?>">HOME
           <div class="nav-button"></div>
           </a></li>
         <li><a href="<?php echo site_url("website/brands_list"); ?>">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="<?php echo site_url("website/deals_list"); ?>">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>" class="selected">DEALS
           <div class="nav-button"></div>
           </a></li>
           <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
@@ -86,26 +77,98 @@
   <div id="content">
     <div class="container">
       <div id="container" class="clearfix container_about">
-         <div class="element  clearfix col2-3 home bg centered job_block">
-           <img src="<?php echo base_url("frontend")."/";?>images/job.jpg" alt="Jobs" height="100%" />
-        </div>
-        <div class="element home clearfix col2-3 slider detail job_block">
-          <div class="info-icon icon_adjust"><i class="icons jobs"></i>
-            <h2 style="float: left;">Jobs</h2>
+        <div class="element  clearfix col2-3 home bg centered slider full detail deals deals_slide">
+          <div class="bg-image">
+            <div class="flexslider">
+              <div class="images">
+                <ul class="slides">
+                <?php if(count($deals)>0) { 
+                    foreach($deals as $deal) { ?>
+                  <li>
+                      <div class="deal_img">
+                           <center> <img src="<?php echo base_url("uploads")."/".$deal->image; ?>" alt="" height="100%" /></center>
+                      </div>
+                       <div class="data">
+                          <div class="sample_img" style="background-image: url('<?php echo base_url("uploads")."/".$deal->logo; ?>')"></div>
+                             <div class="sample_data">
+                                <div class="heading">Hours</div>
+                                <?php echo $deal->hours; ?>
+                                <div class="heading">Location</div>
+                                <?php echo $deal->location; ?>
+                                <div class="heading"><img src="<?php echo base_url("frontend")."/";?>images/star.png" class="star"/></div><br />
+                                <?php if($deal->isfeatured==1) { ?>
+                                FEATURED
+                                <?php }; ?>
+                                <?php if($deal->isfeatured == 1 && $deal->isnew == 1) { ?>
+                                 /
+                                <?php }; ?>
+                                <?php if($deal->isnew == 1){ ?>
+                                NEW
+                                <?php }; ?>
+                            </div>
+                            <p><?php echo $deal->description; ?></p>
+                           <a href="<?php echo site_url("website/brands_inner")."?id=".$deal->id; ?>"> <div class="btn btn_slide">Visit Brand</div></a>
+                       </div>
+                  </li>
+                  <?php }; }else{ ?>
+                    <p>No Deals available currently</p>
+                   <?php }; ?>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p>Work, environment, people. All these factors together make HSP a truly unique place to pave your career path. A common occurrence seen in HSP is excitement towards new challenges and opportunities, and their zeal in tackling them. HSP perseverance to providing career opportunities and professional growth continues through the ages. Your growth with us would depend upon your role play individually as well as in a team. Of course, for a hard worker whose imagination knows no bounds, there's no stopping you!<br>
-          If you can be one of us, send us your resume at <a href="mailto:careers@marketcity.in">careers@marketcity.in</a></p>
-        </div></div>
+        </div>
+
+        <!--<div class="element home clearfix col1-3 full detail adjust">
+          <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
+            <h2>OTHER DEALS</h2>
+          </div>
+            <div class="dimg" style="background-image: url('images/add.png')"></div>
+            <div class="dimg" style="background-image: url('images/deal.png')"></div>
+            <div class="dimg">
+                <div class="heading">Hours</div>
+                10:00am - 11.00am
+                <div class="heading">Location</div>
+                Ground Floor 1 A
+                <div class="heading"><img src="<?php //echo base_url("frontend")."/";?>images/star.png" /></div>
+                FEATURED/NEW
+            </div>
+            <div class="dimg">
+              <div class="odeal_btn">Visit Brand</div>
+            </div>
+          </div>-->
+<?php foreach($normaldeals as $normaldeal) { ?>
+        <div class="element home clearfix col1-3 full detail adjust">
+          <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
+                Other Deals
+          </div>
+            <div class="dimg" style="background-image: url('<?php echo base_url("uploads")."/".$normaldeal->image; ?>')"></div>
+            <!--<div class="dimg deal_desc" style="background-image: url('<?php //echo base_url("uploads")."/".$normaldeal->logo; ?>')"></div>-->
+
+            <div class="dimg deal_desc"><?php echo $deal->description; ?></div>
+            <div class="dimg">
+                <div class="heading">Hours</div>
+                <?php echo $normaldeal->hours; ?>
+                <div class="heading">Location</div>
+                <?php echo $normaldeal->location; ?>
+                <!--<div class="heading"><img src="<?php //echo base_url("frontend")."/";?>images/star.png" /></div>-->
+                <!--FEATURED/NEW-->
+            </div>
+            <div class="dimg">
+                <a href="<?php echo site_url("website/brands_inner")."?id=".$normaldeal->id; ?>"><div class="odeal_btn">Visit Brand</div></a>
+            </div>
+          </div>
+          <?php }; ?>
+    </div>
   </div>
 </div>
 </div>
 <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
- <script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-easing-1.3.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/modernizr.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/scrollup.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/modernizr.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/custom.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.isotope.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.ba-bbq.min.js" type="text/javascript"></script>

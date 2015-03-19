@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Press | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />

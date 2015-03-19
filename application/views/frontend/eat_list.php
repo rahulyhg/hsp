@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Dine List | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -16,20 +16,40 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'> 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
+<script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
+    <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
+    <script>
+        $(function () {
+            var $window = $(window);        //Window object
+            var scrollTime = 1.2;           //Scroll time
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            $window.on("mousewheel DOMMouseScroll", function (event) {
+                event.preventDefault();
+                var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+                var scrollTop = $window.scrollTop();
+                var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+                TweenMax.to($window, scrollTime, {
+                    scrollTo: { y: finalScroll, autoKill: true },
+                    ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+                    autoKill: true,
+                    overwrite: 5
+                });
+            });
+        });
+        </script>
 </head>
 <body> 
 <div id="wrap">
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
-  <div id="quick-info" class="clearfix">
+  <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
-  <header id="wrapper" class="clearfix">
+  <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
@@ -63,12 +83,14 @@
             <div class="brand_list">
                  <div class="filter">
                      <div class="filterleft">
+                         <form method="post" accept-charset="utf-8">
                            I am Looking For <select name="" class="select1 dinercategorytosearch">
                             <option value="">Search by Cuisine</option>
                             <?php foreach($dinercategories as $dinecategory) { ?>
                             <option value="<?php echo $dinecategory->id;?>"><?php echo $dinecategory->name; ?></option>
                             <?php }; ?>
                             </select>
+                         </form>
                     </div>
                     <div class="filterright">
                         <input name="search" type="text" class="input1 search" id="search" placeholder="Search Directory" size="30" title="Search *"/>
@@ -103,18 +125,24 @@
                     <a href="#">Y</a>
                     <a href="#">Z</a>
                 </div>
-                <div class="filter">
-                     <!--<div class="filterleft">
-                           Search By Deal <select name="" class="select1">
-                            <option>Search By Deal</option>
+                <div class="filter filter_dine">
+                     <div class="filterleft">
+                         <form method="post" accept-charset="utf-8">
+                           Search By Deal 
+                            <select name="" class="select1 dealsearch">
+                                <option>Search By Deal</option>
+                                <?php foreach($dealnames as $dealname) { ?>
+                                <option value="<?php echo $dealname->id; ?>"><?php echo $dealname->name; ?></option>
+                                <?php } ?>
                             </select>
-                    </div>-->
+                        </form>
+                    </div>
                     <div class="filterright rt-ame amenitylist">
-                         Filter By Amenity
-                        <a href="" class="amenity1"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" class="amenity1"/></a>
-                        <a href="" class="amenity2"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" class="amenity2"/></a>
-                        <a href="" class="amenity3"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" class="amenity3"/></a>
-                        <a href="" class="amenity4"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" class="amenity4" title="Happy Hours"/></a>
+                         <h3>Filter By Amenity</h3>
+                        <a class="amenity1" href="" class="amenity1"><img alt="1" src="<?php echo base_url("frontend")."/";?>images/amenity1.png" title="Child Friendly" class="amenity1" height="20" /></a>
+                        <a class="amenity2" href="" class="amenity2"><img alt="2" src="<?php echo base_url("frontend")."/";?>images/amenity2.png" title="Live Screening" class="amenity2" height="20"/></a>
+                        <a class="amenity3" href="" class="amenity3"><img alt="3" src="<?php echo base_url("frontend")."/";?>images/amenity3.png" title="Bar Available" class="amenity3" height="20"/></a>
+                        <a class="amenity4" href="" class="amenity4"><img alt="4" src="<?php echo base_url("frontend")."/";?>images/amenity4.png" title="Happy Hours" class="amenity4" height="20"/></a>
                     </div>     
                  </div>
                 <div class="full-list">
@@ -129,7 +157,7 @@
      </div>
 </div>
   
-  
+  </div>
   
   
   
@@ -232,10 +260,10 @@
                             {
                                 var loc2 = location.protocol+'//'+location.host+'/hsp/uploads/'+data[i+1].logo;
                             };
-                            text = text.concat('<div class="dine"><div class="eat"><a href="eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc1+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a></div>');
+                            text = text.concat('<div class="dine"><div class="eat"><a href="eat_inner?id='+data[i].id+'"><div class="eat_img" style="background-image: url('+loc1+')"></div><div class="eat_data"><div class="heading">Name</div>'+data[i].name+'<div class="heading">Hours</div>'+data[i].hours+'<div class="heading">Location</div>'+data[i].location+'</div></a></div>');
                             if(i+1 <data.length)
                             {
-                                text = text.concat('<div class="eat"><a href="eat_inner?id='+data[i+1].id+'"><div class="eat_img" style="background-image: url('+loc2+')"></div><div class="eat_data"><div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'</div></a</div>');
+                                text = text.concat('<div class="eat"><a href="eat_inner?id='+data[i+1].id+'"><div class="eat_img" style="background-image: url('+loc2+')"></div><div class="eat_data"><div class="heading">Name</div>'+data[i+1].name+'<div class="heading">Hours</div>'+data[i+1].hours+'<div class="heading">Location</div>'+data[i+1].location+'</div></a</div>');
                             };
                             text = text.concat('</div>');
                             $(".full-list").append(text);

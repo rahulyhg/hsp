@@ -66,7 +66,7 @@ jQuery(document).ready(function () {
 
 
 
-    $("body").smoothWheel();
+  //  $("body").smoothWheel();
 
 
     $('.counter .number').counterUp({

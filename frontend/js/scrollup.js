@@ -39,7 +39,9 @@ jQuery(function () {
                 $('#quick-info').css('position', 'relative');
                 $('#wrapper').css('top', '0');
                 //$('#wrapper').css('top', '0');
-
+                $('.top_head_other').css('position', 'fixed');
+                $('.header_other').css('position', 'fixed'); $('.header_other').css('top', '40px');
+                
             }
 
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Events | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -39,13 +39,7 @@
         background-position: center;
         background-repeat: no-repeat;
     }
-    .sample_data{
-        width: 32%;
-        float: left;
-        font-size: 15px;
-        padding: 38px;
-        text-align: justify;
-    }
+    
      .deal_data{
         width: 30%;
         float: left;
@@ -79,19 +73,22 @@
     .soc a{
         display: inline;
     }
-      .flexslider .slides img 
-    {
-        width: 50%; 
-        display: block; 
-        float: left;
-    }
+     
     .flexslider .slides .soc img {
         width: 20%;
         margin-left: 5px;
     }
-     .col2-3 p{
-        padding: 10px 20px 10px 40px;
-        text-align: left;
+     .event_slide p{
+        padding: 10px 0px 10px 0;
+        float: none;
+        margin: 0 5%;
+    }
+
+    .event_slide .small{
+        padding: 0;
+        height: 20px;
+        width: 100px;
+        text-align: center;
     }
     .event-data{
         width: 75%;
@@ -104,19 +101,42 @@
     }
    
 </style>
+
+<script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
+    <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
+    <script>
+        $(function () {
+            var $window = $(window);        //Window object
+            var scrollTime = 1.2;           //Scroll time
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            $window.on("mousewheel DOMMouseScroll", function (event) {
+                event.preventDefault();
+                var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+                var scrollTop = $window.scrollTop();
+                var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+                TweenMax.to($window, scrollTime, {
+                    scrollTo: { y: finalScroll, autoKill: true },
+                    ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+                    autoKill: true,
+                    overwrite: 5
+                });
+            });
+        });
+        </script>
 </head>
 <body>
 <div id="wrap">
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
-  <div id="quick-info" class="clearfix">
+  <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
-  <header id="wrapper" class="clearfix">
+  <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
       <div id="nav-button"> <span class="nav-bar"></span> <span class="nav-bar"></span> <span class="nav-bar"></span> </div>
     <div id="options" class="clearfix">
@@ -144,8 +164,8 @@
   </header>
   <div id="content">
     <div class="container">
-      <div id="container" class="clearfix">
-       <div class="element  clearfix col2-3 home bg centered slider full">
+      <div id="container" class="clearfix container_about">
+       <div class="element  clearfix col2-3 home bg centered slider full event_slide">
           <div class="bg-image">
             <div class="flexslider">
               <div class="images">
@@ -153,9 +173,18 @@
                 <?php if(count($events)>0) { 
                     foreach($events as $event) { ?>
                   <li>
-                      <img src="<?php echo base_url("uploads")."/".$event->logo;?>" alt=""/>
+                      <!--<img src="<?php //echo base_url("uploads")."/".$event->logo;?>" alt=""/>-->
+                      <div class="deal_img">
+                          
+                            <table align="center" valign="center">
+                                  <tr>
+                                    <td><img src="<?php echo base_url("uploads")."/".$event->logo; ?>"/></td>
+                                  </tr>
+                              </table>
+                          
+                      </div>
                        <div class="data">           
-                        <div class="info-icon icon_adjust"><i class="icons event"></i>
+                        <div class="info-icon icon_adjust infos-left-event"><i class="icons event"></i>
                         <h2 style="float: left;"><?php echo $event->name; ?></h2>
                             <div class="soc">
                                 <a href="<?php echo $event->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
@@ -168,7 +197,7 @@
                                           <div class="info-icon no-margin icon_adjust">
                             <h2 style="float: left;">Details</h2>
                           </div>
-                            <div class="infos-left">
+                            <div class="infos-left infos-left-event">
                             <p class="small">Date</p>
                           </div>
                           <div class="infos-right">
@@ -176,7 +205,7 @@
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
-                          <div class="infos-left">
+                          <div class="infos-left infos-left-event">
                             <p class="small">Day</p>
                           </div>
                           <div class="infos-right">
@@ -184,7 +213,7 @@
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
-                          <div class="infos-left">
+                          <div class="infos-left infos-left-event">
                             <p class="small">Time</p>
                           </div>
                           <div class="infos-right">
@@ -192,7 +221,7 @@
                           </div>
                           <div class="clear"></div>
                           <div class="borderline"></div>
-                          <div class="infos-left">
+                          <div class="infos-left infos-left-event">
                             <p class="small">Venue</p>
                           </div>
                           <div class="infos-right">
@@ -212,9 +241,15 @@
             </div>
         </div>
         <?php foreach($oldevents as $oldevent) { ?>
-         <div class="element home clearfix col1-3 full detail">
+         <div class="element home clearfix col1-3 full detail other_events">
           <div class="info-icon icon_adjust_full"><i class="icons event"></i>
             <h2>Other Events At The Mall</h2>
+            <div class="soc">
+                          <a href="<?php echo $oldevent->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
+                          <a href="<?php echo $oldevent->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
+                          <a href="<?php echo $oldevent->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
+                          <a href="<?php echo $oldevent->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
+                        </div>
           </div>
            
             <div class="sample_img" style="background-image: url('<?php echo base_url("uploads")."/".$oldevent->logo; ?>');"></div>
@@ -222,24 +257,21 @@
                 <div class="event-data">
                     <div class="data1">
                        <div class="sample_data">
-                        <h6><?php echo $oldevent->name; ?></h6>
-                       <?php echo $oldevent->day; ?>, <?php echo $oldevent->date; ?></br><?php echo $oldevent->time; ?>
-                     </div>
-                    <div class="sample_data">
-                      <div class="btn">Visit Brand</div>
+                            <h6><?php echo $oldevent->name; ?></h6>
+                            <?php echo $oldevent->day; ?>, <?php echo $oldevent->date; ?></br><?php echo $oldevent->time; ?>
+                       </div>
+                    <div class="sample_data sample_data_desc">
+                      <!--<div class="btn">Visit Brand</div>-->
+                        <p><?php echo $oldevent->description; ?></p>
                     </div>
-                    <div class="sample_data">
-                      <div class="soc">
-                          <a href="<?php echo $oldevent->facebook; ?>"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
-                          <a href="<?php echo $oldevent->googleplus; ?>"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
-                          <a href="<?php echo $oldevent->twitter; ?>"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
-                          <a href="<?php echo $oldevent->instagram; ?>"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
-                        </div>
-                    </div>
+                    <!--<div class="sample_data">
+                        <div class="btn">Visit Brand</div>
+                      
+                    </div>-->
                  </div>
-                <div class="data2">
+                <!--<div class="data2">
                     <p><?php echo $oldevent->description; ?></p>
-                </div>
+                </div>-->
             </div>
           </div>
             <?php }; ?>

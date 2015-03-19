@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Home | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -14,8 +14,30 @@
 <link href="<?php echo base_url("frontend")."/";?>css/print.css" rel="stylesheet" type="text/css" media="print" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/ticker.js"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>
+
+<!--<script src="<?php //echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>-->
+<!--<script src="<?php //echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>-->
+<script>
+    //$(function () {
+    //    var $window = $(window);        //Window object
+    //    var scrollTime = 1.2;           //Scroll time
+    //    var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+    //    $window.on("mousewheel DOMMouseScroll", function (event) {
+    //        event.preventDefault();
+    //        var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+    //        var scrollTop = $window.scrollTop();
+    //        var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+    //        TweenMax.to($window, scrollTime, {
+    //            scrollTo: { y: finalScroll, autoKill: true },
+    //            ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+    //            autoKill: true,
+    //            overwrite: 5
+    //        });
+    //    });
+    //});
+        </script>
 </head>
 <body>
     <div class="top_main">
@@ -68,7 +90,7 @@
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
-    <p class="time">We're open MON through FRI from 7am till 11pm</p>
+    <p class="time">We're open from 11am to 10pm on all days</p>
   </div>
   <header id="wrapper" class="clearfix">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
@@ -99,14 +121,24 @@
   <div id="content">
     <div class="container">
       <div id="container" class="clearfix">
-        <div class="element clearfix col2-3 home bg centered">
-          <div class="bg-image">
+        <div class="element clearfix col2-3 home bg centered slider">
+          <!--<div class="bg-image">
               <video autoplay loop width="620" height="620" style="position: fixed; right: 0; bottom: 0;
 min-width: 100%; min-height: 100%;
 width: auto; height: auto; z-index: -100;
 background-size: cover;">
-                  <source src="<?php echo base_url("uploads")."/".$video->video; ?>" type="video/mp4">
+                  <source src="<?php //echo base_url("uploads")."/".$video->video; ?>" type="video/mp4">
             </video>
+          </div>-->
+          <div class="bg-image">
+            <div class="flexslider">
+              <div class="images">
+                <ul class="slides">
+                  <li><img src="http://hepta.me/hsp/frontend/images/classes01.jpg" alt="" /></li>
+                  <li><img src="http://hepta.me/hsp/frontend/images/classes04.jpg" alt="" /></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         <div class="element home clearfix col1-3">
@@ -184,12 +216,7 @@ background-size: cover;">
         <div class="element clearfix col2-3 contact">
           <div id="map"></div>
         </div>
-        <div class="element home clearfix col1-3 contact">
-          <div class="info-icon" style="margin-bottom: 0;"><i class="icons email"></i>
-            <h2>Contact Us</h2>
-          </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3772.560449584006!2d72.824564!3d18.99501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c6043c51b%3A0x469288721a1d52aa!2sHigh+Street+Phoenix!5e0!3m2!1sen!2sin!4v1416823845850" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
-        </div>
+        
         <?php if($config[10]->title) { ?>
         <div class="element  clearfix col1-3 color home">
           <h2><span><?php echo $config[10]->title;?></span></h2>
@@ -197,6 +224,12 @@ background-size: cover;">
           <p class="small"><?php echo $config[10]->text;?></p>
         </div>
         <?php }; ?>
+        <div class="element home clearfix col1-3 contact">
+          <div class="info-icon" style="margin-bottom: 0;"><i class="icons email"></i>
+            <h2>Contact Us</h2>
+          </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3772.560449584006!2d72.824564!3d18.99501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c6043c51b%3A0x469288721a1d52aa!2sHigh+Street+Phoenix!5e0!3m2!1sen!2sin!4v1416823845850" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+        </div>
         <div class="element clearfix col1-3 border contact home">
           <div id="contact">
             <div id="message"></div>
@@ -221,28 +254,28 @@ background-size: cover;">
           <div class="element home clearfix col1-3">
               <div class="counter_mid">
                 <div class="counter_div img" style="background-image: url(<?php echo base_url("frontend")."/";?>images/tag.png);"></div>
-                <div class="counter_div counter" id="brand_count"><span class="number">150</span>+</div>
+                <div class="counter_div counter" id="brand_count"><span class="number">500</span>+</div>
                 <div class="counter_div name">BRANDS</div>
               </div>
           </div>
           <div class="element home clearfix col1-3">
               <div class="counter_mid">
                 <div class="counter_div img" style="background-image: url(<?php echo base_url("frontend")."/";?>images/foot.png);"></div>
-                <div class="counter_div counter"><span class="number">10000</span>+</div>
+                <div class="counter_div counter"><span class="number">60000</span>+</div>
                 <div class="counter_div name">FOOTFALLS</div>
               </div>
           </div>
           <div class="element home clearfix col1-3">
               <div class="counter_mid">
                 <div class="counter_div img" style="background-image: url(<?php echo base_url("frontend")."/";?>images/car.png);"></div>
-                <div class="counter_div counter"><span class="number">589</span>+</div>
+                <div class="counter_div counter"><span class="number">5000</span>+</div>
                 <div class="counter_div name">LUXURIOUS CARS</div>
               </div>
           </div>
           <div class="element home clearfix col1-3">
               <div class="counter_mid">
                 <div class="counter_div img" style="background-image: url(<?php echo base_url("frontend")."/";?>images/like.png);"></div>
-                <div class="counter_div counter"><span class="number">99999</span>+</div>
+                <div class="counter_div counter"><span class="number">250000</span>+</div>
                 <div class="counter_div name">LIKES</div>
               </div>
           </div>
@@ -252,20 +285,25 @@ background-size: cover;">
 </div>
 <?php $this->load->view("frontend/footer");?>
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-easing-1.3.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/modernizr.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/scrollup.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/input.fields.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/jquery.gomap-1.3.2.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.isotope.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/jquery.ba-bbq.min.js" type="text/javascript"></script>
+<!--<script src="<?php //echo base_url("frontend")."/";?>js/jquery.ba-bbq.min.js" type="text/javascript"></script>-->
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.isotope.load_home.js" type="text/javascript"></script>
+
+<script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script defer src="<?php echo base_url("frontend")."/";?>js/jquery.flexslider-min.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/scrollup.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/retina.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/input.fields.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery.gomap-1.3.2.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.form.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/preloader.js" type="text/javascript"></script>
-<script src="<?php echo base_url("frontend")."/";?>js/retina.js" type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery.counterup.min.js"></script>
+
 </body>
 </html>

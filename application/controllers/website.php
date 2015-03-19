@@ -99,6 +99,7 @@ class Website extends CI_Controller
 		$data[ 'title' ] = 'Welcome';
 		$this->load->view( 'frontend/press', $data );	
 	}
+
     public function brandfilter() 
     {
         $alph=$this->input->get_post("alph");

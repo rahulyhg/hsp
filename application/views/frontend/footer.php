@@ -1,11 +1,11 @@
 <footer>
   <ul class="social clearfix alignleft">
-    <li ><a href="contact.php">CONTACT</a></li>
-    <li ><a href="about_us.php">ABOUT</a></li>
-      <li ><a href="press.php">PRESS</a></li>
-      <li ><a href="#">CONCIERGE SERVICES</a></li>
-      <li ><a href="jobs.php">JOBS</a></li>
-      <li ><a href="#">GIFT CARDS</a></li>
+    <li ><a href="contact">CONTACT</a></li>
+    <li ><a href="about_us">ABOUT</a></li>
+      <!--<li ><a href="press">PRESS</a></li>-->
+      <!--<li ><a href="#">CONCIERGE SERVICES</a></li>-->
+      <li ><a href="jobs">JOBS</a></li>
+      <!--<li ><a href="#">GIFT CARDS</a></li>-->
   </ul>
  <ul class="copyright clearfix alignleft">
       <li><a href="#"><img src="<?php echo base_url("frontend")."/";?>images/inst_b.png" /></a> </li>

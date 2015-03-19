@@ -516,6 +516,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
         $this->form_validation->set_rules("specialoffer","specialoffer","trim");
+        $this->form_validation->set_rules("duration","duration","trim");
         if($this->form_validation->run()==FALSE)
         {
             $data["alerterror"]=validation_errors();
@@ -545,6 +546,7 @@ class Site extends CI_Controller
             $categoryforbrand=$this->input->get_post("categoryforbrand");
             $specialoffer=$this->input->get_post("specialoffer");
             $stars=$this->input->get_post("stars");
+            $duration=$this->input->get_post("duration");
             
             
             $config['upload_path'] = './uploads/';
@@ -643,7 +645,7 @@ class Site extends CI_Controller
 			}
 //            echo $logo."<br>";
 //            echo $image;
-            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)==0)
+            if($this->brand_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars,$duration)==0)
                 $data["alerterror"]="New brand could not be created.";
             else
                 $data["alertsuccess"]="brand created Successfully.";
@@ -686,6 +688,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
         $this->form_validation->set_rules("specialoffer","specialoffer","trim");
+        $this->form_validation->set_rules("duration","duration","trim");
         if($this->form_validation->run()==FALSE)
         {
             $data["alerterror"]=validation_errors();
@@ -719,6 +722,7 @@ class Site extends CI_Controller
             $categoryforbrand=$this->input->get_post("categoryforbrand");
             $specialoffer=$this->input->get_post("specialoffer");
             $stars=$this->input->get_post("stars");
+            $duration=$this->input->get_post("duration");
             
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -843,7 +847,7 @@ class Site extends CI_Controller
                 $specialofferimage=$specialofferimage->specialofferimage;
             }
             
-            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars)==0)
+            if($this->brand_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$logo,$json,$contactno,$email,$categoryforbrand,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$stars,$duration)==0)
                 $data["alerterror"]="New brand could not be Updated.";
             else
                 $data["alertsuccess"]="brand Updated Successfully.";
@@ -1496,9 +1500,10 @@ class Site extends CI_Controller
         $access=array("1");
         $this->checkaccess($access);
         $data["page"]="editevent";
+        $data["page2"]="block/eventblock";
         $data["title"]="Edit event";
         $data["before"]=$this->event_model->beforeedit($this->input->get("id"));
-        $this->load->view("template",$data);
+        $this->load->view("templatewith2",$data);
     }
     public function editeventsubmit()
     {
@@ -1739,6 +1744,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("twitter","twitter","trim");
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
+        $this->form_validation->set_rules("duration","duration","trim");
 //        $this->form_validation->set_rules("logo","Logo","trim");
         if($this->form_validation->run()==FALSE)
         {
@@ -1770,6 +1776,7 @@ class Site extends CI_Controller
             $googleplus=$this->input->get_post("googleplus");
             $specialoffer=$this->input->get_post("specialoffer");
             $description=$this->input->get_post("description");
+            $duration=$this->input->get_post("duration");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -1867,7 +1874,7 @@ class Site extends CI_Controller
                 }
                 
 			}
-            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description)==0)
+            if($this->dine_model->create($name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description,$duration)==0)
                 $data["alerterror"]="New dine could not be created.";
             else
                 $data["alertsuccess"]="dine created Successfully.";
@@ -1909,6 +1916,7 @@ class Site extends CI_Controller
         $this->form_validation->set_rules("twitter","twitter","trim");
         $this->form_validation->set_rules("instagram","instagram","trim");
         $this->form_validation->set_rules("googleplus","googleplus","trim");
+        $this->form_validation->set_rules("duration","duration","trim");
 //        $this->form_validation->set_rules("logo","Logo","trim");
         if($this->form_validation->run()==FALSE)
         {
@@ -1945,6 +1953,7 @@ class Site extends CI_Controller
             $specialoffer=$this->input->get_post("specialoffer");
             $floor=$this->input->get_post("floor");
             $description=$this->input->get_post("description");
+            $duration=$this->input->get_post("duration");
 //            $logo=$this->input->get_post("logo");
             
             $config['upload_path'] = './uploads/';
@@ -2073,7 +2082,7 @@ class Site extends CI_Controller
             
             
             
-            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description)==0)
+            if($this->dine_model->edit($id,$name,$hours,$location,$isfeatured,$isnew,$description,$json,$logo,$categoryfordine,$amenity,$email,$contactno,$facebook,$twitter,$instagram,$googleplus,$image,$specialoffer,$specialofferimage,$floor,$description,$duration)==0)
                 $data["alerterror"]="New dine could not be Updated.";
             else
                 $data["alertsuccess"]="dine Updated Successfully.";
@@ -3601,5 +3610,702 @@ class Site extends CI_Controller
         $this->load->view("redirect",$data);
     }
     //endcomment
+    
+    public function viewbrandimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $brandid=$this->input->get('id');
+        $data["page"]="viewbrandimage";
+        $data["page2"]="block/brandblock";
+        $data["before"]=$this->brand_model->beforeedit($this->input->get("id"));
+        $data["base_url"]=site_url("site/viewbrandimagejson?id=".$brandid);
+        $data["title"]="View brandimage";
+        $this->load->view("templatewith2",$data);
+    }
+    function viewbrandimagejson()
+    {
+        $elements=array();
+        $brandid=$this->input->get('id');
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`brandimage`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`brandimage`.`brand`";
+        $elements[1]->sort="1";
+        $elements[1]->header="Brand";
+        $elements[1]->alias="brand";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`brandimage`.`name`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Name";
+        $elements[2]->alias="name";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`brandimage`.`order`";
+        $elements[3]->sort="1";
+        $elements[3]->header="order";
+        $elements[3]->alias="order";
+        
+//        $elements[4]=new stdClass();
+//        $elements[4]->field="`brandimage`.`isfeatured`";
+//        $elements[4]->sort="1";
+//        $elements[4]->header="Is Featured";
+//        $elements[4]->alias="isfeatured";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="order";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `brandimage`","WHERE `brandimage`.`brand`='$brandid'");
+        $this->load->view("json",$data);
+    }
+
+    public function createbrandimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $brandid=$this->input->get('id');
+        $data['brandid']=$brandid;
+        
+//        $data['isfeatured']=$this->brand_model->getisfeatureddropdown();
+        $data["page"]="createbrandimage";
+        $data["title"]="Create brandimage";
+        $this->load->view("template",$data);
+    }
+    public function createbrandimagesubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("brand","Brand","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createbrandimage";
+            $data["title"]="Create brandimage";
+//
+//            $data['isfeatured']=$this->brand_model->getisfeatureddropdown();
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $brand=$this->input->get_post("brand");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $image=$this->image_lib->dest_image;
+                }
+                
+			}
+            if($this->brandimage_model->create($brand,$name,$order,$image)==0)
+                $data["alerterror"]="New brandimage could not be created.";
+            else
+                $data["alertsuccess"]="brandimage created Successfully.";
+            $data["redirect"]="site/viewbrandimage?id=".$brand;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function editbrandimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editbrandimage";
+        $data["title"]="Edit brandimage";
+        $brandid=$this->input->get('id');
+        $data['brandid']=$brandid;
+        $brandimageid=$this->input->get('brandimageid');
+        $data['isfeatured']=$this->brand_model->getisfeatureddropdown();
+        $data["before"]=$this->brandimage_model->beforeedit($this->input->get("brandimageid"));
+        $this->load->view("template",$data);
+    }
+    public function editbrandimagesubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+//        $this->form_validation->set_rules("id","ID","trim");
+        
+        $this->form_validation->set_rules("brand","Brand","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="editbrandimage";
+            $data["title"]="Edit brandimage";
+            $data['isfeatured']=$this->brand_model->getisfeatureddropdown();
+            $data["before"]=$this->brandimage_model->beforeedit($this->input->get("id"));
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("brandimageid");
+            $brand=$this->input->get_post("brand");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($image=="")
+            {
+                $image=$this->brandimage_model->getbrandimageimagebyid($id);
+                $image=$image->image;
+            }
+            if($this->brandimage_model->edit($id,$brand,$name,$order,$image)==0)
+                $data["alerterror"]="New brandimage could not be Updated.";
+            else
+                $data["alertsuccess"]="brandimage Updated Successfully.";
+            $data["redirect"]="site/viewbrandimage?id=".$brand;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function deletebrandimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->brandimage_model->delete($this->input->get("brandimageid"));
+        $data["redirect"]="site/viewbrandimage?id=".$this->input->get('id');
+        $this->load->view("redirect2",$data);
+    }
+    
+    //end brand
+    public function viewdineimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $dineid=$this->input->get('id');
+        $data["page"]="viewdineimage";
+        $data["page2"]="block/dineblock";
+        $data["before"]=$this->dine_model->beforeedit($this->input->get("id"));
+        $data["base_url"]=site_url("site/viewdineimagejson?id=".$dineid);
+        $data["title"]="View dineimage";
+        $this->load->view("templatewith2",$data);
+    }
+    function viewdineimagejson()
+    {
+        $elements=array();
+        $dineid=$this->input->get('id');
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`dineimage`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`dineimage`.`dine`";
+        $elements[1]->sort="1";
+        $elements[1]->header="dine";
+        $elements[1]->alias="dine";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`dineimage`.`name`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Name";
+        $elements[2]->alias="name";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`dineimage`.`order`";
+        $elements[3]->sort="1";
+        $elements[3]->header="order";
+        $elements[3]->alias="order";
+        
+//        $elements[4]=new stdClass();
+//        $elements[4]->field="`dineimage`.`isfeatured`";
+//        $elements[4]->sort="1";
+//        $elements[4]->header="Is Featured";
+//        $elements[4]->alias="isfeatured";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="order";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `dineimage`","WHERE `dineimage`.`dine`='$dineid'");
+        $this->load->view("json",$data);
+    }
+
+    public function createdineimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $dineid=$this->input->get('id');
+        $data['dineid']=$dineid;
+        
+//        $data['isfeatured']=$this->dine_model->getisfeatureddropdown();
+        $data["page"]="createdineimage";
+        $data["title"]="Create dineimage";
+        $this->load->view("template",$data);
+    }
+    public function createdineimagesubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("dine","dine","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createdineimage";
+            $data["title"]="Create dineimage";
+//
+//            $data['isfeatured']=$this->dine_model->getisfeatureddropdown();
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $dine=$this->input->get_post("dine");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $image=$this->image_lib->dest_image;
+                }
+                
+			}
+            if($this->dineimage_model->create($dine,$name,$order,$image)==0)
+                $data["alerterror"]="New dineimage could not be created.";
+            else
+                $data["alertsuccess"]="dineimage created Successfully.";
+            $data["redirect"]="site/viewdineimage?id=".$dine;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function editdineimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editdineimage";
+        $data["title"]="Edit dineimage";
+        $dineid=$this->input->get('id');
+        $data['dineid']=$dineid;
+        $dineimageid=$this->input->get('dineimageid');
+        $data["before"]=$this->dineimage_model->beforeedit($this->input->get("dineimageid"));
+        $this->load->view("template",$data);
+    }
+    public function editdineimagesubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+//        $this->form_validation->set_rules("id","ID","trim");
+        
+        $this->form_validation->set_rules("dine","dine","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="editdineimage";
+            $data["title"]="Edit dineimage";
+            $data["before"]=$this->dineimage_model->beforeedit($this->input->get("id"));
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("dineimageid");
+            $dine=$this->input->get_post("dine");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($image=="")
+            {
+                $image=$this->dineimage_model->getdineimageimagebyid($id);
+                $image=$image->image;
+            }
+            if($this->dineimage_model->edit($id,$dine,$name,$order,$image)==0)
+                $data["alerterror"]="New dineimage could not be Updated.";
+            else
+                $data["alertsuccess"]="dineimage Updated Successfully.";
+            $data["redirect"]="site/viewdineimage?id=".$dine;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function deletedineimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->dineimage_model->delete($this->input->get("dineimageid"));
+        $data["redirect"]="site/viewdineimage?id=".$this->input->get('id');
+        $this->load->view("redirect2",$data);
+    }
+    //end dine image
+    
+    public function vieweventimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $eventid=$this->input->get('id');
+        $data["page"]="vieweventimage";
+        $data["page2"]="block/eventblock";
+        $data["before"]=$this->event_model->beforeedit($this->input->get("id"));
+        $data["base_url"]=site_url("site/vieweventimagejson?id=".$eventid);
+        $data["title"]="View eventimage";
+        $this->load->view("templatewith2",$data);
+    }
+    function vieweventimagejson()
+    {
+        $elements=array();
+        $eventid=$this->input->get('id');
+        
+        $elements[0]=new stdClass();
+        $elements[0]->field="`eventimage`.`id`";
+        $elements[0]->sort="1";
+        $elements[0]->header="ID";
+        $elements[0]->alias="id";
+        
+        $elements[1]=new stdClass();
+        $elements[1]->field="`eventimage`.`event`";
+        $elements[1]->sort="1";
+        $elements[1]->header="event";
+        $elements[1]->alias="event";
+        
+        $elements[2]=new stdClass();
+        $elements[2]->field="`eventimage`.`name`";
+        $elements[2]->sort="1";
+        $elements[2]->header="Name";
+        $elements[2]->alias="name";
+        
+        $elements[3]=new stdClass();
+        $elements[3]->field="`eventimage`.`order`";
+        $elements[3]->sort="1";
+        $elements[3]->header="order";
+        $elements[3]->alias="order";
+        
+//        $elements[4]=new stdClass();
+//        $elements[4]->field="`eventimage`.`isfeatured`";
+//        $elements[4]->sort="1";
+//        $elements[4]->header="Is Featured";
+//        $elements[4]->alias="isfeatured";
+        
+        $search=$this->input->get_post("search");
+        $pageno=$this->input->get_post("pageno");
+        $orderby=$this->input->get_post("orderby");
+        $orderorder=$this->input->get_post("orderorder");
+        $maxrow=$this->input->get_post("maxrow");
+        
+        if($maxrow=="")
+        {
+            $maxrow=20;
+        }
+        if($orderby=="")
+        {
+            $orderby="order";
+            $orderorder="ASC";
+        }
+        $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `eventimage`","WHERE `eventimage`.`event`='$eventid'");
+        $this->load->view("json",$data);
+    }
+
+    public function createeventimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $eventid=$this->input->get('id');
+        $data['eventid']=$eventid;
+        
+//        $data['isfeatured']=$this->event_model->getisfeatureddropdown();
+        $data["page"]="createeventimage";
+        $data["title"]="Create eventimage";
+        $this->load->view("template",$data);
+    }
+    public function createeventimagesubmit() 
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->form_validation->set_rules("event","event","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="createeventimage";
+            $data["title"]="Create eventimage";
+//
+//            $data['isfeatured']=$this->event_model->getisfeatureddropdown();
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $event=$this->input->get_post("event");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    $image=$this->image_lib->dest_image;
+                }
+                
+			}
+            if($this->eventimage_model->create($event,$name,$order,$image)==0)
+                $data["alerterror"]="New eventimage could not be created.";
+            else
+                $data["alertsuccess"]="eventimage created Successfully.";
+            $data["redirect"]="site/vieweventimage?id=".$event;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function editeventimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $data["page"]="editeventimage";
+        $data["title"]="Edit eventimage";
+        $eventid=$this->input->get('id');
+        $data['eventid']=$eventid;
+        $eventimageid=$this->input->get('eventimageid');
+        $data["before"]=$this->eventimage_model->beforeedit($this->input->get("eventimageid"));
+        $this->load->view("template",$data);
+    }
+    public function editeventimagesubmit()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+//        $this->form_validation->set_rules("id","ID","trim");
+        
+        $this->form_validation->set_rules("event","event","trim");
+        $this->form_validation->set_rules("name","name","trim");
+        $this->form_validation->set_rules("order","order","trim");
+        if($this->form_validation->run()==FALSE)
+        {
+            $data["alerterror"]=validation_errors();
+            $data["page"]="editeventimage";
+            $data["title"]="Edit eventimage";
+            $data["before"]=$this->eventimage_model->beforeedit($this->input->get("id"));
+            $this->load->view("template",$data);
+        }
+        else
+        {
+            $id=$this->input->get_post("eventimageid");
+            $event=$this->input->get_post("event");
+            $name=$this->input->get_post("name");
+            $order=$this->input->get_post("order");
+            
+            $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+            
+            if($image=="")
+            {
+                $image=$this->eventimage_model->geteventimageimagebyid($id);
+                $image=$image->image;
+            }
+            if($this->eventimage_model->edit($id,$event,$name,$order,$image)==0)
+                $data["alerterror"]="New eventimage could not be Updated.";
+            else
+                $data["alertsuccess"]="eventimage Updated Successfully.";
+            $data["redirect"]="site/vieweventimage?id=".$event;
+            $this->load->view("redirect2",$data);
+        }
+    }
+    public function deleteeventimage()
+    {
+        $access=array("1");
+        $this->checkaccess($access);
+        $this->eventimage_model->delete($this->input->get("eventimageid"));
+        $data["redirect"]="site/vieweventimage?id=".$this->input->get('id');
+        $this->load->view("redirect2",$data);
+    }
 }
 ?>

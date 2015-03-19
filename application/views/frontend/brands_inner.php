@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="apple-touch-icon" href="images/bg-cup.png">
-<link rel="icon" href="images/bg-cup.png">
+<link rel="apple-touch-icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
+<link rel="icon" href="http://hepta.me/hsp/frontend/images/bg-cup.png">
 <title>Brands | High Street Phoenix</title>
 <link href="<?php echo base_url("frontend")."/";?>css/reset.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url("frontend")."/";?>css/contact.css" rel="stylesheet" type="text/css" media="screen" />
@@ -54,6 +54,28 @@
     }
    
 </style>
+<script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
+    <script src="<?php echo base_url("frontend")."/";?>js/ScrollToPlugin.min.js"></script>
+    <script>
+        $(function () {
+            var $window = $(window);        //Window object
+            var scrollTime = 1.2;           //Scroll time
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            $window.on("mousewheel DOMMouseScroll", function (event) {
+                event.preventDefault();
+                var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
+                var scrollTop = $window.scrollTop();
+                var finalScroll = scrollTop - parseInt(delta * scrollDistance);
+                TweenMax.to($window, scrollTime, {
+                    scrollTo: { y: finalScroll, autoKill: true },
+                    ease: Power1.easeOut,   //For more easing functions see http://api.greensock.com/js/com/greensock/easing/package-detail.html
+                    autoKill: true,
+                    overwrite: 5
+                });
+            });
+        });
+        </script>
 </head>
 <body>
 <div id="wrap">
@@ -62,14 +84,14 @@
     <div id="status">&nbsp;</div>
   </div>
     
-  <div id="quick-info" class="clearfix">
+  <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
     
-  <header id="wrapper" class="clearfix">
+  <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
     <!-- start navi -->
 
@@ -82,7 +104,7 @@
         <li><a href="<?php echo site_url("website/brands_list"); ?>" class="selected">BRANDS
           <div class="nav-button"></div>
           </a></li>
-          <li><a href="<?php echo site_url("website/deal_list"); ?>">DEALS
+          <li><a href="<?php echo site_url("website/deals_list"); ?>">DEALS
           <div class="nav-button"></div>
           </a></li>
           <li><a href="<?php echo site_url("website/events_list"); ?>">EVENTS
@@ -103,24 +125,30 @@
     <div class="container">
       <div id="container" class="clearfix">
 
-          <div class="element home clearfix col1-3 full full-logo logo-adj" style="background-image: url('<?php if($branddata->logo != "") { echo base_url('uploads')."/".$branddata->logo; }else { echo base_url('uploads')."/nologo.jpg"; }?>');">
+          <div class="element home clearfix col1-3 full full-logo logo-adj brand_img" style="background-image: url('<?php if($branddata->logo != "") { echo base_url('uploads')."/".$branddata->logo; }else { echo base_url('uploads')."/nologo.jpg"; }?>');">
                
           </div>
 
-       <div class="element home clearfix col1-3 half half-img">
-          <div class="bg-image">
-            <div class="flexslider">
-              <div class="images">
-                <ul class="slides">
-                  <li><img src="<?php if($branddata->image != "") {echo base_url("uploads")."/".$branddata->image;} else { echo base_url("uploads")."/noimage.jpg"; } ?>" alt="" /></li>
-                </ul>
+       <!--<div class="element col2-3 col1-2 home">
+            <img src="<?php //if($branddata->image != "") {echo base_url("uploads")."/".$branddata->image;} else { echo base_url("uploads")."/noimage.jpg"; } ?>" alt="" height="100%" />
+        </div>-->
+          <div class="element clearfix col2-3 home bg centered slider brand_inner_brand">
+              <div class="bg-image brand_inner_brand">
+                <div class="flexslider brand_inner_brand">
+                  <div class="images brand_inner_brand">
+                    <ul class="slides brand_inner_brand">
+                      <li><center><img src="http://hepta.me/hsp/frontend/images/classes01.jpg" alt="" /></center></li>
+                      <li><center><img src="http://hepta.me/hsp/frontend/images/classes04.jpg" alt="" /></center></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+
         <div class="element home clearfix col1-3">
           <div class="info-icon icon_adjust">
             <h2><?php echo $branddata->name; ?></h2>
+
               <!--<div class="soc">
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
@@ -173,8 +201,20 @@
        <?php }; ?>
        <?php foreach($branddeals as $branddeal) { ?>
         <div class="element home clearfix col1-3 full detail">
-          <div class="info-icon icon_adjust_full"><i class="icons offer"></i>
-            <h2>Special Offer</h2>
+          <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
+            <h2>Deals</h2>
+          </div>
+          <!--<div class="dimg" style="background-image: url('<?php //echo base_url("uploads")."/".$normaldeal->image; ?>')"></div>-->
+          <div class="dimg brand_deal_img" style="background-image: url('<?php echo base_url("frontend")."/"; ?>images/Aldo.jpg')"></div>
+          <!--<div class="dimg deal_desc"><?php //echo $deal->description; ?></div>-->
+          <div class="dimg deal_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+          <div class="dimg">
+            <div class="heading">Brand Name</div>
+            Lorem Ipsum<?php //echo $normaldeal->hours; ?>
+            <div class="heading">Hours</div>
+            Lorem Ipsum<?php //echo $normaldeal->hours; ?>
+            <div class="heading">Location</div>
+            Lorem Ipsum<?php //echo $normaldeal->location; ?>
           </div>
           <p><?php echo $branddeal->description; ?></p>
             <div class="sample_img"></div>
@@ -193,36 +233,15 @@
   <!-- end content -->
 </div>
 <!-- end wrap -->
-<footer>
- <ul class="social clearfix alignleft">
-    <li ><a href="contact.php">CONTACT</a></li>
-      <li><a href="about_us.php">ABOUT</a></li>
-      <li ><a href="press.php">PRESS</a></li>
-      <li ><a href="#">CONCIERGE SERVICES</a></li>
-      <li ><a href="jobs.php">JOBS</a></li>
-      <li ><a href="#">GIFT CARDS</a></li>
-  </ul>
-    <ul class="copyright clearfix alignleft">
-      <li><a href="#"><img src="<?php echo base_url("frontend")."/";?>images/inst_b.png" /></a> </li>
-      <li><a href="#"><img src="<?php echo base_url("frontend")."/";?>images/youtube_b.png" /></a> </li>
-      <li><a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pinintrest_b.png" /></a> </li>
-      <li><a href="https://twitter.com/gophoenixing?original_referer=http%3A%2F%2Fhighstreetphoenix.com%                                       2F&profile_id=134720718&tw_i=552721616396750848&tw_p=embeddedtimeline&tw_w=351643332365139968" target="_blank"><img src="<?php echo base_url("frontend")."/";?>images/twitter_b.png" /></a> </li>
-      <li><a href="https://www.facebook.com/highstreetphoenix" target="_blank"><img src="<?php echo base_url("frontend")."/";?>images/facebook_b.png" /></a> </li>
-      </ul>
-        
-  <!--<ul class="copyright clearfix alignleft">
-    <li ><a href="#">Disclaimer</a></li>
-    <li ><a href="#">Copyright © 2010 - 2014</a></li>
-  </ul>-->
-</footer>
-<!-- BACK TO TOP BUTTON -->
+
 <div id="backtotop">
   <ul>
     <li><a id="toTop" href="#" onClick="return false">Back to Top</a></li>
   </ul>
 </div>
 <!--<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
-<script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+ <?php $this->load->view("frontend/footer");?>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-easing-1.3.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/responsive-nav.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/scrollup.js" type="text/javascript"></script>
@@ -239,5 +258,7 @@
 <script src="<?php echo base_url("frontend")."/";?>js/preloader.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/retina.js" type="text/javascript"></script>
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+
 </body>
 </html>

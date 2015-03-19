@@ -23,7 +23,7 @@
     //$(function () {
     //    var $window = $(window);        //Window object
     //    var scrollTime = 1.2;           //Scroll time
-    //    var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+    //    var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll
     //    $window.on("mousewheel DOMMouseScroll", function (event) {
     //        event.preventDefault();
     //        var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
@@ -55,7 +55,7 @@
                         </li>
                         <?php }; ?>
                        <?php } ?>
-              </ul>  
+              </ul>
             </div>
              <div id="slider_m" class="mobile_ticker">
               <ul>
@@ -77,8 +77,8 @@
                         </li>
                         <li >
                             <div class="ticker_brand" style="background-image: url(<?php echo base_url("frontend")."/";?><img/brands/brand9.png); "></div>
-                        </li>   
-              </ul>  
+                        </li>
+              </ul>
             </div>
         </div>
     </div>
@@ -147,11 +147,15 @@ background-size: cover;">
           </div>
           <p><?php echo $config[0]->text; ?></p>
         </div>
-        <div class="element  clearfix col1-3 home color pricing">
-          <h2><span><?php echo $config[7]->title; ?></span></h2>
-          <div class="price"><span></span></div>
-          <p class="small"> <?php echo $config[7]->text; ?>
-           </p>
+        <div class="element  clearfix col1-3 home  pricing">
+          <a href="#" title="">
+            <div class="images"><img src="<?php echo base_url("uploads")."/".$config[7]->image; ?>" alt="" width="300" height="300" />
+                <div class="overlay">
+                  <div class="left_div"><span><?php echo $config[7]->title; ?></span></div>
+                  <div class="view_btn">View More</div>
+                </div>
+            </div>
+            </a>
         </div>
         <div class="element  clearfix col1-3 home classes"> <a href="#" title="">
           <div class="images"><img src="<?php echo base_url("uploads")."/".$config[1]->image; ?>" alt="" width="300" height="300" />
@@ -183,47 +187,43 @@ background-size: cover;">
               </div>
           </div>
           </a> </div>
-        <div class="element clearfix col1-3 news home"> <a href="">
-          <h5><?php echo $config[6]->title;?></h5>
-          </a>
-          <p><?php echo $config[6]->text;?></p>
-          <a href="#">
-          <div class="when">
-            <p class="small alignleft"><?php echo $config[4]->date;?></p>
-            <p class="small alignright">read more</p>
+        <div class="element clearfix col1-3 news home"> <a href="#" title="">
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[6]->image; ?>" alt="" width="300" height="300"  />
+            <div class="overlay">
+                <div class="left_div"><span><?php echo $config[6]->title;?></span></div>
+                <div class="view_btn">View More</div>
+              </div>
           </div>
-          </a> </div>
-        <div class="element home clearfix col1-3 news"> <a href="">
-          <h5><?php echo $config[5]->title;?></h5>
-          </a>
-          <p><?php echo $config[5]->text;?></p>
-          <a href="#">
-          <div class="when">
-            <p class="small alignleft"><?php echo $config[5]->date; ?></p>
-            <p class="small alignright">read more</p>
+          </a></div>
+        <div class="element home clearfix col1-3 news"><a href="#" title="">
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[5]->image; ?>" alt="" width="300" height="300"  />
+            <div class="overlay">
+                <div class="left_div"><span><?php echo $config[5]->title;?></span></div>
+                <div class="view_btn">View More</div>
+              </div>
           </div>
-          </a> </div>
-        <div class="element home clearfix col1-3 news"> <a href="#">
-          <h5><?php echo $config[8]->title;?></h5>
-          </a>
-          <p><?php echo $config[8]->text;?></p>
-          <a href="#">
-          <div class="when">
-            <p class="small alignleft"><?php echo $config[8]->date;?></p>
-            <p class="small alignright">read more</p>
+        </a>
+        </div>
+        <div class="element home clearfix col1-3 news"> <a href="#" title="">
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[8]->image; ?>" alt="" width="300" height="300"  />
+            <div class="overlay">
+                <div class="left_div"><span><?php echo $config[8]->title;?></span></div>
+                <div class="view_btn">View More</div>
+              </div>
           </div>
-          </a> </div>
+        </a> </div>
         <div class="element clearfix col2-3 contact">
           <div id="map"></div>
         </div>
-        
-        <?php if($config[10]->title) { ?>
-        <div class="element  clearfix col1-3 color home">
-          <h2><span><?php echo $config[10]->title;?></span></h2>
-          <div class="price"><span></span></div>
-          <p class="small"><?php echo $config[10]->text;?></p>
-        </div>
-        <?php }; ?>
+
+        <div class="element home clearfix col1-3 news"> <a href="#" title="">
+          <div class="images"><img src="<?php echo base_url("uploads")."/".$config[10]->image; ?>" alt="" width="300" height="300"  />
+            <div class="overlay">
+                <div class="left_div"><span><?php echo $config[10]->title;?></span></div>
+                <div class="view_btn">View More</div>
+              </div>
+          </div>
+        </a> </div>
         <div class="element home clearfix col1-3 contact">
           <div class="info-icon" style="margin-bottom: 0;"><i class="icons email"></i>
             <h2>Contact Us</h2>

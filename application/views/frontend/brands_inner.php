@@ -16,7 +16,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 
 <style>
-   
+
     .icon_adjust{
         width: 620px;
     }
@@ -52,7 +52,7 @@
         margin-top: -5%;
         padding: 2%;
     }
-   
+
 </style>
 <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url("frontend")."/";?>js/TweenMax.min.js"></script>
@@ -61,7 +61,7 @@
         $(function () {
             var $window = $(window);        //Window object
             var scrollTime = 1.2;           //Scroll time
-            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll
             $window.on("mousewheel DOMMouseScroll", function (event) {
                 event.preventDefault();
                 var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
@@ -83,14 +83,14 @@
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
-    
+
   <div id="quick-info" class="clearfix top_head_other">
     <p class="pointer">High Street Phoenix, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</p>
     <p class="mail"><a href="mailto:info@highstreetphoenix.com" title="">info@highstreetphoenix.com</a></p>
     <p class="phone">+91-22-43339994</p>
     <p class="time">We're open MON through FRI from 7am till 11pm</p>
   </div>
-    
+
   <header id="wrapper" class="clearfix header_other">
     <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
     <!-- start navi -->
@@ -126,7 +126,7 @@
       <div id="container" class="clearfix">
 
           <div class="element home clearfix col1-3 full full-logo logo-adj brand_img" style="background-image: url('<?php if($branddata->logo != "") { echo base_url('uploads')."/".$branddata->logo; }else { echo base_url('uploads')."/nologo.jpg"; }?>');">
-               
+
           </div>
 
        <!--<div class="element col2-3 col1-2 home">
@@ -137,8 +137,11 @@
                 <div class="flexslider brand_inner_brand">
                   <div class="images brand_inner_brand">
                     <ul class="slides brand_inner_brand">
-                      <li><center><img src="http://hepta.me/hsp/frontend/images/classes01.jpg" alt="" /></center></li>
-                      <li><center><img src="http://hepta.me/hsp/frontend/images/classes04.jpg" alt="" /></center></li>
+                      <?php foreach($brandimages as $image) { ?>
+
+                      <li><center><img src="<?php echo base_url("uploads")."/".$image->image;?>" alt="" /></center></li>
+
+                      <?php } ?>
                     </ul>
                   </div>
                 </div>
@@ -150,10 +153,10 @@
             <h2><?php echo $branddata->name; ?></h2>
 
               <!--<div class="soc">
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a> 
+                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/fb.png" /></a>
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/pin.png" /></a>
                   <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/tw.png" /></a>
-                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>            
+                  <a href="#"><img src="<?php echo base_url("frontend")."/";?>images/insta.png" /></a>
               </div>-->
           </div>
           <div class="scrollbox"><p><?php if($branddata->description != ""){ echo $branddata->description;}else{ echo "NA"; }; ?></p>
@@ -189,7 +192,7 @@
             <p class="small" style="padding: 15px"><img src="<?php echo base_url("frontend")."/";?>images/mail.png" /> <?php if($branddata->email != ""){ echo $branddata->email;}else{ echo "NA"; }; ?></p>
           <div class="break"></div>
         </div>
-<?php if($branddata->specialoffer) { ?>
+<!-- <?php if($branddata->specialoffer) { ?>
           <div class="element home clearfix col1-3 half detail">
           <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
             <h2>Special Offer</h2>
@@ -198,23 +201,23 @@
             <div class="sample_img" style="background-image: url('<?php echo base_url('uploads/').$branddata->specialofferimage; ?>'"></div>
           </div>
     </div>
-       <?php }; ?>
+       <?php }; ?> -->
        <?php foreach($branddeals as $branddeal) { ?>
         <div class="element home clearfix col1-3 full detail">
           <div class="info-icon icon_adjust_full"><i class="icons deal"></i>
             <h2>Deals</h2>
           </div>
           <!--<div class="dimg" style="background-image: url('<?php //echo base_url("uploads")."/".$normaldeal->image; ?>')"></div>-->
-          <div class="dimg brand_deal_img" style="background-image: url('<?php echo base_url("frontend")."/"; ?>images/Aldo.jpg')"></div>
+          <div class="dimg brand_deal_img" style="background-image: url('<?php echo base_url('uploads')."/".$branddata->specialofferimage; ?>')"></div>
           <!--<div class="dimg deal_desc"><?php //echo $deal->description; ?></div>-->
-          <div class="dimg deal_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+          <div class="dimg deal_desc"><?php echo $branddata->specialoffer; ?></div>
           <div class="dimg">
             <div class="heading">Brand Name</div>
-            Lorem Ipsum<?php //echo $normaldeal->hours; ?>
-            <div class="heading">Hours</div>
-            Lorem Ipsum<?php //echo $normaldeal->hours; ?>
+            <?php echo $branddata->name; ?>
+            <div class="heading">Duration</div>
+            <?php echo $branddata->duration; ?>
             <div class="heading">Location</div>
-            Lorem Ipsum<?php //echo $normaldeal->location; ?>
+            <?php echo $branddata->location; ?>
           </div>
           <p><?php echo $branddeal->description; ?></p>
             <div class="sample_img"></div>

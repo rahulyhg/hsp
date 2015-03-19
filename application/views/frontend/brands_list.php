@@ -25,7 +25,7 @@
         $(function () {
             var $window = $(window);        //Window object
             var scrollTime = 1.2;           //Scroll time
-            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll
             $window.on("mousewheel DOMMouseScroll", function (event) {
                 event.preventDefault();
                 var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
@@ -56,7 +56,7 @@
         </div>
         <header id="wrapper" class="clearfix header_other">
             <h1 id="logo"><a href="index.php">High Street Phoenix</a></h1>
-            <div id="nav-button"> <span class="nav-bar"></span>  <span class="nav-bar"></span>  <span class="nav-bar"></span> 
+            <div id="nav-button"> <span class="nav-bar"></span>  <span class="nav-bar"></span>  <span class="nav-bar"></span>
             </div>
             <div id="options" class="clearfix">
                 <ul id="filters" class="option-set clearfix" data-option-key="filter">
@@ -96,7 +96,7 @@
                     <div class="filter">
                         <div class="filterleft">
                             <form method="post" accept-charset="utf-8" action="<?php echo site_url(" website/brands_list "); ?>">
-                                I am Looking For 
+                                I am Looking For
                                 <select name="" class="select1 brandcategorysearch">
                                     <option value="">Search By Category</option>
                                     <?php foreach($brandcategories as $brandcategory) { ?>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="filterright">
                             <input name="search" class="input1 search" type="text" id="search" placeholder="Search Directory" size="30" title="Search *"/>
-                        </div>     
+                        </div>
                     </div>
                     <div class="range atoz">
                         <a href="#">#</a>
@@ -138,12 +138,12 @@
                         <a href="#">Y</a>
                         <a href="#">Z</a>
                    </div>
-                 
+
                     <div class="full-list">
-                    
-                    
-                    
-                    
+
+
+
+
                     </div>
                     <div class="btn-data loadmorebrands">
                         <input type="submit" class="btn" value="Load More Brands +" />
@@ -151,19 +151,19 @@
                 </div>
             </div>
            </div>
-</div>  
-        
+</div>
+
         <script>
-            
-            
+
+
             var alph="";
             var search="";
             var category="";
             var first="";
             $(document).ready(function() {
-                
+
                 function addbrands(data,isnew) {
-                    
+
                     if(!isnew)
                     {
                         $(".full-list").html("");
@@ -174,31 +174,31 @@
                         {
                             data[i].logo = "nologo.jpg";
                         };
-                        
+
                         if(data[i].location == "")
                         {
                             data[i].location = "NA";
                         };
-                        
+
                         if(data[i].hours == "")
                         {
                             data[i].hours = "NA";
                         };
-                        
+
                         if(i+1 < data.length)
                             {
                              if(data[i+1].logo == "")
-                        {
-                            data[i+1].logo = "nologo.jpg";
-                        };
-if(data[i+1].location == "")
-                        {
-                            data[i+1].location = "NA";
-                        };
-if(data[i+1].hours == "")
-                        {
-                            data[i+1].hours = "NA";
-                        };   
+                              {
+                                  data[i+1].logo = "nologo.jpg";
+                              };
+      if(data[i+1].location == "")
+                              {
+                                  data[i+1].location = "NA";
+                              };
+      if(data[i+1].hours == "")
+                              {
+                                  data[i+1].hours = "NA";
+                              };
                             };
                         var text = "";
                         if(i%2 == 0)
@@ -225,7 +225,7 @@ if(data[i+1].hours == "")
     columnWidth: 200
   }});
                 }
-                
+
                 function callfilter(isnew) {
                     if(!isnew)
                     {
@@ -237,10 +237,10 @@ if(data[i+1].hours == "")
                         addbrands(data,isnew);
                     });
                 };
-                
+
                 callfilter(false);
-                
-                
+
+
                 $(".atoz a").click(function() {
                     $(".atoz a").removeClass("makered");
                     $(this).addClass("makered");
@@ -265,11 +265,11 @@ if(data[i+1].hours == "")
                     first=$(".brands .brand").length;
                     callfilter(true);
                 });
-                
-                
+
+
             });
         </script>
-        
+
         <?php $this->load->view("frontend/footer");?>
         <script src="<?php echo base_url("frontend")."/";?>js/jquery-1.9.1.min.js" type="text/javascript"></script>
 <!--        <script src="<?php echo base_url("frontend")."/";?>js/jquery.smoothwheel.js"></script>-->

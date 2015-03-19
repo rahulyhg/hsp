@@ -34,7 +34,7 @@
         width: 620px;
     }
     .full{
-        width: 1260px;   
+        width: 1260px;
     }
     .icon_adjust_full{
         width: 68%;
@@ -84,7 +84,7 @@
         $(function () {
             var $window = $(window);        //Window object
             var scrollTime = 1.2;           //Scroll time
-            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll        
+            var scrollDistance = 170;       //Distance. Use smaller value for shorter scroll and greater value for longer scroll
             $window.on("mousewheel DOMMouseScroll", function (event) {
                 event.preventDefault();
                 var delta = event.originalEvent.wheelDelta / 120 || -event.originalEvent.detail / 3;
@@ -139,7 +139,7 @@
   </header>
   <div id="content">
     <div class="container">
-     
+
      <div id="container" class="clearfix">
             <div class="element home clearfix col1-3 full full-logo logo-adj brand_img" style="background-image: url('<?php if($dinerdata->logo != "") { echo base_url("uploads")."/".$dinerdata->logo; }else{ echo base_url("uploads")."/nologo.jpg"; }; ?>');">
           </div>
@@ -149,8 +149,9 @@
                     <div class="flexslider brand_inner_brand">
                       <div class="images brand_inner_brand">
                         <ul class="slides brand_inner_brand">
-                          <li><center><img src="http://hepta.me/hsp/frontend/images/classes01.jpg" alt="" /></center></li>
-                          <li><center><img src="http://hepta.me/hsp/frontend/images/classes04.jpg" alt="" /></center></li>
+                          <?php foreach($dineimages as $image) { ?>
+                          <li><center><img src="<?php echo base_url("uploads")."/".$image->image;?>" alt="" /></center></li>
+                          <?php } ?>
                         </ul>
                       </div>
                     </div>
@@ -162,7 +163,7 @@
           </div>
           <div class="scrollbox brand-desc"><p><?php if($dinerdata->description != ""){ echo $dinerdata->description;}else { echo "Description not specified";}; ?> </p></div>
           </div>
-      
+
          <div class="element home clearfix col1-3">
           <div class="info-icon no-margin icon_adjust"><i class="icons details"></i>
             <h2>Details</h2>
@@ -197,25 +198,25 @@
           </div>
 
           <div class="infos-right lr">
-            <p class="small dine_amenities"> 
+            <p class="small dine_amenities">
                   <?php foreach ($dineramenities as $ame) { ?>
                       <a href=""><img src="<?php echo base_url("frontend")."/";?>images/amenity<?php echo $ame->id;?>_w.png" /></a>
-                      
+
                   <?php }; ?>
             </p>
           </div>
             <div class="clear"></div>
              <div class="borderline"></div>
             <!--<div class="soc" style="border-top: 1px solid #000;">
-                  <a href="<?php //echo $dinerdata->facebook; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/facebook.png" /></a> 
+                  <a href="<?php //echo $dinerdata->facebook; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/facebook.png" /></a>
                   <a href="<?php //echo $dinerdata->twitter; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/twitter.png" /></a>
                   <a href="<?php //echo $dinerdata->instagram; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/pinintrest.png" /></a>
-                  <a href="<?php //echo $dinerdata->googleplus; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/youtube.png" /></a>   
-                  <a href="<?php //echo $dinerdata->email; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/mail.png" /></a>          
+                  <a href="<?php //echo $dinerdata->googleplus; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/youtube.png" /></a>
+                  <a href="<?php //echo $dinerdata->email; ?>"><img src="<?php //echo base_url("frontend")."/";?>images/mail.png" /></a>
               </div>-->
         </div>
     </div>
-                          
+
               <?php if($dinerdata->specialoffer) { ?>
            <div class="element home clearfix col1-3 half detail">
               <div class="info-icon icon_adjust"><div class="info-icon"><i class="icons special"></i>
@@ -226,7 +227,7 @@
             </div>
             </div>
             <?php }; ?>
-         
+
   </div>
 </div>
 <?php $this->load->view("frontend/footer");?>
